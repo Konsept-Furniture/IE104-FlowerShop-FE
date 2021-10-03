@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { unauthorize } from 'src/pages/Auth/auth.slice'
-import { path } from 'src/constants/path'
-import { useAuthenticated } from 'src/hooks/useAuthenticated'
-import { getCartPurchases } from 'src/pages/Cart/cart.slice'
+import { unauthorize } from '@/features/Auth/authSlice'
+import { path } from '@/constants/path'
+import { useAuthenticated } from '@/hooks/useAuthenticated'
+// import { getCartPurchases } from '@/pages/Cart/cart.slice'
 
 export default function Authorization() {
   const status = useSelector(state => state.app.status)
@@ -21,7 +21,7 @@ export default function Authorization() {
 
   useEffect(() => {
     if (authenticated) {
-      dispatch(getCartPurchases())
+      // dispatch(getCartPurchases())
     }
   }, [dispatch, authenticated])
 

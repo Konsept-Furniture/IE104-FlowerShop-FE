@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { path } from 'src/constants/path'
+import { path } from '@/constants/path'
 
 export default class ErrorBoundary extends React.Component {
   constructor(props) {

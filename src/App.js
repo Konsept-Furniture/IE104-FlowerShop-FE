@@ -8,8 +8,8 @@ function App() {
   return (
     <div>
       <Routes />
-      <Loading />
-      <Authorization />
+      {/* <Loading /> */}
+      {/* <Authorization /> */}
     </div>
   );
 }

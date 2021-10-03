@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-
+import appReducer from '@/appSlice'
 const rootReducer = {
+   app: appReducer
    // user: authReducer,
    // theme: themeReducer,
    // option: optionsReducer,
