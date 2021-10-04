@@ -24,6 +24,7 @@ module.exports = (env, agrv) => {
                      loader: 'css-loader',
                      options: { sourceMap: isDev ? true : false }
                   },
+                  'postcss-loader',
                   {
                      loader: 'sass-loader',
                      options: { sourceMap: isDev ? true : false }

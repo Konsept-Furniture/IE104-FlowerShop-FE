@@ -1,5 +1,6 @@
 module.exports = {
-  purge: [],
+  mode: 'jit',
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
     colors: {
@@ -32,7 +33,13 @@ module.exports = {
       md: '16px',
       lg: '24px',
       xl: '48px',
-     }
+     },
+     spacing: {
+      sm: '8px',
+      md: '16px',
+      lg: '24px',
+      xl: '48px',
+     },
   },
   variants: {
     extend: {},

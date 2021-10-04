@@ -1,4 +1,3 @@
-import './App.css';
 import React, { Suspense } from "react";
 import Routes from './Routes';
 import Authorization from './components/Authorization/Authorization';
