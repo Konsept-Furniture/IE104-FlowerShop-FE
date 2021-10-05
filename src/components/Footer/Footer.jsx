@@ -17,7 +17,7 @@ function Footer(props) {
                   <Grid item xs={6} sm={4} py={3}>
                      <Box py={2}>HELP</Box>
                      <Box>
-                        <Link href="#" class="pb-8 no-underline" color="#8b8b8b">FAQs</Link>
+                        <Link href="#" className="pb-8 no-underline" color="#8b8b8b">FAQs</Link>
                      </Box>
                      <Box>
                         <Link className="m-5 no-underline" href="#" color="#8b8b8b">Pricing Plan</Link>
@@ -63,7 +63,7 @@ function Footer(props) {
 
             </Container>
          </Box>
-      </footer >
+      </footer>
    );
 }
 
