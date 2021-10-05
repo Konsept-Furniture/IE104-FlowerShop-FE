@@ -12,11 +12,11 @@ Footer.propTypes = {
 
 function Footer(props) {
    return (
-      <footer className="px-4 bg-gray-footer text-coolGray-800">
+      <footer className="px-6 bg-gray-footer text-coolGray-800">
          <div className="container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
             <div className="lg:w-1/3">
                <a href="https://hackertyper.com/" className="flex justify-center space-x-3 lg:justify-start">
-                  <span className="self-center text-3xl font-semibold">Konsept</span>
+                  <span className="self-center text-4xl font-semibold">Konsept</span>
                </a>
                <a className="sm:flex-col sm:justify-center sm:items-center">Description here</a><br />
             </div>
@@ -85,7 +85,7 @@ function Footer(props) {
                </div>
             </div>
          </div>
-         <div className="font-josefins py-6 text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div>
+         <div className="font-josefins text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div>
       </footer>
    );
 }
