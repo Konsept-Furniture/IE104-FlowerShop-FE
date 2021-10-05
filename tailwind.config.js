@@ -2,9 +2,15 @@ module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    fontFamily:{
+      josefins: ['Josefin Sans']
+    },
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
+      white:{
+        DEFAULT: 'FFFFFF',
+      },
       blue: {
         light: '#85d7ff',
         DEFAULT: '#1fb6ff',
@@ -21,9 +27,15 @@ module.exports = {
         DEFAULT: '#c0ccda',
         light: '#e0e6ed',
         lightest: '#f9fafc',
+        footer:'#f4f2f2',
+      },
+      konsept: {
+        DEFAULT:'#1d1d1d',
+        gray: '#8b8b8b'
       },
       footer_bg: {
-        DEFAULT: '#f4f2f2'
+        DEFAULT: '#f4f2f2',
+
       }
     },
     extend: {},
