@@ -18,7 +18,7 @@ function Footer(props) {
                <a href="https://hackertyper.com/" className="flex justify-center space-x-3 lg:justify-start">
                   <span className="self-center text-4xl font-semibold">Konsept</span>
                </a>
-               <a className="sm:flex-col sm:justify-center sm:items-center">Description here</a><br />
+               <a className="sm:flex-col sm:text-center sm:items-center">Description here</a><br />
             </div>
             <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
                <div className="space-y-3">
@@ -85,7 +85,7 @@ function Footer(props) {
                </div>
             </div>
          </div>
-         <div className="font-josefins text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div>
+         <div className="px-0 font-josefins text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div>
       </footer>
    );
 }
