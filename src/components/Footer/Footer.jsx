@@ -1,19 +1,14 @@
+import FacebookIcon from '@/assets/icons/FacebookIcon';
+import GithubIcon from '@/assets/icons/GithubIcon';
 import React from 'react';
-import PropTypes from 'prop-types';
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import Box from '@mui/material/Box'
-import Link from '@mui/material/Link'
-import GithubIcon from '../assets/GithubIcon';
-import FacebookIcon from '../assets/FacebookIcon';
 Footer.propTypes = {
 
 };
 
 function Footer(props) {
    return (
-      <footer className="bg-gray-footer text-coolGray-800">
-         <div className="konsept-container container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+      <footer className="bg-gray-footer text-gray-800">
+         <div className="konsept-container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
             <div className="lg:w-1/3">
                <a href="https://hackertyper.com/" className="flex justify-center space-x-3 lg:justify-start">
                   <span className="self-center text-4xl font-semibold">Konsept</span>
@@ -85,7 +80,7 @@ function Footer(props) {
                </div>
             </div>
          </div>
-         <div className="px-0 font-poppins text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div>
+         {/* <div className="px-0 font-poppins text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div> */}
       </footer>
    );
 }

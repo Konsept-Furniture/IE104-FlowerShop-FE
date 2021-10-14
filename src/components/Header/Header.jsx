@@ -5,14 +5,14 @@ import IconHeart from '@/assets/icons/IconHeart';
 import IconCart from '@/assets/icons/IconCart';
 import IconUser from '@/assets/icons/IconUser';
 import IconBurger from '@/assets/icons/IconBurger';
+import './Header.scss';
 
-import './Header.scss'
 Header.propTypes = {};
 
 function Header(props) {
    return (
       <header className="header py-4">
-         <div class="header--innner flex justify-between items-center konsept-container">
+         <div class="header--innner konsept-container flex justify-between items-center">
             <div className="mr-16 h-14">
                <img
                   className="h-full"
@@ -23,7 +23,7 @@ function Header(props) {
                />
             </div>
 
-            <nav className="header__nav mr-auto">
+            <nav className="header__nav mr-auto hidden md:block">
                <ul className="flex items-center">
                   <li>
                      <NavLink to="/" className="konsept-link">
@@ -60,7 +60,7 @@ function Header(props) {
 
             <div className="header__widgets-holder ml-3">
                <div className="header__widget h-full mr-6">
-                  <div className="header__widget-content flex items-center ">
+                  <div className="header__widget-content">
                      <span>
                         <IconUser />
                      </span>
@@ -68,7 +68,7 @@ function Header(props) {
                   </div>
                </div>
                <div className="header__widget h-full mr-4">
-                  <div className="header__widget-content flex items-center ">
+                  <div className="header__widget-content">
                      <span>
                         <IconHeart />
                      </span>
@@ -76,16 +76,15 @@ function Header(props) {
                   </div>
                </div>
                <div className="header__widget h-full mr-4">
-                  <div className="header__widget-content flex items-center ">
+                  <div className="header__widget-content">
                      <span>
                         <IconCart />
                      </span>
                      <span className="ml-1">0</span>
                   </div>
                </div>
-
                <div className="header__widget h-full mr-4">
-                  <div className="header__widget-content flex items-center ">
+                  <div className="header__widget-content">
                      <span className="header__burger">
                         <IconBurger />
                      </span>

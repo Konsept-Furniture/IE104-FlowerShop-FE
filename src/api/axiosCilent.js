@@ -3,11 +3,9 @@ import queryString from "query-string";
 import { tokenUtil } from "@/utils/token";
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
-const envVariables = process.env;
-const { REACT_APP_API_URL } = 'envVariables';
 
 const axiosClient = axios.create({
-   baseURL: REACT_APP_API_URL,
+   baseURL: process.env.REACT_APP_API_URL,
    headers: {
       get: {
          "content-type": "application/json",
