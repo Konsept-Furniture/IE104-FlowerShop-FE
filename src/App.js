@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import Routes from './Routes';
+import './App.scss';
 import Authorization from './components/Authorization/Authorization';
 import Loading from './components/Loading/Loading';
 

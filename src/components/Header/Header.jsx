@@ -13,7 +13,7 @@ function Header(props) {
    return (
       <header className="header py-4">
          <div class="header--innner konsept-container flex justify-between items-center">
-            <div className="mr-16 h-14">
+            <div className="mr-4 lg:mr-16 h-14">
                <img
                   className="h-full"
                   src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png"
@@ -23,7 +23,7 @@ function Header(props) {
                />
             </div>
 
-            <nav className="header__nav mr-auto hidden md:block">
+            <nav className="header__nav mr-auto hidden lg:block">
                <ul className="flex items-center">
                   <li>
                      <NavLink to="/" className="konsept-link">
@@ -59,7 +59,7 @@ function Header(props) {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <div className="header__widget h-full mr-6">
+               <div className="header__widget h-full mr-2 lg:mr-6">
                   <div className="header__widget-content">
                      <span>
                         <IconUser />
@@ -67,7 +67,7 @@ function Header(props) {
                      <span className="ml-1 hidden">Login/Register</span>
                   </div>
                </div>
-               <div className="header__widget h-full mr-4">
+               <div className="header__widget h-full mr-2 lg:mr-4">
                   <div className="header__widget-content">
                      <span>
                         <IconHeart />
@@ -75,7 +75,7 @@ function Header(props) {
                      <span className="ml-1">0</span>
                   </div>
                </div>
-               <div className="header__widget h-full mr-4">
+               <div className="header__widget h-full mr-2 lg:mr-4">
                   <div className="header__widget-content">
                      <span>
                         <IconCart />
@@ -83,7 +83,7 @@ function Header(props) {
                      <span className="ml-1">0</span>
                   </div>
                </div>
-               <div className="header__widget h-full mr-4">
+               <div className="header__widget h-full mr-2 lg:mr-4">
                   <div className="header__widget-content">
                      <span className="header__burger">
                         <IconBurger />
