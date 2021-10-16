@@ -52,6 +52,9 @@
 					font-size: 5rem;
 					font-weight: 400;
 					color: #ef5b47;
+					opacity: 0;
+					transition: all 0.4s ease;
+					transform: translateY(50px);
 				}
 
 				& .title {
@@ -59,25 +62,51 @@
 					font-weight: 500;
 					letter-spacing: 0.6rem;
 					text-transform: uppercase;
+					opacity: 0;
+					transition: all 0.4s ease 0.2s;
+					transform: translateY(50px);
 				}
 
 				& .description {
 					margin-top: 1rem;
+					opacity: 0;
+					transition: all 0.4s ease 0.4s;
+					transform: translateY(50px);
 				}
 
 				& .read-more {
 					margin-top: 2rem;
+					opacity: 0;
+					transition: all 0.4s ease 0.6s;
+					transform: translateY(50px);
 				}
 			}
 
 			&__image {
 				flex: 1;
-				@include flex(center, flex-start);
+				opacity: 0;
+				transform: scale(0.5);
+				transition: all 0.6s ease 0.6s;
 
+				@include flex(center, flex-start);
 				@include tablet {
 					display: none;
 				}
 			}
+		}
+
+		&.active &__content__info {
+			.type,
+			.title,
+			.description,
+			.read-more {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		&.active &__content__image {
+			opacity: 1;
+			transform: scale(1);
 		}
 	}
 }

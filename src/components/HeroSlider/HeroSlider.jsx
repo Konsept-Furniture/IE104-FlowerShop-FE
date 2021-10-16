@@ -23,7 +23,7 @@ function HeroSlider(props) {
          type: 'Authentic',
          title: 'Made with love',
          description:
-            'Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+            'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-orange'
@@ -31,7 +31,7 @@ function HeroSlider(props) {
       {
          type: 'Timeless',
          title: 'Interior designs',
-         description: 'Nulla quis lorem ut libero malesuada feugiat. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla porttitor accumsan tincidunt. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Quisque velit nisi, pretium ut lacinia in, elementum id enim. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Sed porttitor lectus nibh. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi.',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-blue'
@@ -39,7 +39,7 @@ function HeroSlider(props) {
       {
          type: 'Tailored',
          title: 'Classic interiors',
-         description: '',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-yellow'
@@ -47,9 +47,10 @@ function HeroSlider(props) {
       {
          type: 'Authentic',
          title: 'Made with love',
-         description: '',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
+         backgroundColor: 'bg-slider_bg-blue'
       },
    ];
 
@@ -59,8 +60,9 @@ function HeroSlider(props) {
             modules={[Autoplay, EffectFade]}
             spaceBetween={0}
             slidesPerView={1}
-         // navigation
-         // effect={'fade'}
+            // navigation
+            loop
+            effect={'fade'}
          >
             {items.map((item, index) => (
                <SwiperSlide key={index}>
@@ -79,7 +81,7 @@ const HeroSliderItem = ({ data, isActive }) => {
 
    return (
       <div
-         className={`hero-slider__item ${data.backgroundColor}`}
+         className={`hero-slider__item ${data.backgroundColor} ${isActive ? 'active' : ''}`}
       >
          <div className="hero-slider__item__content konsept-container">
             <div className="hero-slider__item__content__info">
