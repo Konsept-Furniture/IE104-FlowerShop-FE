@@ -76,7 +76,7 @@ $border-radius--h40: 8px;
   * constant.
   */
 $z-index--header: (--z-index-header);
-$transition--common: (--transition-common);
+$transition--common: all 0.4s ease;
 
 $height--image-common: (--height-image-common);
 $height--side-bar_outline: (--height-side-bar-outline);
