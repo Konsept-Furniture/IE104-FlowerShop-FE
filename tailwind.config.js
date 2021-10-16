@@ -4,11 +4,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins']
+        poppins: ['Poppins'],
+        handwriter: ['Sacramento']
       },
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
+        slider_bg: {
+          blue: '#E9F0F3',
+          yellow: '#F9F3EB',
+          orange: '#F1EDEE',
+        },
         white: {
           DEFAULT: '#FFFFFF',
         },
