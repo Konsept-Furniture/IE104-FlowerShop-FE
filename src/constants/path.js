@@ -1,6 +1,7 @@
 class Path {
   constructor() {
     this.home = '/'
+    this.shop = '/shop'
     this.login = '/login'
     this.register = '/register'
     this.product = '/product'
