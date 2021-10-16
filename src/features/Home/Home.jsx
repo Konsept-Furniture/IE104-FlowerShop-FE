@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import HeroSlider from '@/components/HeroSlider/HeroSlider';
 
 Home.propTypes = {
 
@@ -7,11 +8,8 @@ Home.propTypes = {
 
 function Home(props) {
    return (
-      <main className="konsept-container flex items-center justify-center">
-         <img
-            alt="coming soon" src={require('@/assets/images/coming-soon.jpg').default}
-            className="py-8 "
-         />
+      <main className="flex items-center justify-center">
+         <HeroSlider />
       </main>
    );
 }
