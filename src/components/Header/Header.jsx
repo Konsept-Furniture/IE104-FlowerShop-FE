@@ -92,7 +92,7 @@ function Header(props) {
                      <span className="header__burger">
                         <IconBurger />
                      </span>
-                     <span className="ml-1 hiddent"></span>
+                     <span className="ml-1 hidden"></span>
                   </div>
                </div>
             </div>
