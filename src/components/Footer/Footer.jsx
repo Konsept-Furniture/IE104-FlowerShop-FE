@@ -8,7 +8,7 @@ Footer.propTypes = {
 function Footer(props) {
    return (
       <footer className="text-gray-800 pb-8 pt-4">
-         <div className="konsept-container flex flex-col justify-between py-10 mx-auto space-y-8 lg:flex-row lg:space-y-0">
+         <div className="konsept-container flex flex-col justify-between py-4 mx-auto space-y-4 lg:flex-row lg:space-y-0">
             <div className="lg:w-1/3">
                <div className="mr-4 lg:mr-8 h-14">
                   <img
@@ -23,7 +23,7 @@ function Footer(props) {
             </div>
             <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
                <div className="space-y-3">
-                  <h3 className="-ml-2 font-josefins font-bold tracking-wide uppercase text-lg text-konsept">Product</h3>
+                  <h3 className="-ml-2 font-poppins font-bold tracking-wide uppercase text-lg text-konsept">Product</h3>
                   <ul className="space-y-1">
                      <li>
                         <a className="font-josefins text-base text-konsept-gray" href="https://hackertyper.com/">Flowers</a>
@@ -40,7 +40,7 @@ function Footer(props) {
                   </ul>
                </div>
                <div className="space-y-3">
-                  <h3 className="font-bold font-josefins  tracking-wide uppercase text-lg text-konsept">Services</h3>
+                  <h3 className="font-bold font-poppins tracking-wide uppercase text-lg text-konsept">Services</h3>
                   <ul className="space-y-1">
                      <li>
                         <a className="font-josefins text-base text-konsept-gray" href="https://hackertyper.com/">My Account</a>
@@ -51,7 +51,7 @@ function Footer(props) {
                   </ul>
                </div>
                <div className="space-y-3">
-                  <h3 className="font-bold font-josefins uppercase text-lg text-konsept">Contact</h3>
+                  <h3 className="font-bold font-poppins uppercase text-lg text-konsept">Contact</h3>
                   <ul className="space-y-1">
                      <li>
                         <a className="font-josefins text-base text-konsept-gray" href="https://hackertyper.com/">Store Locator</a>
@@ -65,7 +65,7 @@ function Footer(props) {
                   </ul>
                </div>
                <div className="space-y-3">
-                  <div className="font-bold uppercase text-lg text-konsept">Social media</div>
+                  <div className="font-bold font-poppins uppercase text-lg text-konsept">Social media</div>
                   <div className="flex ml-1 justify-start space-x-3">
                      <a href="https://hackertyper.com/" title="Github" className="flex items-center p-1">
                         <div>
