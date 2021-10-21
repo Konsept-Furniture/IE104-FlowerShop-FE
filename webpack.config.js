@@ -1,4 +1,9 @@
 const path = require('path')
+const webpack = require('webpack')
+const dotenv = require('dotenv').config({
+   path: path.join(__dirname, '.env')
+});
+
 module.exports = (env, agrv) => {
    const isDev = agrv.mode === 'development'
    return {
@@ -74,7 +79,16 @@ module.exports = (env, agrv) => {
          static: {
             directory: 'public'
          },
-         port: 8000
-      }
+         port: 8000,
+         historyApiFallback: true,
+      },
+      plugins: [
+         new webpack.DefinePlugin({
+            "process.env": JSON.stringify(dotenv.parsed)
+         }),
+         new webpack.ProvidePlugin({
+            "React": "react",
+         }),
+      ]
    }
 }

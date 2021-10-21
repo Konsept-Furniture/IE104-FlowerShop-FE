@@ -25,65 +25,6 @@ function Routes(props) {
                </Suspense>
             </MainLayout>
          </Route>
-
-         {/* <Route path={path.productDetail} exact>
-            <MainLayout>
-               <Suspense fallback={<Fallback />}>
-                  <ErrorBoundary>
-                     <ProductDetail />
-                  </ErrorBoundary>
-               </Suspense>
-            </MainLayout>
-         </Route>
-
-         <Route path={path.login}>
-            <UnauthenticatedGuard>
-               <RegisterLayout title="Đăng nhập">
-                  <Suspense fallback={<Fallback />}>
-                     <ErrorBoundary>
-                        <Login />
-                     </ErrorBoundary>
-                  </Suspense>
-               </RegisterLayout>
-            </UnauthenticatedGuard>
-         </Route>
-
-         <Route path={path.register}>
-            <UnauthenticatedGuard>
-               <RegisterLayout title="Đăng ký">
-                  <Suspense fallback={<Fallback />}>
-                     <ErrorBoundary>
-                        <Register />
-                     </ErrorBoundary>
-                  </Suspense>
-               </RegisterLayout>
-            </UnauthenticatedGuard>
-         </Route>
-
-         <Route path={path.user}>
-            <AuthenticatedGuard>
-               <MainLayout>
-                  <Suspense fallback={<Fallback />}>
-                     <ErrorBoundary>
-                        <User />
-                     </ErrorBoundary>
-                  </Suspense>
-               </MainLayout>
-            </AuthenticatedGuard>
-         </Route>
-
-         <Route path={path.cart}>
-            <AuthenticatedGuard>
-               <CartLayout>
-                  <Suspense fallback={<Fallback />}>
-                     <ErrorBoundary>
-                        <Cart />
-                     </ErrorBoundary>
-                  </Suspense>
-               </CartLayout>
-            </AuthenticatedGuard>
-         </Route> */}
-
          <Route path={path.notFound}>
             <Suspense fallback={<Fallback />}>
                <ErrorBoundary>
