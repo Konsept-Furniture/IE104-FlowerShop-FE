@@ -17,7 +17,6 @@ function MainLayout({ children }) {
          <Header />
          {children}
          <Footer />
-         <NotFound />
       </div>
    );
 }
