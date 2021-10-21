@@ -81,7 +81,6 @@ module.exports = (env, agrv) => {
             directory: 'public'
          },
          port: 8000,
-         historyApiFallback: true,
       },
       plugins: [
          new webpack.DefinePlugin({
