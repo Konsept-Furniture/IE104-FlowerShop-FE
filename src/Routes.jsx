@@ -25,6 +25,10 @@ function Routes(props) {
                </Suspense>
             </MainLayout>
          </Route>
+
+         {/* NEW ROUTE HERE */}
+
+
          <Route path={path.notFound}>
             <Suspense fallback={<Fallback />}>
                <ErrorBoundary>
