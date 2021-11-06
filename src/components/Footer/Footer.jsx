@@ -5,8 +5,8 @@ Footer.propTypes = {
 
 }
 
-function Footer(props) {
-   return (
+function Footer (_props) {
+  return (
       <footer className="text-gray-800 pb-8 pt-4">
          <div className="konsept-container flex flex-col justify-between py-4 mx-auto space-y-4 lg:flex-row lg:space-y-0">
             <div className="lg:w-1/3">
@@ -88,7 +88,7 @@ function Footer(props) {
          </div>
          {/* <div className="px-0 font-josefins  text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div> */}
       </footer>
-   )
+  )
 }
 
 export default Footer

@@ -2,6 +2,7 @@ class Path {
   constructor () {
     this.home = '/'
     this.shop = '/shop'
+    this.about = '/about'
     // this.login = '/login'
     // this.register = '/register'
     // this.product = '/product'

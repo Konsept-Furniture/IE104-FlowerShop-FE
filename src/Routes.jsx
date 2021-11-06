@@ -7,6 +7,7 @@ import { path } from './constants/path';
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const Home = lazy(() => import('./features/Home/Home'))
+const AboutUs = lazy(() => import('./features/AboutUs/AboutUs'))
 const NotFound = lazy(() => import('./features/NotFound/NotFound'))
 
 Routes.propTypes = {
@@ -27,6 +28,16 @@ function Routes(props) {
          </Route>
 
          {/* NEW ROUTE HERE */}
+
+         <Route path={path.about} exact>
+            <MainLayout>
+               <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                     <AboutUs />
+                  </ErrorBoundary>
+               </Suspense>
+            </MainLayout>
+         </Route>
 
 
          <Route path={path.notFound}>

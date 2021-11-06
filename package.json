@@ -33,7 +33,7 @@
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.jsx,.tsx src/"
+    "lint": "eslint --ext .js,.jsx, src/"
   },
   "eslintConfig": {
     "extends": [

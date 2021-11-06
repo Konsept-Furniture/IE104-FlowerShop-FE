@@ -17,10 +17,6 @@ function Header (props) {
       route: path.home
     },
     {
-      label: 'Pages',
-      route: path.shop
-    },
-    {
       label: 'Shop',
       route: path.shop
     },
@@ -29,12 +25,8 @@ function Header (props) {
       route: path.shop
     },
     {
-      label: 'Portfolio',
-      route: path.shop
-    },
-    {
-      label: 'Blog',
-      route: path.shop
+      label: 'About Us',
+      route: path.about
     }
   ]
   return (

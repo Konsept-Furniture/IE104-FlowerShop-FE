@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: ['Poppins'],
+        josefins: ['Josefin Sans'],
         handwriter: ['Sacramento']
       },
       colors: {
@@ -13,20 +14,20 @@ module.exports = {
         slider_bg: {
           blue: '#E9F0F3',
           yellow: '#F9F3EB',
-          orange: '#F1EDEE',
+          orange: '#F1EDEE'
         },
         white: {
-          DEFAULT: '#FFFFFF',
+          DEFAULT: '#FFFFFF'
         },
         blue: {
           light: '#85d7ff',
           DEFAULT: '#1fb6ff',
-          dark: '#009eeb',
+          dark: '#009eeb'
         },
         pink: {
           light: '#ff7ce5',
           DEFAULT: '#ff49db',
-          dark: '#ff16d1',
+          dark: '#ff16d1'
         },
         gray: {
           darkest: '#1f2d3d',
@@ -34,20 +35,20 @@ module.exports = {
           DEFAULT: '#c0ccda',
           light: '#e0e6ed',
           lightest: '#f9fafc',
-          footer: '#f4f2f2',
+          footer: '#f4f2f2'
         },
         konsept: {
           DEFAULT: '#1d1d1d',
           gray: '#8b8b8b'
         },
         footer_bg: {
-          DEFAULT: '#f4f2f2',
+          DEFAULT: '#f4f2f2'
         }
-      },
-    },
+      }
+    }
   },
   variants: {
-    extend: {},
+    extend: {}
   },
-  plugins: [],
+  plugins: []
 }
