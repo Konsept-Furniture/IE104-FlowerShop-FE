@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 
-function IconUser(props) {
-   return (
+function IconUser (props) {
+  return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
          width={15.331}
@@ -14,7 +14,7 @@ function IconUser(props) {
             <circle cx={22.418} cy={3.677} r={3.535} />
          </g>
       </svg>
-   )
+  )
 }
 
 export default IconUser

@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 
-function IconBurger(props) {
-   return (
+function IconBurger (props) {
+  return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
          x="0px"
@@ -30,7 +30,7 @@ function IconBurger(props) {
             d="M28.087 12.625L0.122 12.625"
          />
       </svg>
-   )
+  )
 }
 
 export default IconBurger

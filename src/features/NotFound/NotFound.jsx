@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
 NotFound.propTypes = {
 
-};
+}
 
-function NotFound(props) {
-   return (
+function NotFound (props) {
+  return (
       <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4">
          <h2 className="lg:text-5xl md:text-4xl font-poppins text-3xl font-bold text-red-500 py-2">CANNOT FIND THIS PAGE</h2>
          <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
@@ -20,7 +20,7 @@ function NotFound(props) {
             <button className="p-4 text-base text-white font-bold text-center md:w-auto w-full bg-blue-500 border rounded-md hover:bg-red-500">Contact Support</button>
          </div>
       </div>
-   );
+  )
 }
 
-export default NotFound;
+export default NotFound

@@ -1,7 +1,7 @@
-import * as React from "react"
+import * as React from 'react'
 
-function IconCart(props) {
-   return (
+function IconCart (props) {
+  return (
       <svg
          xmlns="http://www.w3.org/2000/svg"
          width={19.816}
@@ -17,7 +17,7 @@ function IconCart(props) {
             strokeLinejoin="round"
          />
       </svg>
-   )
+  )
 }
 
 export default IconCart

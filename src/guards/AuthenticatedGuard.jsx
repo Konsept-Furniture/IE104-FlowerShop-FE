@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { path } from '@/constants/path'
 import PropTypes from 'prop-types'
 
-export default function AuthenticatedGuard({ children }) {
+export default function AuthenticatedGuard ({ children }) {
   const authenticated = useAuthenticated()
 
   if (!authenticated) {

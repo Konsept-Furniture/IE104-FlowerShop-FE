@@ -22,35 +22,35 @@ import { payloadCreator } from '@/utils/helper'
 // )
 
 const handleAuthFulfilled = (state, action) => {
-   const { user, access_token } = action.payload.data
-   state.profile = user
-   localStorage.setItem(LocalStorage.user, JSON.stringify(state.profile))
-   localStorage.setItem(LocalStorage.accessToken, access_token)
+  const { user, access_token } = action.payload.data
+  state.profile = user
+  localStorage.setItem(LocalStorage.user, JSON.stringify(state.profile))
+  localStorage.setItem(LocalStorage.accessToken, access_token)
 }
 
 const handleUnauth = state => {
-   state.profile = {}
-   localStorage.removeItem(LocalStorage.user)
-   localStorage.removeItem(LocalStorage.accessToken)
+  state.profile = {}
+  localStorage.removeItem(LocalStorage.user)
+  localStorage.removeItem(LocalStorage.accessToken)
 }
 
 const auth = createSlice({
-   name: 'auth',
-   initialState: {
-      profile: JSON.parse(localStorage.getItem(LocalStorage.user)) || {}
-   },
-   reducers: {
-      unauthorize: handleUnauth
-   },
-   extraReducers: {
-      // [register.fulfilled]: handleAuthFulfilled,
-      // [login.fulfilled]: handleAuthFulfilled,
-      // [logout.fulfilled]: handleUnauth,
-      // [updateMe.fulfilled]: (state, action) => {
-      //    state.profile = action.payload.data
-      //    localStorage.setItem(LocalStorage.user, JSON.stringify(state.profile))
-      // }
-   }
+  name: 'auth',
+  initialState: {
+    profile: JSON.parse(localStorage.getItem(LocalStorage.user)) || {}
+  },
+  reducers: {
+    unauthorize: handleUnauth
+  },
+  extraReducers: {
+    // [register.fulfilled]: handleAuthFulfilled,
+    // [login.fulfilled]: handleAuthFulfilled,
+    // [logout.fulfilled]: handleUnauth,
+    // [updateMe.fulfilled]: (state, action) => {
+    //    state.profile = action.payload.data
+    //    localStorage.setItem(LocalStorage.user, JSON.stringify(state.profile))
+    // }
+  }
 })
 
 const authReducer = auth.reducer

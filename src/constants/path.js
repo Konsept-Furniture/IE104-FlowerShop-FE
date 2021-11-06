@@ -1,5 +1,5 @@
 class Path {
-  constructor() {
+  constructor () {
     this.home = '/'
     this.shop = '/shop'
     // this.login = '/login'

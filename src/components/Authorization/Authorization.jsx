@@ -6,7 +6,7 @@ import { path } from '@/constants/path'
 import { useAuthenticated } from '@/hooks/useAuthenticated'
 // import { getCartPurchases } from '@/pages/Cart/cart.slice'
 
-export default function Authorization() {
+export default function Authorization () {
   const status = useSelector(state => state.app.status)
   const dispatch = useDispatch()
   const history = useHistory()

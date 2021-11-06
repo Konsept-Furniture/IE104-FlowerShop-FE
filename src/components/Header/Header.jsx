@@ -1,43 +1,43 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import IconHeart from '@/assets/icons/IconHeart';
-import IconCart from '@/assets/icons/IconCart';
-import IconUser from '@/assets/icons/IconUser';
-import IconBurger from '@/assets/icons/IconBurger';
-import './Header.scss';
-import { path } from '@/constants/path';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
+import IconHeart from '@/assets/icons/IconHeart'
+import IconCart from '@/assets/icons/IconCart'
+import IconUser from '@/assets/icons/IconUser'
+import IconBurger from '@/assets/icons/IconBurger'
+import './Header.scss'
+import { path } from '@/constants/path'
 
-Header.propTypes = {};
+Header.propTypes = {}
 
-function Header(props) {
-   const navItems = [
-      {
-         label: "Home",
-         route: path.home
-      },
-      {
-         label: "Pages",
-         route: path.shop
-      },
-      {
-         label: "Shop",
-         route: path.shop
-      },
-      {
-         label: "Store",
-         route: path.shop
-      },
-      {
-         label: "Portfolio",
-         route: path.shop
-      },
-      {
-         label: "Blog",
-         route: path.shop
-      },
-   ]
-   return (
+function Header (props) {
+  const navItems = [
+    {
+      label: 'Home',
+      route: path.home
+    },
+    {
+      label: 'Pages',
+      route: path.shop
+    },
+    {
+      label: 'Shop',
+      route: path.shop
+    },
+    {
+      label: 'Store',
+      route: path.shop
+    },
+    {
+      label: 'Portfolio',
+      route: path.shop
+    },
+    {
+      label: 'Blog',
+      route: path.shop
+    }
+  ]
+  return (
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-14">
@@ -98,7 +98,7 @@ function Header(props) {
             </div>
          </div>
       </header>
-   );
+  )
 }
 
-export default Header;
+export default Header
