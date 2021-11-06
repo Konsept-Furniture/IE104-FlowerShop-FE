@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import IconHeart from '@/assets/icons/IconHeart'
 import IconCart from '@/assets/icons/IconCart'
 import IconUser from '@/assets/icons/IconUser'
@@ -33,6 +33,7 @@ function Header (props) {
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-14">
+               <Link to="/">
                <img
                   className="h-full"
                   src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png"
@@ -40,6 +41,7 @@ function Header (props) {
                   srcSet="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png 330w, https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng-300x105.png 300w"
                   sizes="(max-width: 330px) 100vw, 330px"
                />
+               </Link>
             </div>
 
             <nav className="header__nav mr-auto hidden lg:block">

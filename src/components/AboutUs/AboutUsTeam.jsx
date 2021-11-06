@@ -1,6 +1,4 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import FacebookLogo from '@/assets/icons/FacebookLogo'
 import FacebookIcon from '@/assets/icons/FacebookIcon'
 import GithubIcon from '@/assets/icons/GithubIcon'
 
@@ -27,6 +25,7 @@ function AboutUsTeam (props) {
             <div className="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-blue-50" />
             <img
               className="relative z-20 w-full rounded-full"
+              // src="https://i.imgur.com/VKd7Duy.jpg"
               src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.6435-9/135121865_1592249227645949_2183249827713725508_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=QAy9aT5iAjEAX-8hSNJ&tn=fzNmh_cihSsodmn2&_nc_ht=scontent.fsgn2-2.fna&oh=64944ffdc94068ef00e23788871114b8&oe=61AC6201"
             />
           </div>
