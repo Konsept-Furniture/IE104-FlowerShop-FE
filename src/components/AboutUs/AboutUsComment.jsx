@@ -10,13 +10,13 @@ function AboutUsComment (props) {
         <div>
             ;<>
   {/* Section 1 */}
-  <section className="flex items-center justify-center py-20 bg-white min-w-screen">
+  <section className="flex items-center justify-center py-12 bg-white min-w-screen">
     <div className="px-16 bg-white">
       <div className="container flex flex-col items-start mx-auto lg:items-center">
-        <p className="relative flex items-start justify-start w-full text-lg font-bold tracking-wider text-purple-500 uppercase lg:justify-center lg:items-center">
+        <p className="font-josefins relative flex items-start justify-start w-full text-lg font-bold tracking-wider text-purple-500 uppercase lg:justify-center lg:items-center">
           Don't just take our word for it
         </p>
-        <h2 className="relative flex items-start justify-start w-full max-w-3xl text-5xl font-bold lg:justify-center">
+        <h2 className="font-josefins relative flex items-start justify-start w-full max-w-3xl text-5xl font-bold lg:justify-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="currentColor"
@@ -42,7 +42,7 @@ function AboutUsComment (props) {
                 <p className="text-gray-600">CEO at VNG</p>
               </div>
             </div>
-            <blockquote className="mt-8 text-lg text-gray-500">
+            <blockquote className="font-josefins mt-8 text-lg text-gray-500">
               "This is a no-brainer if you want to take your business to the
               next level. If you are looking for the ultimate toolset, this is
               it!"
@@ -61,7 +61,7 @@ function AboutUsComment (props) {
                 <p className="text-gray-600">CTO at Tiki</p>
               </div>
             </div>
-            <blockquote className="mt-8 text-lg text-gray-500">
+            <blockquote className="font-josefins mt-8 text-lg text-gray-500">
               "Thanks for creating this service. My life is so much easier.
               Thanks for making such a great product."
             </blockquote>
@@ -79,7 +79,7 @@ function AboutUsComment (props) {
                 <p className="text-gray-600">CEO at HTML</p>
               </div>
             </div>
-            <blockquote className="mt-8 text-lg text-gray-500">
+            <blockquote className="font-josefins mt-8 text-lg text-gray-500">
               "Packed with awesome content and exactly what I was looking for. I
               would highly recommend this to anyone."
             </blockquote>
