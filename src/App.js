@@ -1,21 +1,23 @@
-import React, { Suspense } from 'react'
-import Routes from './Routes'
-// // Import Swiper styles
-// import 'swiper/css';
-// import "swiper/css/pagination"
-// import "swiper/css/navigation"
+import { createTheme, ThemeProvider } from '@mui/material'
+import React from 'react'
 import './App.scss'
+import Routes from './Routes'
 
-import Authorization from './components/Authorization/Authorization'
-import Loading from './components/Loading/Loading'
+const theme = createTheme({
+  palette: {
+    black: {
+      main: '#000'
+    }
+  }
+})
 
 function App () {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <Routes />
       {/* <Loading /> */}
       {/* <Authorization /> */}
-    </div>
+    </ThemeProvider>
   )
 }
 

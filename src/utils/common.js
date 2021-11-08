@@ -1,7 +1,6 @@
-import { constants } from '@/constants/global'
 import StorageKeys from '@/constants/storage-keys'
 
-const saveBearerToken = (data) => {
+const saveBearerToken = data => {
   localStorage.setItem(StorageKeys.TOKEN, data.access_token)
   // localStorage.setItem(constants.BEARER_REFRESH_TOKEN_VARIABLE_NAME, data.refresh_token);
 }
@@ -16,7 +15,7 @@ const removeCurrentUser = () => {
   // localStorage.removeItem(constants.BEARER_REFRESH_TOKEN_VARIABLE_NAME);
 }
 
-const getParamValue = (query) => {
+const getParamValue = query => {
   const objResult = query
     ? (/^[?#]/.test(query) ? query.slice(1) : query)
         .split('&')
@@ -40,20 +39,8 @@ function getBase64 (file) {
   })
 }
 
-const getFileName = (file) => {
+const getFileName = file => {
   return file.replace(/\.[^/.]+$/, '')
-}
-
-const convertSorter = (sorter) => {
-  const arr = []
-  Object.entries(sorter).forEach(([k, v]) => {
-    if (v === 'ASC') {
-      arr.push(k)
-    } else if (v === 'DESC') {
-      arr.push(`-${k}`)
-    }
-  })
-  return arr.join(',')
 }
 
 export const common = {
@@ -63,7 +50,5 @@ export const common = {
   getParamValue,
 
   getBase64,
-  getFileName,
-
-  convertSorter
+  getFileName
 }

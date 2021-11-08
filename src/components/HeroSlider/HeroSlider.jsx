@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import './HeroSlider.scss'
-import Button, { OutlinedButton } from '../button/Button'
+import { OutlinedButton } from '../button/Button'
 
 // Swiper import
 import SwiperCore, { Autoplay, EffectFade } from 'swiper'
@@ -89,7 +89,26 @@ const HeroSliderItem = ({ data, isActive }) => {
                <h2 className="title">{data.title}</h2>
                <div className="description">{data.description}</div>
                <div className="read-more">
-                  <OutlinedButton onClick={() => { }}>Read more</OutlinedButton>
+                  {/* <Button
+                     sx={{
+                        py: 1.3,
+                        px: 6,
+                        textTransform: 'none',
+                        fontFamily: 'EB Garamond',
+                        fontSize: '18px',
+                        fontWeight: 400,
+                        fontStyle: 'italic',
+
+                        '&': {
+                           backgroundColor: 'transparent',
+                        }
+                     }}
+                     color="black"
+                     variant="outlined"
+                  >
+                     Read more
+                  </Button> */}
+                  <OutlinedButton>Read more</OutlinedButton>
                </div>
             </div>
             <div className="hero-slider__item__content__image">

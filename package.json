@@ -33,7 +33,10 @@
     "build": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .js,.jsx, src/"
+    "lint": "eslint --ext .js,.jsx, src/",
+    "lint:fix": "eslint --fix --ext js,jsx src/",
+    "prettier": "prettier --check \"src/**/(*.jsx|*.js|*.scss|*.css)\"",
+    "prettier:fix": "prettier --write \"src/**/(*.jsx|*.js|*.scss|*.css)\""
   },
   "eslintConfig": {
     "extends": [
@@ -70,6 +73,7 @@
     "html-webpack-plugin": "^5.3.2",
     "lint-staged": "^11.2.6",
     "postcss": "^7.0.38",
+    "resolve-url-loader": "^4.0.0",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.3.0",

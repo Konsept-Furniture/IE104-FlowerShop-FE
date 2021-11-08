@@ -1,16 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { NavLink, Link } from 'react-router-dom'
-import IconHeart from '@/assets/icons/IconHeart'
-import IconCart from '@/assets/icons/IconCart'
-import IconUser from '@/assets/icons/IconUser'
 import IconBurger from '@/assets/icons/IconBurger'
-import './Header.scss'
+import IconCart from '@/assets/icons/IconCart'
+import IconHeart from '@/assets/icons/IconHeart'
+import IconUser from '@/assets/icons/IconUser'
 import { path } from '@/constants/path'
+import React from 'react'
+import { Link, NavLink, useHistory } from 'react-router-dom'
+import './Header.scss'
 
-Header.propTypes = {}
-
-function Header (props) {
+function Header () {
+  const history = useHistory()
   const navItems = [
     {
       label: 'Home',
@@ -29,18 +27,19 @@ function Header (props) {
       route: path.about
     }
   ]
+
   return (
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-14">
-               <Link to="/">
-               <img
-                  className="h-full"
-                  src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png"
-                  alt="logo"
-                  srcSet="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png 330w, https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng-300x105.png 300w"
-                  sizes="(max-width: 330px) 100vw, 330px"
-               />
+               <Link to={path.home}>
+                  <img
+                     className="h-full"
+                     src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png"
+                     alt="logo"
+                     srcSet="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png 330w, https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng-300x105.png 300w"
+                     sizes="(max-width: 330px) 100vw, 330px"
+                  />
                </Link>
             </div>
 
@@ -57,7 +56,10 @@ function Header (props) {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <div className="header__widget h-full mr-2 lg:mr-6">
+               <div className="header__widget h-full mr-2 lg:mr-6"
+                  onClick={() => {
+                    history.push(path.login)
+                  }}>
                   <div className="header__widget-content">
                      <span>
                         <IconUser />
