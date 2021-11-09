@@ -9,6 +9,8 @@ import MainLayout from './layouts/MainLayout/MainLayout';
 const Home = lazy(() => import('./features/Home/Home'));
 const Login = lazy(() => import('./features/Auth/Login/Login'))
 const Register = lazy(() => import('./features/Auth/Register/Register'))
+const ProductList = lazy(() => import('./features/Product/pages/ProductList'))
+const ProductDetail = lazy(() => import('./features/Product/pages/ProductDetail'))
 const AboutUs = lazy(() => import('./features/AboutUs/AboutUs'))
 const NotFound = lazy(() => import('./features/NotFound/NotFound'))
 
@@ -49,6 +51,27 @@ function Routes(props) {
                </Suspense>
             </AuthLayout>
          </Route>
+
+         {/* PRODUCT */}
+         <Route path={path.products} exact>
+            <MainLayout>
+               <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                     <ProductList />
+                  </ErrorBoundary>
+               </Suspense>
+            </MainLayout>
+         </Route>
+         <Route path={path.productDetail} exact>
+            <MainLayout>
+               <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                     <ProductDetail />
+                  </ErrorBoundary>
+               </Suspense>
+            </MainLayout>
+         </Route>
+
 
          <Route path={path.about} exact>
             <MainLayout>
