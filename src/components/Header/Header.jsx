@@ -15,8 +15,8 @@ function Header () {
       route: path.home
     },
     {
-      label: 'Shop',
-      route: path.shop
+      label: 'Products',
+      route: path.products
     },
     {
       label: 'Store',
@@ -47,7 +47,7 @@ function Header () {
                <ul className="flex items-center">
                   {navItems.map(item => (
                      <li key={item.label}>
-                        <NavLink to={item.route} className="konsept-link">
+                        <NavLink to={item.route} className="konsept-link" exact>
                            {item.label}
                         </NavLink>
                      </li>

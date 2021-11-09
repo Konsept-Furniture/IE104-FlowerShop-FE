@@ -6,56 +6,76 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Lato:wght@400;700&display=swap');
 
 :root {
-	--transition-common: all 0.3s ease;
+   --transition-common: all 0.3s ease;
 }
 
 body {
-	margin: 0;
-	font-family: 'Poppins', sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	min-height: 100vh;
-	max-width: 100vw;
+   margin: 0;
+   font-family: 'Poppins', sans-serif;
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+   min-height: 100vh;
+   max-width: 100vw;
 }
 li {
-	list-style-type: none;
+   list-style-type: none;
 }
 img {
-	display: block;
-	max-width: 100%;
-	height: auto;
+   display: block;
+   max-width: 100%;
+   height: auto;
 }
 
 a {
-	text-decoration: none;
-	cursor: pointer;
+   text-decoration: none;
+   cursor: pointer;
+   transition: $transition--common;
+   &:hover {
+      color: #aeaeae;
+   }
+}
+
+::selection {
+   color: white;
+   background: black;
 }
 
 .konsept-container {
-	max-width: 1210px;
-	padding: 0 20px;
-	margin: 0 auto;
+   max-width: 1210px;
+   padding: 0 20px;
+   margin: 0 auto;
 }
 .konsept-link {
-	position: relative;
+   position: relative;
+
+   &:hover {
+      color: unset;
+   }
+
+   &--italic {
+      font-family: 'EB Garamond', serif;
+      font-style: italic;
+      font-size: 18px;
+      font-weight: 400;
+   }
 }
 .konsept-link + .active {
-	transform: scaleX(1);
-	transform-origin: left;
+   transform: scaleX(1);
+   transform-origin: left;
 }
 .konsept-link::before {
-	content: '';
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	height: 1px;
-	transform: scaleX(0);
-	transform-origin: right;
-	background: black;
-	transition: transform 0.4s ease;
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+   height: 1px;
+   transform: scaleX(0);
+   transform-origin: right;
+   background: black;
+   transition: transform 0.4s ease;
 }
 .konsept-link:hover:before {
-	transform: scaleX(1);
-	transform-origin: left;
+   transform: scaleX(1);
+   transform-origin: left;
 }

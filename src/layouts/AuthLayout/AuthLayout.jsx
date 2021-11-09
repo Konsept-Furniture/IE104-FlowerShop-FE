@@ -29,9 +29,7 @@ function AuthLayout (props) {
                </Link>
             </div>
             <div className="auth__content-form">
-               <div className="form-container">
-                  {children}
-               </div>
+               <div className="form-container">{children}</div>
             </div>
             <div className="auth__content-footer">
                <div className="footer__contact">
@@ -40,7 +38,12 @@ function AuthLayout (props) {
                </div>
                <p className="footer__copyright">
                   Development by NhienBinhKhoa with
-                  <IconHeartFull className="color--danger" width={18} height={18} /> © 2021
+                  <IconHeartFull
+                     className="color--danger"
+                     width={18}
+                     height={18}
+                  />{' '}
+                  © 2021
                </p>
             </div>
          </div>
