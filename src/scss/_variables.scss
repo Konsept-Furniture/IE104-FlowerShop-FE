@@ -1,5 +1,6 @@
 $layout-breakpoint-mobile: 575px;
-$layout-breakpoint-tablet: 1023px;
+$layout-breakpoint-tablet: 767px;
+$layout-breakpoint-laptop: 1023px;
 /*
  * color text.
  */
@@ -47,8 +48,10 @@ $color--button: #6da13a;
   * shadow.
   */
 $box-shadow--small: 0px 0.3px 2px rgba(0, 0, 0, 0.3);
-$box-shadow--medium: 0px 2px 8px rgba(0, 0, 0, 0.1), 0px 4px 16px rgba(0, 0, 0, 0.15);
-$box-shadow--big: 0px 4px 12px rgba(0, 0, 0, 0.15), 0px 6px 24px rgba(0, 0, 0, 0.2);
+$box-shadow--medium: 0px 2px 8px rgba(0, 0, 0, 0.1),
+   0px 4px 16px rgba(0, 0, 0, 0.15);
+$box-shadow--big: 0px 4px 12px rgba(0, 0, 0, 0.15),
+   0px 6px 24px rgba(0, 0, 0, 0.2);
 $box-shadow--light: 0px 0px 2px rgba(0, 0, 0, 0.2);
 $inner-shadow: inset 0px 0px 2px 0.5px rgba(0, 0, 0, 0.1);
 $inner-shadow--line-bot: inset 0px -1px 0px rgba(0, 0, 0, 0.08);
@@ -95,24 +98,24 @@ $width--content-page_max: (--width-content-page-max);
  * Set default constant
  */
 $default-constant: (
-	--z-index-header: 1000,
-	--transition-common: all 0.3s ease,
-	--height-image-common: 184px,
-	--height-side-bar-outline: 56px,
-	--height-header-default: 56px,
-	--height-header-lesson: 48px,
-	--width-right-bar: 352px,
-	--width-right-bar-transcript: 352px,
-	--width-side-bar-outline: 244px,
-	--width-side-bar-default: 330px,
-	--width-side-bar-lesson: 360px,
-	--width-content-page-max: 988px,
+   --z-index-header: 1000,
+   --transition-common: all 0.3s ease,
+   --height-image-common: 184px,
+   --height-side-bar-outline: 56px,
+   --height-header-default: 56px,
+   --height-header-lesson: 48px,
+   --width-right-bar: 352px,
+   --width-right-bar-transcript: 352px,
+   --width-side-bar-outline: 244px,
+   --width-side-bar-default: 330px,
+   --width-side-bar-lesson: 360px,
+   --width-content-page-max: 988px,
 );
 @mixin spread-map($map: ()) {
-	@each $key, $value in $map {
-		#{$key}: $value;
-	}
+   @each $key, $value in $map {
+      #{$key}: $value;
+   }
 }
 :root {
-	@include spread-map($default-constant);
+   @include spread-map($default-constant);
 }
