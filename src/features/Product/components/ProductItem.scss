@@ -1,0 +1,105 @@
+@use '@/scss' as *;
+
+.product {
+   font-family: inherit;
+   padding: 0 20px;
+   margin-bottom: 50px;
+
+   &__thumbnail {
+      position: relative;
+      width: 100%;
+      min-height: 250px;
+      cursor: pointer;
+
+      &-image {
+      }
+      &-overlay {
+         position: absolute;
+         top: 0;
+         left: 0;
+         height: 100%;
+         width: 100%;
+         z-index: 2;
+         opacity: 0;
+         background-color: #f7f8f9;
+         transition: $transition--common;
+
+         .overlay {
+            &__icons {
+               @include flex(center, flex-start);
+               padding: 10px;
+
+               .wishlist {
+                  opacity: 0;
+                  transition: $transition--common;
+                  transform: translateY(10px);
+               }
+               .quickview {
+                  margin-left: 10px;
+                  opacity: 0;
+                  transition: $transition--common;
+                  transform: translateY(10px);
+               }
+            }
+
+            &__add-cart {
+               position: absolute;
+               top: 50%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               // transform: translateY(-50%);
+               // transform: translate(-50%, -50%);
+               opacity: 0;
+               transition: $transition--common;
+            }
+         }
+      }
+      &:hover &-overlay,
+      &:hover .wishlist,
+      &:hover .quickview,
+      &:hover .overlay__add-cart {
+         opacity: 1;
+      }
+      &:hover .wishlist,
+      &:hover .quickview {
+         transform: translateY(0);
+      }
+      &:hover .overlay__add-cart {
+         transform: (-50%, 0);
+      }
+   }
+
+   &__content {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+   }
+   &__info {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      &-title {
+         font-family: 'Josefin Sans', sans-serif;
+         font-weight: 600;
+         font-size: 14px;
+         line-height: 21px;
+         letter-spacing: 0.2rem;
+      }
+      &-category {
+         font-family: 'Open Sans', sans-serif;
+         font-weight: 400;
+         font-size: 15px;
+         line-height: 15px;
+         color: rgba(139, 139, 139, 0.8);
+      }
+      &-price {
+         font-family: 'EB Garamond', serif;
+         font-style: italic;
+         font-weight: 400;
+         font-size: 17px;
+         line-height: 17px;
+      }
+   }
+}
