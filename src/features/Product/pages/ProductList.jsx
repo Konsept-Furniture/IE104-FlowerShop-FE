@@ -36,7 +36,7 @@ function ProductList(props) {
    ]
    const filters = {
       minPrice: params.minPrice || 0,
-      maxPrice: params.maxPrice100 || 100
+      maxPrice: params.maxPrice || 100
    }
    return (
       <main className="products konsept-container">
