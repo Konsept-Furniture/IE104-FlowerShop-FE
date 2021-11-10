@@ -1,41 +1,41 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
+import Button from '@mui/material/Button'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
 import './Login.scss'
-import Button from '@mui/material/Button'
 
 Login.propTypes = {
 
 }
 
-function Login () {
-  const history = useHistory()
+function Login() {
+   const history = useHistory()
 
-  const schema = yup.object().shape({
-    username: yup.string().max(256).required(),
-    password: yup.string().max(256).required()
-  })
-  const form = useForm({
-    defaultValues: {
-      username: '',
-      password: ''
-    },
-    resolver: yupResolver(schema)
-  })
-  const { formState: { isSubmitting } } = form
+   const schema = yup.object().shape({
+      username: yup.string().max(256).required(),
+      password: yup.string().max(256).required()
+   })
+   const form = useForm({
+      defaultValues: {
+         username: '',
+         password: ''
+      },
+      resolver: yupResolver(schema)
+   })
+   const { formState: { isSubmitting } } = form
 
-  const handleSubmit = async (values) => {
-    console.log('run', isSubmitting)
-    await setTimeout(() => {
-      console.log(values, isSubmitting)
-    }, 5000)
-  }
+   const handleSubmit = async(values) => {
+      console.log('run', isSubmitting)
+      await setTimeout(() => {
+         console.log(values, isSubmitting)
+      }, 5000)
+   }
 
-  return (
+   return (
       <div className="login">
          <div className="hello">
             <h2>Bonjour!</h2>
@@ -82,7 +82,7 @@ function Login () {
             {/* <button type="submit" className="btn--submit">Sign In</button> */}
          </form>
       </div>
-  )
+   )
 }
 
 export default Login

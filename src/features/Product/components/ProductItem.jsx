@@ -6,8 +6,8 @@ import './ProductItem.scss'
 
 ProductItem.propTypes = {}
 
-function ProductItem (props) {
-  return (
+function ProductItem(props) {
+   return (
       <div className="product">
          <div className="product__thumbnail">
             <img
@@ -25,7 +25,7 @@ function ProductItem (props) {
                   </a>
                </div>
                <div className="overlay__add-cart">
-                  <a className="konsept-link konsept-link--italic">
+                  <a className="konsept-link text--italic">
                      Add To Cart
                   </a>
                </div>
@@ -42,7 +42,7 @@ function ProductItem (props) {
             <div className="product__info-price">$95.00</div>
          </div>
       </div>
-  )
+   )
 }
 
 export default ProductItem
