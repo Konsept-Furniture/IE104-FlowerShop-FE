@@ -1,7 +1,6 @@
 import { Button } from '@mui/material'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { useHistory } from 'react-router'
 // Swiper import
 import SwiperCore, { Autoplay, EffectFade } from 'swiper'
 // Import Swiper styles
@@ -75,7 +74,7 @@ function HeroSlider() {
 }
 
 const HeroSliderItem = ({ data, isActive }) => {
-   const history = useHistory()
+   // const history = useHistory()
 
    return (
       <div
