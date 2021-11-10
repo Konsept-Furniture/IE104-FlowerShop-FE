@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import IconHeart from '@/assets/icons/IconHeart';
-import IconEye from '@/assets/icons/IconEye';
-import './ProductItem.scss';
+import React from 'react'
+import PropTypes from 'prop-types'
+import IconHeart from '@/assets/icons/IconHeart'
+import IconEye from '@/assets/icons/IconEye'
+import './ProductItem.scss'
 
-ProductItem.propTypes = {};
+ProductItem.propTypes = {}
 
-function ProductItem(props) {
-   return (
+function ProductItem (props) {
+  return (
       <div className="product">
          <div className="product__thumbnail">
             <img
@@ -21,7 +21,7 @@ function ProductItem(props) {
                      <IconHeart />
                   </a>
                   <a className="quickview">
-                     <IconEye width={20} height={20} />
+                     <IconEye width={25} height={25} />
                   </a>
                </div>
                <div className="overlay__add-cart">
@@ -42,7 +42,7 @@ function ProductItem(props) {
             <div className="product__info-price">$95.00</div>
          </div>
       </div>
-   );
+  )
 }
 
-export default ProductItem;
+export default ProductItem

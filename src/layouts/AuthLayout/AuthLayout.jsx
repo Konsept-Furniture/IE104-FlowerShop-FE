@@ -37,13 +37,13 @@ function AuthLayout (props) {
                   <a>contact@konsept.com</a>
                </div>
                <p className="footer__copyright">
-                  Development by NhienBinhKhoa with
+                  Developed by NhienBinhKhoa with
                   <IconHeartFull
                      className="color--danger"
                      width={18}
                      height={18}
                   />{' '}
-                  © 2021
+                  <br/> © 2021
                </p>
             </div>
          </div>

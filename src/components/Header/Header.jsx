@@ -19,10 +19,6 @@ function Header () {
       route: path.products
     },
     {
-      label: 'Store',
-      route: path.shop
-    },
-    {
       label: 'About Us',
       route: path.about
     }
