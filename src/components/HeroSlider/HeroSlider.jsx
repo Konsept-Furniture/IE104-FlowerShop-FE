@@ -1,60 +1,58 @@
-import React from 'react'
+import { Button } from '@mui/material'
 import PropTypes from 'prop-types'
-import './HeroSlider.scss'
-import { OutlinedButton } from '../button/Button'
-
+import React from 'react'
+import { useHistory } from 'react-router'
 // Swiper import
 import SwiperCore, { Autoplay, EffectFade } from 'swiper'
-import { Swiper, SwiperSlide } from 'swiper/react'
 // Import Swiper styles
 import 'swiper/css'
 import 'swiper/css/effect-fade'
 import 'swiper/css/navigation'
-
-import { useHistory } from 'react-router'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import './HeroSlider.scss'
 
 HeroSlider.propTypes = {}
 
-function HeroSlider (props) {
-  SwiperCore.use([Autoplay, EffectFade])
+function HeroSlider() {
+   SwiperCore.use([Autoplay, EffectFade])
 
-  const items = [
-    {
-      type: 'Authentic',
-      title: 'Made with love',
-      description:
+   const items = [
+      {
+         type: 'Authentic',
+         title: 'Made with love',
+         description:
             'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
-      imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
-      path: '/',
-      backgroundColor: 'bg-slider_bg-orange'
-    },
-    {
-      type: 'Timeless',
-      title: 'Interior designs',
-      description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
-      imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
-      path: '/',
-      backgroundColor: 'bg-slider_bg-blue'
-    },
-    {
-      type: 'Tailored',
-      title: 'Classic interiors',
-      description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
-      imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
-      path: '/',
-      backgroundColor: 'bg-slider_bg-yellow'
-    },
-    {
-      type: 'Authentic',
-      title: 'Made with love',
-      description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
-      imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
-      path: '/',
-      backgroundColor: 'bg-slider_bg-blue'
-    }
-  ]
+         imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
+         path: '/',
+         backgroundColor: 'bg-slider_bg-orange'
+      },
+      {
+         type: 'Timeless',
+         title: 'Interior designs',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
+         path: '/',
+         backgroundColor: 'bg-slider_bg-blue'
+      },
+      {
+         type: 'Tailored',
+         title: 'Classic interiors',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
+         path: '/',
+         backgroundColor: 'bg-slider_bg-yellow'
+      },
+      {
+         type: 'Authentic',
+         title: 'Made with love',
+         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
+         path: '/',
+         backgroundColor: 'bg-slider_bg-blue'
+      }
+   ]
 
-  return (
+   return (
       <section className="hero-slider font-poppins">
          <Swiper
             modules={[Autoplay, EffectFade]}
@@ -73,13 +71,13 @@ function HeroSlider (props) {
             ))}
          </Swiper>
       </section>
-  )
+   )
 }
 
 const HeroSliderItem = ({ data, isActive }) => {
-  const history = useHistory()
+   const history = useHistory()
 
-  return (
+   return (
       <div
          className={`hero-slider__item ${data.backgroundColor} ${isActive ? 'active' : ''}`}
       >
@@ -89,7 +87,7 @@ const HeroSliderItem = ({ data, isActive }) => {
                <h2 className="title">{data.title}</h2>
                <div className="description">{data.description}</div>
                <div className="read-more">
-                  {/* <Button
+                  <Button
                      sx={{
                         py: 1.3,
                         px: 6,
@@ -100,15 +98,14 @@ const HeroSliderItem = ({ data, isActive }) => {
                         fontStyle: 'italic',
 
                         '&': {
-                           backgroundColor: 'transparent',
+                           backgroundColor: 'transparent'
                         }
                      }}
                      color="black"
                      variant="outlined"
                   >
                      Read more
-                  </Button> */}
-                  <OutlinedButton>Read more</OutlinedButton>
+                  </Button>
                </div>
             </div>
             <div className="hero-slider__item__content__image">
@@ -116,7 +113,11 @@ const HeroSliderItem = ({ data, isActive }) => {
             </div>
          </div>
       </div>
-  )
+   )
+}
+HeroSliderItem.propTypes = {
+   data: PropTypes.object.isRequired,
+   isActive: PropTypes.bool.isRequired
 }
 
 export default HeroSlider

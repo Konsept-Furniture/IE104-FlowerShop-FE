@@ -15,38 +15,40 @@ import './Button.scss'
 //   )
 // }
 
-export const OutlinedButton = ({ children, onClick, ...restProps }) => {
-  return (
-    <Button
-      sx={{
-        py: 1.3,
-        px: 6,
-        textTransform: 'none',
-        fontFamily: 'EB Garamond',
-        fontSize: '18px',
-        fontWeight: 400,
-        fontStyle: 'italic',
+export const OutlinedButton = (props) => {
+   console.log(props)
+   const { children, onClick, ...restProps } = props
+   return (
+      <Button
+         sx={{
+            py: 1.3,
+            px: 6,
+            textTransform: 'none',
+            fontFamily: 'EB Garamond',
+            fontSize: '18px',
+            fontWeight: 400,
+            fontStyle: 'italic',
 
-        '&': {
-          backgroundColor: 'transparent'
-        }
-      }}
-      color="black"
-      variant="outlined"
-      onClick={onClick}
-      {...restProps}
-    >
-      {children}
-    </Button>
-  )
+            '&': {
+               backgroundColor: 'transparent'
+            }
+         }}
+         color="black"
+         variant="outlined"
+         onClick={onClick}
+         {...restProps}
+      >
+         {children}
+      </Button>
+   )
 }
 
 OutlinedButton.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
-  ])
+   onClick: PropTypes.func,
+   children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element)
+   ])
 }
 
 export default Button
