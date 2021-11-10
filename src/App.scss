@@ -39,6 +39,12 @@ a {
    background: black;
 }
 
+.text--italic {
+   font-family: 'EB Garamond', serif;
+   font-style: italic;
+   font-size: 18px;
+   font-weight: 400;
+}
 .konsept-container {
    max-width: 1210px;
    padding: 0 20px;
@@ -49,13 +55,6 @@ a {
 
    &:hover {
       color: unset;
-   }
-
-   &--italic {
-      font-family: 'EB Garamond', serif;
-      font-style: italic;
-      font-size: 18px;
-      font-weight: 400;
    }
 }
 .konsept-link + .active {
@@ -77,4 +76,8 @@ a {
 .konsept-link:hover:before {
    transform: scaleX(1);
    transform-origin: left;
+}
+
+.active {
+   color: $color--text !important;
 }
