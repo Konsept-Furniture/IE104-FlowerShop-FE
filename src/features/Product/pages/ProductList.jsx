@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './ProductList.scss';
-import ProductItem from '../components/ProductItem';
+import React from 'react'
+import PropTypes from 'prop-types'
+import './ProductList.scss'
+import ProductItem from '../components/ProductItem'
 
-ProductList.propTypes = {};
+ProductList.propTypes = {}
 
-function ProductList(props) {
-   // const
+function ProductList (props) {
+// const
    return (
       <main className="products konsept-container">
          <div className="products__filters">filters</div>
@@ -18,7 +18,7 @@ function ProductList(props) {
             <ProductItem />
          </div>
       </main>
-   );
+   )
 }
 
-export default ProductList;
+export default ProductList
