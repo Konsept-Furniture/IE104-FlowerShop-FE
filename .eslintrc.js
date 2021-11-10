@@ -19,6 +19,7 @@ module.exports = {
       'react'
    ],
    rules: {
-      indent: ['error', 3]
+      indent: ['error', 3],
+      'space-before-function-paren': ['error', 'never']
    }
 }

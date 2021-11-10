@@ -5,8 +5,8 @@ import ProductItem from '../components/ProductItem'
 
 ProductList.propTypes = {}
 
-function ProductList (props) {
-// const
+function ProductList(props) {
+   // const
    return (
       <main className="products konsept-container">
          <div className="products__filters">filters</div>
