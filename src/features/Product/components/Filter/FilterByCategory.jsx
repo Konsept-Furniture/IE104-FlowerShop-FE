@@ -18,7 +18,10 @@ function FilterByCategory({ categories, filters }) {
             {categories.map((category) => (
                <li className="category" key={category.name}>
                   <NavLink
-                     to={path.products + `?category=${category._id}`}
+                     to={() => {
+                        const _filters = { ...filters, category: category._id }
+                        return path.products + `?${queryString.stringify(_filters)}`
+                     }}
                      isActive={(match, location) => {
                         if (!match) {
                            return false
