@@ -81,3 +81,8 @@ a {
 .active {
    color: $color--text !important;
 }
+.color {
+   &--gray {
+      color: $color--gray;
+   }
+}
