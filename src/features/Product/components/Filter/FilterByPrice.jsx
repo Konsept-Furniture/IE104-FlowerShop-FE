@@ -20,7 +20,7 @@ function FilterByPrice({ filters }) {
    })
    const { control, handleSubmit } = useForm({
       defaultValues: {
-         priceRange: [filters.minPrice || 0, filters.maxPrice || 100]
+         priceRange: [Number.parseInt(filters.minPrice) || 0, Number.parseInt(filters.maxPrice) || 100]
       },
       resolver: yupResolver(schema)
    })
@@ -28,14 +28,14 @@ function FilterByPrice({ filters }) {
    const handleFilterPriceClick = ({ priceRange }) => {
       const minPrice = priceRange[0]
       const maxPrice = priceRange[1]
-      if (minPrice !== 0 || maxPrice !== 0) {
+      if (minPrice > 0 || maxPrice > 0) {
          let _filters = filters
-         if (minPrice !== 0) {
+         if (minPrice > 0) {
             _filters = { ..._filters, minPrice }
          } else {
             delete _filters.minPrice
          }
-         if (maxPrice !== 0) {
+         if (maxPrice > 0) {
             _filters = { ..._filters, maxPrice }
          } else {
             delete _filters.maxPrice
@@ -57,8 +57,8 @@ function FilterByPrice({ filters }) {
                         getAriaLabel={() => 'Price range'}
                         size="small"
                         min={0}
-                        step={1}
                         max={100}
+                        step={1}
                         value={value}
                         onChange={onChange}
                         className="price__slider"
