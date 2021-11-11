@@ -1,10 +1,10 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import IconHeart from '@/assets/icons/IconHeart';
+import React from 'react'
+import PropTypes from 'prop-types'
+import IconHeart from '@/assets/icons/IconHeart'
 
-ProductDetail.propTypes = {};
+ProductDetailPage.propTypes = {}
 
-function ProductDetail(props) {
+function ProductDetailPage(props) {
    return (
       <div className="product">
          <div className="product__thumbnail">
@@ -21,7 +21,7 @@ function ProductDetail(props) {
          </div>
          <div></div>
       </div>
-   );
+   )
 }
 
-export default ProductDetail;
+export default ProductDetailPage
