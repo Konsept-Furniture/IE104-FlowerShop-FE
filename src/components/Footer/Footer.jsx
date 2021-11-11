@@ -5,12 +5,12 @@ Footer.propTypes = {
 
 }
 
-function Footer (_props) {
-  return (
+function Footer(_props) {
+   return (
       <footer className="text-gray-800 pb-8 pt-4">
          <div className="konsept-container flex flex-col justify-between py-4 mx-auto space-y-4 lg:flex-row lg:space-y-0">
             <div className="lg:w-1/3">
-               <div className="mr-4 lg:mr-8 h-14">
+               <div className="lg:ml-16 h-14">
                   <img
                      className="h-full"
                      src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/07/logo_mainpng.png"
@@ -19,7 +19,9 @@ function Footer (_props) {
                      sizes="(max-width: 330px) 100vw, 330px"
                   />
                </div>
-               <a className="sm:flex-col sm:text-center sm:items-center" href="https://hackertyper.com/" >Description here</a><br />
+               <p className="overflow-ellipsis font-josefins text-left sm:mr-20 mt-4 sm:flex-col sm:text-center sm:items-center" >
+               To offer a wide range of well-designed, functional home furnishing products at prices so low, that as many people as possible will be able to afford them.
+               </p><br />
             </div>
             <div className="grid grid-cols-2 text-sm gap-x-3 gap-y-8 lg:w-2/3 sm:grid-cols-4">
                <div className="space-y-3">
@@ -64,7 +66,7 @@ function Footer (_props) {
                      </li>
                   </ul>
                </div>
-               <div className="space-y-3">
+               <div className="space-y-3 ml-2">
                   <div className="font-bold font-poppins uppercase text-lg text-konsept">Social media</div>
                   <div className="flex ml-1 justify-start space-x-3">
                      <a href="https://hackertyper.com/" title="Github" className="flex items-center p-1">
@@ -88,7 +90,7 @@ function Footer (_props) {
          </div>
          {/* <div className="px-0 font-josefins  text-lg bg-white text-left text-konsept-gray italic">© 2020 Qode Interactive, All Rights Reserved</div> */}
       </footer>
-  )
+   )
 }
 
 export default Footer
