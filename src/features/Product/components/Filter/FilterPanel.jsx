@@ -1,5 +1,6 @@
-import React from 'react'
+import { Box } from '@mui/material'
 import PropTypes from 'prop-types'
+import React from 'react'
 import FilterByCategory from './FilterByCategory'
 import FilterByPrice from './FilterByPrice'
 
@@ -10,10 +11,10 @@ FilterPanel.propTypes = {
 
 function FilterPanel({ categories, filters }) {
    return (
-      <div>
+      <Box>
          <FilterByCategory categories={categories} filters={filters}/>
          <FilterByPrice filters={filters}/>
-      </div>
+      </Box>
    )
 }
 

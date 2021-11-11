@@ -4,15 +4,17 @@ import IconHeart from '@/assets/icons/IconHeart'
 import IconEye from '@/assets/icons/IconEye'
 import './ProductItem.scss'
 
-ProductItem.propTypes = {}
+ProductItem.propTypes = {
+   product: PropTypes.object
+}
 
-function ProductItem(props) {
+function ProductItem({ product }) {
    return (
       <div className="product">
          <div className="product__thumbnail">
             <img
                className="product__thumbnail-image"
-               src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist7-600x811.jpg"
+               src={product.imageUrl}
                alt=""
             />
             <div className="product__thumbnail-overlay">
@@ -34,12 +36,12 @@ function ProductItem(props) {
 
          <div className="product__content">
             <div className="product__info">
-               <h5 className="product__info-title">DRESSER</h5>
+               <h5 className="product__info-title">{product.name}</h5>
                <div className="product__info-category">
-                  <a>Bedroom</a>
+                  <a>{product.category}</a>
                </div>
             </div>
-            <div className="product__info-price">$95.00</div>
+            <div className="product__info-price">${product.price}</div>
          </div>
       </div>
    )

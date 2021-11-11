@@ -12,7 +12,16 @@
       cursor: pointer;
 
       &-image {
+         object-fit: cover;
+         display: block;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         min-height: 100%;
+         min-width: 100%;
+         transform: translate(-50%, -50%);
       }
+
       &-overlay {
          position: absolute;
          top: 0;
@@ -86,6 +95,7 @@
          font-size: 14px;
          line-height: 21px;
          letter-spacing: 0.2rem;
+         text-transform: uppercase;
       }
       &-category {
          font-family: 'Open Sans', sans-serif;
@@ -100,6 +110,10 @@
          font-weight: 400;
          font-size: 17px;
          line-height: 17px;
+      }
+
+      &--skeleton {
+         @include flex(center, space-between);
       }
    }
 }

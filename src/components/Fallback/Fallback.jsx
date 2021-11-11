@@ -1,3 +1,3 @@
-export default function Fallback () {
-  return null
+export default function Fallback() {
+   return null
 }
