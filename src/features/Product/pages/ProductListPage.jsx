@@ -1,25 +1,13 @@
-import queryString from 'query-string'
-import React, { useEffect, useMemo, useState } from 'react'
-import { useLocation } from 'react-router'
+import useQuery from '@/hooks/useQuery'
+import React, { useEffect, useState } from 'react'
 import FilterPanel from '../components/Filter/FilterPanel'
 import ProductList from '../components/ProductList'
 import ProductSkeletonList from '../components/ProductSkeletonList'
 import './ProductListPage.scss'
 
 function ProductListPage() {
-   const location = useLocation()
    const [loading, setLoading] = useState(true)
-
-   const queryParams = useMemo(() => {
-      const params = queryString.parse(location.search)
-
-      return {
-         ...params
-         // _page: Number.parseInt(params._page) || 1,
-         // _limit: Number.parseInt(params._limit) || 9,
-         // _sort: params._sort || 'salePrice:ASC'
-      }
-   }, [location.search])
+   const queryParams = useQuery()
 
    const categories = [
       {
@@ -117,8 +105,8 @@ function ProductListPage() {
    useEffect(() => {
       setTimeout(() => {
          setLoading(false)
-      }, 5000)
-   }, [])
+      }, 3000)
+   }, [queryParams])
 
    return (
       <main className="products konsept-container">
@@ -130,7 +118,6 @@ function ProductListPage() {
                ? <ProductSkeletonList />
                : <ProductList data={data}/>
             }
-
          </div>
       </main>
    )
