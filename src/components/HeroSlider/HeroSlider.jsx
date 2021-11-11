@@ -57,6 +57,7 @@ function HeroSlider() {
             modules={[Autoplay, EffectFade]}
             spaceBetween={0}
             slidesPerView={1}
+            autoplay={{ delay: 5000 }}
             // navigation
             loop
             effect={'fade'}
