@@ -14,7 +14,7 @@ function ProductItem({ product }) {
          <div className="product__thumbnail">
             <img
                className="product__thumbnail-image"
-               src={product.imageUrl}
+               src={'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg' || product.img}
                alt=""
             />
             <div className="product__thumbnail-overlay">
@@ -36,12 +36,12 @@ function ProductItem({ product }) {
 
          <div className="product__content">
             <div className="product__info">
-               <h5 className="product__info-title">{product.name}</h5>
+               <h5 className="product__info-title">{product.title}</h5>
                <div className="product__info-category">
-                  <a>{product.category}</a>
+                  <a>{product.categories[0]}</a>
                </div>
             </div>
-            <div className="product__info-price">${product.price}</div>
+            <div className="product__info-price">${product.price.toFixed(2)}</div>
          </div>
       </div>
    )
