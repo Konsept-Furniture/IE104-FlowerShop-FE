@@ -7,15 +7,15 @@ import { Link } from 'react-router-dom'
 import './AuthLayout.scss'
 
 AuthLayout.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element)
-  ])
+   children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.arrayOf(PropTypes.element)
+   ])
 }
 
-function AuthLayout (props) {
-  const { children } = props
-  return (
+function AuthLayout(props) {
+   const { children } = props
+   return (
       <div className="auth">
          <div className="auth__content">
             <div className="auth__content-header">
@@ -58,7 +58,7 @@ function AuthLayout (props) {
             />
          </div>
       </div>
-  )
+   )
 }
 
 export default AuthLayout

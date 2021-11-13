@@ -6,24 +6,24 @@ import { path } from '@/constants/path'
 import { useAuthenticated } from '@/hooks/useAuthenticated'
 // import { getCartPurchases } from '@/pages/Cart/cart.slice'
 
-export default function Authorization () {
-  const status = useSelector(state => state.app.status)
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const authenticated = useAuthenticated()
+export default function Authorization() {
+   const status = useSelector(state => state.app.status)
+   const dispatch = useDispatch()
+   const history = useHistory()
+   const authenticated = useAuthenticated()
 
-  useEffect(() => {
-    if (status === 401) {
-      dispatch(unauthorize())
-      history.push(path.login)
-    }
-  }, [dispatch, status, history])
+   useEffect(() => {
+      if (status === 401) {
+         dispatch(unauthorize())
+         history.push(path.login)
+      }
+   }, [dispatch, status, history])
 
-  useEffect(() => {
-    if (authenticated) {
+   useEffect(() => {
+      if (authenticated) {
       // dispatch(getCartPurchases())
-    }
-  }, [dispatch, authenticated])
+      }
+   }, [dispatch, authenticated])
 
-  return null
+   return null
 }

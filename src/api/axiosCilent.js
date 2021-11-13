@@ -5,36 +5,38 @@ import { tokenUtil } from '@/utils/token'
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  headers: {
-    get: {
-      'content-type': 'application/json'
-    }
-  },
-  paramsSerializer: (params) => queryString.stringify(params)
+   baseURL: process.env.REACT_APP_API_URL,
+   headers: {
+      get: {
+         'content-type': 'application/json'
+      }
+   },
+   paramsSerializer: (params) => queryString.stringify(params)
 })
 
-axiosClient.interceptors.request.use(async (config) => {
-  // add authorization
-  const token = tokenUtil.getAccessToken()
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`
-  }
+axiosClient.interceptors.request.use(async(config) => {
+   // add authorization
+   const token = tokenUtil.getAccessToken()
+   if (token) {
+      config.headers.Authorization = `Bearer ${token}`
+   }
 
-  return config
-}, function (error) {
-  // Do something with request error
-  return Promise.reject(error)
+   return config
+}, function(error) {
+   // Do something with request error
+   return Promise.reject(error)
 })
 
 axiosClient.interceptors.response.use((response) => {
-  tokenUtil.checkExpiredToken(response.data)
+   console.log('🚀 ~ file: axiosCilent.js ~ line 39 ~ axiosClient.interceptors.response.use ~ response', response)
+   tokenUtil.checkExpiredToken(response.data)
 
-  if (response && response.data.error_code === 0) {
-    return response.data
-  }
-
-  throw response.data
+   if (response && response.data.error_code === 0) {
+      return response.data
+   }
+   return response.data
+   // FIXME:
+   // throw response.data
 })
 
 export default axiosClient

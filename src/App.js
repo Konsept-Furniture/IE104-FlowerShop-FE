@@ -4,21 +4,21 @@ import './App.scss'
 import Routes from './Routes'
 
 const theme = createTheme({
-  palette: {
-    black: {
-      main: '#000'
-    }
-  }
+   palette: {
+      black: {
+         main: '#000'
+      }
+   }
 })
 
-function App () {
-  return (
-    <ThemeProvider theme={theme}>
-      <Routes />
-      {/* <Loading /> */}
-      {/* <Authorization /> */}
-    </ThemeProvider>
-  )
+function App() {
+   return (
+      <ThemeProvider theme={theme}>
+         <Routes />
+         {/* <Loading /> */}
+         {/* <Authorization /> */}
+      </ThemeProvider>
+   )
 }
 
 export default App
