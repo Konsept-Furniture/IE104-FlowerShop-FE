@@ -9,6 +9,13 @@ import { Box, Skeleton } from '@mui/material'
 
 function ProductListPage() {
    const [loading, setLoading] = useState(true)
+   const [data, setData] = useState([])
+   const [pagination, setPagination] = useState({
+      totalRows: 0,
+      pageNo: 1,
+      pageSize: 10
+   })
+
    const queryParams = useQuery()
 
    const categories = [
@@ -38,18 +45,21 @@ function ProductListPage() {
       maxPrice: queryParams.maxPrice || 100
    }
 
-   const [data, setData] = useState([])
-
-   const getProducts = async() => {
+   const getProducts = async(pagination) => {
       setLoading(true)
       try {
          const payload = {
-            page: 1,
-            size: 10
+            page: pagination.pageNo,
+            size: pagination.pageSize
          }
          const res = await productApi.getProducts(payload)
          console.log(res)
          setData(res.products)
+         setPagination({
+            totalRows: res.totalItems,
+            pageNo: res.currentPageIndex,
+            pageSize: Math.round(res.totalItems / res.totalPages)
+         })
       } catch (error) {
          console.log(error)
       }
@@ -57,7 +67,8 @@ function ProductListPage() {
    }
 
    useEffect(() => {
-      getProducts()
+      getProducts({ pageNo: 1, pageSize: 10 })
+      console.log(pagination)
    }, [queryParams])
 
    return (
@@ -69,7 +80,7 @@ function ProductListPage() {
             <Box pl="10px" mb={3} mt={2} className="text--italic color--gray">
                {loading
                   ? <Skeleton width="180px" height="25px"/>
-                  : <h5>Showing 1–9 of 90 results</h5>
+                  : <h5>Showing {pagination.pageNo * pagination.pageSize + 1}–{(pagination.pageNo + 1) * pagination.pageSize} of {pagination.totalRows} results</h5>
                }
             </Box>
             {loading
