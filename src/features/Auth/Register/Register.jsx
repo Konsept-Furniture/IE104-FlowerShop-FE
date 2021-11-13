@@ -12,32 +12,41 @@ Register.propTypes = {
 
 }
 
-function Register () {
-  const history = useHistory()
+function Register() {
+   const history = useHistory()
 
-  const schema = yup.object().shape({
-    username: yup.string().max(256).required(),
-    password: yup.string().max(256).required(),
-    confirm_password: yup.string().max(256).required()
-  })
-  const form = useForm({
-    defaultValues: {
-      username: '',
-      password: '',
-      confirm_password: ''
-    },
-    resolver: yupResolver(schema)
-  })
-  const { formState: { isSubmitting } } = form
+   const schema = yup.object().shape({
+      username: yup.string().max(256).required(),
+      password: yup.string().max(256).min(4).required(),
+      confirm_password: yup.string().max(256).min(4).required()
+         .oneOf([yup.ref('password'), null], 'Passwords must match')
+   })
+   const form = useForm({
+      defaultValues: {
+         username: '',
+         password: '',
+         confirm_password: ''
+      },
+      resolver: yupResolver(schema)
+   })
+   const { formState: { isSubmitting } } = form
 
-  const handleSubmit = async (values) => {
-    console.log('run', isSubmitting)
-    await setTimeout(() => {
-      console.log(values, isSubmitting)
-    }, 5000)
-  }
+   const handleSubmit = async(data) => {
+      console.log(data, isSubmitting)
+      const payload = {
+         username: data.username,
+         password: data.password
+      }
+      try {
+         const res = await dispatch(login(payload))
+         unwrapResult(res)
+         history.push(path.home)
+      } catch (error) {
+         console.log(error)
+      }
+   }
 
-  return (
+   return (
       <div className="login">
          <div className="hello">
             <h2>Bonjour!</h2>
@@ -81,10 +90,9 @@ function Register () {
             </p>
 
             <Button fullWidth variant="contained" type="submit" className="btn--submit">Sign Up</Button>
-            {/* <button type="submit" className="btn--submit">Sign In</button> */}
          </form>
       </div>
-  )
+   )
 }
 
 export default Register

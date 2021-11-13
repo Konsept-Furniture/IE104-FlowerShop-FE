@@ -1,12 +1,16 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
-import Button from '@mui/material/Button'
+// import Button from '@mui/material/Button'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
+import { login } from '../authSlice'
 import './Login.scss'
+import { unwrapResult } from '@reduxjs/toolkit'
+import LoadingButton from '@mui/lab/LoadingButton'
 
 Login.propTypes = {
 
@@ -14,10 +18,11 @@ Login.propTypes = {
 
 function Login() {
    const history = useHistory()
+   const dispatch = useDispatch()
 
    const schema = yup.object().shape({
       username: yup.string().max(256).required(),
-      password: yup.string().max(256).required()
+      password: yup.string().max(256).min(4).required()
    })
    const form = useForm({
       defaultValues: {
@@ -28,11 +33,19 @@ function Login() {
    })
    const { formState: { isSubmitting } } = form
 
-   const handleSubmit = async(values) => {
-      console.log('run', isSubmitting)
-      await setTimeout(() => {
-         console.log(values, isSubmitting)
-      }, 5000)
+   const handleSubmit = async(data) => {
+      console.log(data, isSubmitting)
+      const payload = {
+         username: data.username,
+         password: data.password
+      }
+      try {
+         const res = await dispatch(login(payload))
+         unwrapResult(res)
+         history.push(path.home)
+      } catch (error) {
+         console.log(error)
+      }
    }
 
    return (
@@ -69,17 +82,16 @@ function Login() {
                </a>
             </p>
 
-            <Button
+            <LoadingButton
                fullWidth
                variant="contained"
                type="submit"
                className="btn--submit"
                loading={isSubmitting}
-               loadingPosition="end"
+               color="black"
             >
                Log In
-            </Button>
-            {/* <button type="submit" className="btn--submit">Sign In</button> */}
+            </LoadingButton>
          </form>
       </div>
    )
