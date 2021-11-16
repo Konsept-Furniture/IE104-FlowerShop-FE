@@ -12,10 +12,10 @@ function ProductListPage() {
    const [loading, setLoading] = useState(true)
    const [data, setData] = useState([])
    const [pagination, setPagination] = useState({
-      totalRows: 0,
-      pageNo: 1,
-      pageSize: 10,
-      totalPages: 0
+      totalItems: 0,
+      totalPages: 0,
+      currentPage: 1,
+      pageSize: 10
    })
 
    const queryParams = useQuery()
@@ -51,18 +51,13 @@ function ProductListPage() {
       setLoading(true)
       try {
          const payload = {
-            page: _pagination.pageNo,
+            page: _pagination.currentPage,
             pageSize: _pagination.pageSize
          }
          const res = await productApi.getProducts(payload)
          console.log(res)
          setData(res.data)
-         setPagination({
-            totalRows: res.pagination.totalItems,
-            totalPages: res.pagination.totalPages,
-            pageNo: res.pagination.currentPage,
-            pageSize: res.pagination.pageSize
-         })
+         setPagination(res.pagination)
       } catch (error) {
          console.log(error)
       }
@@ -70,12 +65,12 @@ function ProductListPage() {
    }
 
    useEffect(() => {
-      getProducts({ pageNo: 1, pageSize: 5 })
+      getProducts({ pageNo: 1, pageSize: 10 })
    }, [queryParams])
 
-   const handleChangePagination = (_, pageNo) => {
+   const handleChangePagination = (_, value) => {
       executeScroll()
-      getProducts({ pageNo, pageSize: pagination.pageSize })
+      getProducts({ currentPage: value, pageSize: pagination.pageSize })
    }
 
    const executeScroll = () => productListRef.current.scrollIntoView()
@@ -89,7 +84,7 @@ function ProductListPage() {
             <Box pl="10px" mb={3} mt={2} className="text--italic color--gray">
                {loading
                   ? <Skeleton width="180px" height="25px"/>
-                  : <h5>Showing {(pagination.pageNo - 1) * pagination.pageSize + 1}–{pagination.pageNo * pagination.pageSize} of {pagination.totalRows} results</h5>
+                  : <h5>Showing {(pagination.currentPage - 1) * pagination.pageSize + 1}–{pagination.currentPage * pagination.pageSize} of {pagination.totalRows} results</h5>
                }
             </Box>
             {loading
@@ -101,7 +96,7 @@ function ProductListPage() {
                direction="row"
                justifyContent="center"
             >
-               <Pagination count={pagination.totalPages} page={pagination.pageNo} onChange={handleChangePagination} />
+               <Pagination count={pagination.totalPages} page={pagination.currentPage} onChange={handleChangePagination} />
             </Stack>
          </div>
       </main>
