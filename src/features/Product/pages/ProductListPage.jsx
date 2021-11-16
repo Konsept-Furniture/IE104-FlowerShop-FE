@@ -6,6 +6,8 @@ import ProductSkeletonList from '../components/ProductSkeletonList'
 import productApi from '../productApi'
 import './ProductListPage.scss'
 import { Box, Pagination, Skeleton, Stack } from '@mui/material'
+import { common } from '@/utils/common'
+import StorageKeys from '@/constants/StorageKeys'
 
 function ProductListPage() {
    const productListRef = useRef(null)
@@ -72,8 +74,15 @@ function ProductListPage() {
       executeScroll()
       getProducts({ currentPage: value, pageSize: pagination.pageSize })
    }
-
    const executeScroll = () => productListRef.current.scrollIntoView()
+
+   const handleAddProductToCart = product => {
+      console.log(localStorage.getItem(StorageKeys.cart))
+      // Add to localStorage
+      common.addProductToCartLocalStorage(product._id, 1)
+
+      // TODO: Add to db if logged in
+   }
 
    return (
       <main className="products konsept-container">
@@ -84,12 +93,12 @@ function ProductListPage() {
             <Box pl="10px" mb={3} mt={2} className="text--italic color--gray">
                {loading
                   ? <Skeleton width="180px" height="25px"/>
-                  : <h5>Showing {(pagination.currentPage - 1) * pagination.pageSize + 1}–{pagination.currentPage * pagination.pageSize} of {pagination.totalRows} results</h5>
+                  : <h5>Showing {(pagination.currentPage - 1) * pagination.pageSize + 1}–{pagination.currentPage * pagination.pageSize} of {pagination.totalItems} results</h5>
                }
             </Box>
             {loading
                ? <ProductSkeletonList />
-               : <ProductList data={data}/>
+               : <ProductList data={data} onAddCart={handleAddProductToCart}/>
             }
 
             <Stack

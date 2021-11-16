@@ -27,7 +27,7 @@ const handleAuthFulfilled = (state, action) => {
    const { user, accessToken } = action.payload.data
    state.profile = user
    common.saveBearerToken(accessToken)
-   common.saveCurrentUser(JSON.stringify(state.profile))
+   common.saveCurrentUser(user)
 }
 
 const handleUnauth = state => {
@@ -46,7 +46,7 @@ const auth = createSlice({
       unauthorize: handleUnauth
    },
    extraReducers: {
-      [register.fulfilled]: handleAuthFulfilled,
+      // [register.fulfilled]: handleAuthFulfilled,
       [login.fulfilled]: handleAuthFulfilled
       // [logout.fulfilled]: handleUnauth,
       // [updateMe.fulfilled]: (state, action) => {
