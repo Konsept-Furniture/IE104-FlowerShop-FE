@@ -7,24 +7,24 @@ import React from 'react'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import './Header.scss'
 
-function Header () {
-  const history = useHistory()
-  const navItems = [
-    {
-      label: 'Home',
-      route: path.home
-    },
-    {
-      label: 'Products',
-      route: path.products
-    },
-    {
-      label: 'About Us',
-      route: path.about
-    }
-  ]
+function Header() {
+   const history = useHistory()
+   const navItems = [
+      {
+         label: 'Home',
+         route: path.home
+      },
+      {
+         label: 'Products',
+         route: path.products
+      },
+      {
+         label: 'About Us',
+         route: path.about
+      }
+   ]
 
-  return (
+   return (
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-14">
@@ -52,9 +52,10 @@ function Header () {
             </nav>
 
             <div className="header__widgets-holder ml-3">
+               <p className="mr-2">username </p>
                <div className="header__widget h-full mr-2 lg:mr-6"
                   onClick={() => {
-                    history.push(path.login)
+                     history.push(path.login)
                   }}>
                   <div className="header__widget-content">
                      <span>
@@ -90,7 +91,7 @@ function Header () {
             </div>
          </div>
       </header>
-  )
+   )
 }
 
 export default Header
