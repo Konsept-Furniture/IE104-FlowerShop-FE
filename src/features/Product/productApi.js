@@ -1,8 +1,8 @@
 import axiosClient from '@/api/axiosCilent'
 const productApi = {
-   getProducts: (payload) => {
+   getProducts: (params) => {
       const url = 'products'
-      return axiosClient.get(url, { payload })
+      return axiosClient.get(url, { params })
    }
 }
 export default productApi

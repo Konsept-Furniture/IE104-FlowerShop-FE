@@ -8,6 +8,10 @@
    --transition-common: all 0.3s ease;
 }
 
+html {
+   scroll-behavior: smooth;
+}
+
 body {
    margin: 0;
    font-family: 'Poppins', sans-serif;

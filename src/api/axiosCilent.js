@@ -7,9 +7,7 @@ import { tokenUtil } from '@/utils/token'
 const axiosClient = axios.create({
    baseURL: process.env.REACT_APP_API_URL,
    headers: {
-      get: {
-         'content-type': 'application/json'
-      }
+      'Content-Type': 'application/json'
    },
    paramsSerializer: (params) => queryString.stringify(params)
 })
@@ -31,12 +29,10 @@ axiosClient.interceptors.response.use((response) => {
    console.log('🚀 ~ file: axiosCilent.js ~ line 39 ~ axiosClient.interceptors.response.use ~ response', response)
    tokenUtil.checkExpiredToken(response.data)
 
-   if (response && response.data.error_code === 0) {
+   if (response && response.data.errorCode === 0) {
       return response.data
    }
-   return response.data
-   // FIXME:
-   // throw response.data
+   throw response.data
 })
 
 export default axiosClient

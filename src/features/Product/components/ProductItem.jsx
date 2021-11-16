@@ -14,7 +14,7 @@ function ProductItem({ product }) {
          <div className="product__thumbnail">
             <img
                className="product__thumbnail-image"
-               src={'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg' || product.img}
+               src={product.img || 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'}
                alt=""
             />
             <div className="product__thumbnail-overlay">
