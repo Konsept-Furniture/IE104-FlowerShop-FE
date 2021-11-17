@@ -4,18 +4,19 @@ import { Controller } from 'react-hook-form'
 import { TextField } from '@mui/material'
 
 TextInputField.propTypes = {
-  form: PropTypes.object.isRequired,
-  name: PropTypes.string.isRequired,
+   form: PropTypes.object.isRequired,
+   name: PropTypes.string.isRequired,
 
-  label: PropTypes.string,
-  disable: PropTypes.bool
+   label: PropTypes.string,
+   color: PropTypes.string,
+   disable: PropTypes.bool
 }
 
-function TextInputField (props) {
-  const { form, name, label, disable, ...restProps } = props
-  const { control } = form
+function TextInputField(props) {
+   const { form, name, label, disable, color, ...restProps } = props
+   const { control } = form
 
-  return (
+   return (
       <Controller
          name={name}
          control={control}
@@ -29,11 +30,12 @@ function TextInputField (props) {
                error={invalid}
                helperText={error ? error.message : null}
                disabled={disable}
+               color={color || 'black'}
                {...restProps}
             />
          )}
       />
-  )
+   )
 }
 
 export default TextInputField

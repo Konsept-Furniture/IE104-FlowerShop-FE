@@ -29,7 +29,7 @@ const handleAuthFulfilled = (state, action) => {
    const { user, accessToken } = action.payload.data
    state.profile = user
    common.saveBearerToken(accessToken)
-   common.saveCurrentUser(user)
+   common.saveCurrentUser(JSON.stringify(user))
 }
 
 const handleUnauth = state => {

@@ -1,7 +1,9 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
-// import Button from '@mui/material/Button'
+import LoadingButton from '@mui/lab/LoadingButton'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
@@ -9,16 +11,12 @@ import { useHistory } from 'react-router'
 import * as yup from 'yup'
 import { login } from '../authSlice'
 import './Login.scss'
-import { unwrapResult } from '@reduxjs/toolkit'
-import LoadingButton from '@mui/lab/LoadingButton'
-import { Alert } from '@mui/material'
-
 Login.propTypes = {
 
 }
 
 function Login() {
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+   const { enqueueSnackbar } = useSnackbar()
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -43,11 +41,15 @@ function Login() {
       }
       try {
          const res = await dispatch(login(payload))
-         unwrapResult(res)
+         const data = unwrapResult(res)
          history.push(path.home)
-         return <Alert severity="success">{res.message}</Alert>
+         enqueueSnackbar(data.message, {
+            variant: 'success'
+         })
       } catch (error) {
-         return <Alert severity="error">{error.message}</Alert>
+         enqueueSnackbar(error.message, {
+            variant: 'error'
+         })
       }
    }
 
