@@ -5,6 +5,7 @@ import StorageKeys from '@/constants/StorageKeys'
 import { payloadCreator } from '@/utils/helper'
 import authApi from './authApi'
 import { common } from '@/utils/common'
+import userApi from '@/api/userApi'
 
 export const register = createAsyncThunk(
    'auth/register',
@@ -18,12 +19,13 @@ export const login = createAsyncThunk(
 //    'auth/logout',
 //    payloadCreator(authApi.logout)
 // )
-// export const updateMe = createAsyncThunk(
-//    'auth/updateMe',
-//    payloadCreator(userApi.updateMe)
-// )
+export const getMe = createAsyncThunk(
+   'auth/getMe',
+   payloadCreator(userApi.getMe)
+)
 
 const handleAuthFulfilled = (state, action) => {
+   console.log('🚀 ~ file: authSlice.js ~ line 28 ~ handleAuthFulfilled ~ action', action)
    const { user, accessToken } = action.payload.data
    state.profile = user
    common.saveBearerToken(accessToken)

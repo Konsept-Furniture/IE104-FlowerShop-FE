@@ -11,12 +11,14 @@ import { login } from '../authSlice'
 import './Login.scss'
 import { unwrapResult } from '@reduxjs/toolkit'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { Alert } from '@mui/material'
 
 Login.propTypes = {
 
 }
 
 function Login() {
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -43,8 +45,9 @@ function Login() {
          const res = await dispatch(login(payload))
          unwrapResult(res)
          history.push(path.home)
+         return <Alert severity="success">{res.message}</Alert>
       } catch (error) {
-         console.log(error)
+         return <Alert severity="error">{error.message}</Alert>
       }
    }
 
