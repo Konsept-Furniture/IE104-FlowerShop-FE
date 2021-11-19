@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Fallback from './components/Fallback/Fallback'
 import { path } from './constants/path'
+import UnauthenticatedGuard from './guards/UnauthenticatedGuard'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import MainLayout from './layouts/MainLayout/MainLayout'
 
@@ -34,13 +35,15 @@ function Routes(props) {
          {/* NEW ROUTE HERE */}
 
          <Route path={path.login} exact>
-            <AuthLayout>
-               <Suspense fallback={<Fallback />}>
-                  <ErrorBoundary>
-                     <Login />
-                  </ErrorBoundary>
-               </Suspense>
-            </AuthLayout>
+            <UnauthenticatedGuard>
+               <AuthLayout>
+                  <Suspense fallback={<Fallback />}>
+                     <ErrorBoundary>
+                        <Login />
+                     </ErrorBoundary>
+                  </Suspense>
+               </AuthLayout>
+            </UnauthenticatedGuard>
          </Route>
          <Route path={path.register} exact>
             <AuthLayout>

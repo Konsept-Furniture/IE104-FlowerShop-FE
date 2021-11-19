@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import IconHeart from '@/assets/icons/IconHeart'
 import IconEye from '@/assets/icons/IconEye'
 import './ProductItem.scss'
 import { useHistory } from 'react-router'
+import { CircularProgress } from '@mui/material'
 
 ProductItem.propTypes = {
    product: PropTypes.object,
@@ -12,8 +13,12 @@ ProductItem.propTypes = {
 
 function ProductItem({ product, onAddCart }) {
    const history = useHistory()
+   const [loading, setLoading] = useState(false)
+
    const handleAddToCart = async() => {
+      setLoading(true)
       if (onAddCart) await onAddCart(product)
+      setLoading(false)
    }
    const handleReadMore = () => {
       history.push(`/products/${product._id}`)
@@ -37,10 +42,12 @@ function ProductItem({ product, onAddCart }) {
                </div>
                <div className="overlay__add-cart">
                   {product.countInStock > 0
-                     ? <a className="konsept-link text--italic" onClick={handleAddToCart}>
-                     Add To Cart
-                     </a>
-                     : <a className="konsept-link text--italic" onClick={handleAddToCart}>
+                     ? (!loading
+                        ? <a className="konsept-link text--italic" onClick={handleAddToCart}>
+                           Add To Cart
+                        </a>
+                        : <CircularProgress color="black" size={24}/>)
+                     : <a className="konsept-link text--italic" onClick={handleReadMore}>
                      Read more
                      </a>
                   }

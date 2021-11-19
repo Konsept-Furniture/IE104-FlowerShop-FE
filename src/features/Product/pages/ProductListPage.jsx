@@ -1,15 +1,25 @@
+import StorageKeys from '@/constants/StorageKeys'
+import { getCart } from '@/features/Cart/cartSlice'
+import { addToCart } from '@/features/Product/productSlice'
+import { useAuthenticated } from '@/hooks/useAuthenticated'
 import useQuery from '@/hooks/useQuery'
+import { common } from '@/utils/common'
+import { Box, Pagination, Skeleton, Stack } from '@mui/material'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 import React, { useEffect, useRef, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import FilterPanel from '../components/Filter/FilterPanel'
 import ProductList from '../components/ProductList'
 import ProductSkeletonList from '../components/ProductSkeletonList'
 import productApi from '../productApi'
 import './ProductListPage.scss'
-import { Box, Pagination, Skeleton, Stack } from '@mui/material'
-import { common } from '@/utils/common'
-import StorageKeys from '@/constants/StorageKeys'
 
 function ProductListPage() {
+   const authenticated = useAuthenticated()
+   const dispatch = useDispatch()
+   const { enqueueSnackbar } = useSnackbar()
+
    const productListRef = useRef(null)
    const [loading, setLoading] = useState(true)
    const [data, setData] = useState([])
@@ -45,8 +55,8 @@ function ProductListPage() {
       }
    ]
    const filters = {
-      minPrice: queryParams.minPrice || 0,
-      maxPrice: queryParams.maxPrice || 100
+      minPrice: Number.parseInt(queryParams.minPrice) || 0,
+      maxPrice: Number.parseInt(queryParams.maxPrice) || 100
    }
 
    const getProducts = async(_pagination) => {
@@ -54,8 +64,10 @@ function ProductListPage() {
       try {
          const payload = {
             page: _pagination.currentPage,
-            pageSize: _pagination.pageSize
+            pageSize: _pagination.pageSize,
+            ...filters
          }
+         console.log('🚀 ~ file: ProductListPage.jsx ~ line 60 ~ getProducts ~ payload', payload)
          const res = await productApi.getProducts(payload)
          console.log(res)
          setData(res.data)
@@ -67,7 +79,7 @@ function ProductListPage() {
    }
 
    useEffect(() => {
-      getProducts({ pageNo: 1, pageSize: 10 })
+      getProducts({ currentPage: 1, pageSize: 10 })
    }, [queryParams])
 
    const handleChangePagination = (_, value) => {
@@ -76,12 +88,36 @@ function ProductListPage() {
    }
    const executeScroll = () => productListRef.current.scrollIntoView()
 
-   const handleAddProductToCart = product => {
-      console.log(localStorage.getItem(StorageKeys.cart))
-      // Add to localStorage
-      common.addProductToCartLocalStorage(product._id, 1)
-
-      // TODO: Add to db if logged in
+   const handleAddProductToCart = async(product) => {
+      if (authenticated) {
+         // TODO: Add to db if logged in
+         try {
+            const data = {
+               products: [
+                  {
+                     productId: product._id,
+                     quantity: 1
+                  }
+               ]
+            }
+            const res = await dispatch(addToCart(data))
+            const result = unwrapResult(res)
+            enqueueSnackbar(result.message, {
+               variant: 'success'
+            })
+            // TODO: get cart again
+            await dispatch(getCart())
+         } catch (error) {
+            console.log('🚀 ~ file: ProductListPage.jsx ~ line 109 ~ handleAddProductToCart ~ error', error)
+            // enqueueSnackbar(error.message, {
+            //    variant: 'error'
+            // })
+         }
+      } else {
+         console.log(localStorage.getItem(StorageKeys.cart))
+         // Add to localStorage
+         common.addProductToCartLocalStorage(product._id, 1)
+      }
    }
 
    return (

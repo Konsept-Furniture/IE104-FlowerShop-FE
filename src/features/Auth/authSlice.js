@@ -25,7 +25,6 @@ export const getMe = createAsyncThunk(
 )
 
 const handleAuthFulfilled = (state, action) => {
-   console.log('🚀 ~ file: authSlice.js ~ line 28 ~ handleAuthFulfilled ~ action', action)
    const { user, accessToken } = action.payload.data
    state.profile = user
    common.saveBearerToken(accessToken)
@@ -49,7 +48,13 @@ const auth = createSlice({
    },
    extraReducers: {
       // [register.fulfilled]: handleAuthFulfilled,
-      [login.fulfilled]: handleAuthFulfilled
+      [login.fulfilled]: handleAuthFulfilled,
+      [getMe.fulfilled]: (state, action) => {
+         const user = action.payload.data
+         console.log('🚀 ~ file: authSlice.js ~ line 55 ~ user', user)
+         state.profile = user
+         common.saveCurrentUser(JSON.stringify(user))
+      }
       // [logout.fulfilled]: handleUnauth,
       // [updateMe.fulfilled]: (state, action) => {
       //    state.profile = action.payload.data
@@ -59,5 +64,5 @@ const auth = createSlice({
 })
 
 const authReducer = auth.reducer
-export const unauthorize = auth.actions.unauthorize
+export const { unauthorize } = auth.actions
 export default authReducer

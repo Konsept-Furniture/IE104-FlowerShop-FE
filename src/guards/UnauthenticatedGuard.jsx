@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
-import { useAuthenticated } from 'src/hooks/useAuthenticated'
+import { useAuthenticated } from '@/hooks/useAuthenticated'
 import { Redirect } from 'react-router-dom'
-import { path } from 'src/constants/path'
+import { path } from '@/constants/path'
 import PropTypes from 'prop-types'
 
 export default function UnauthenticatedGuard({ children }) {

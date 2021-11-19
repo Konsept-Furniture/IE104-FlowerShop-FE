@@ -1,18 +1,19 @@
+import { path } from '@/constants/path'
+import { unauthorize } from '@/features/Auth/authSlice'
+import { getCart } from '@/features/Cart/cartSlice'
+import { useAuthenticated } from '@/hooks/useAuthenticated'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { unauthorize } from '@/features/Auth/authSlice'
-import { path } from '@/constants/path'
-import { useAuthenticated } from '@/hooks/useAuthenticated'
-// import { getCartPurchases } from '@/pages/Cart/cart.slice'
 
 export default function Authorization() {
-   const status = useSelector(state => state.app.status)
    const dispatch = useDispatch()
-   const history = useHistory()
+   const status = useSelector(state => state.app.status)
    const authenticated = useAuthenticated()
+   const history = useHistory()
 
    useEffect(() => {
+      console.log('status, auth', status, authenticated)
       if (status === 401) {
          dispatch(unauthorize())
          history.push(path.login)
@@ -20,8 +21,9 @@ export default function Authorization() {
    }, [dispatch, status, history])
 
    useEffect(() => {
+      console.log('status, auth', status, authenticated)
       if (authenticated) {
-      // dispatch(getCartPurchases())
+         dispatch(getCart())
       }
    }, [dispatch, authenticated])
 

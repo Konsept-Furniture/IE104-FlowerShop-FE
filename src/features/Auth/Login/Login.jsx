@@ -34,7 +34,6 @@ function Login() {
    const { formState: { isSubmitting } } = form
 
    const handleSubmit = async(data) => {
-      console.log(data, isSubmitting)
       const payload = {
          username: data.username,
          password: data.password
@@ -42,10 +41,10 @@ function Login() {
       try {
          const res = await dispatch(login(payload))
          const data = unwrapResult(res)
-         history.push(path.home)
          enqueueSnackbar(data.message, {
             variant: 'success'
          })
+         history.push(path.home)
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error'

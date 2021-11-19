@@ -1,6 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material'
 import React from 'react'
 import './App.scss'
+import Authorization from './components/Authorization/Authorization'
 import Routes from './Routes'
 
 const theme = createTheme({
@@ -16,7 +17,7 @@ function App() {
       <ThemeProvider theme={theme}>
          <Routes />
          {/* <Loading /> */}
-         {/* <Authorization /> */}
+         <Authorization />
       </ThemeProvider>
    )
 }

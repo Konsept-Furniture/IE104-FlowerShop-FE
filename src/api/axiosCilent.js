@@ -26,7 +26,6 @@ axiosClient.interceptors.request.use(async(config) => {
 })
 
 axiosClient.interceptors.response.use((response) => {
-   console.log('🚀 ~ file: axiosCilent.js ~ line 39 ~ axiosClient.interceptors.response.use ~ response', response)
    tokenUtil.checkExpiredToken(response.data)
 
    if (response && response.data.errorCode === 0) {

@@ -19,7 +19,10 @@ const app = createSlice({
                action.type.endsWith('/fulfilled') ||
                action.type.endsWith('/rejected'),
             (state, action) => {
-               state.status = action.payload.status
+               const errorCode = action.payload.errorCode
+               if (errorCode) {
+                  state.status = errorCode
+               }
                state.loading = state.loading - 1
             }
          )

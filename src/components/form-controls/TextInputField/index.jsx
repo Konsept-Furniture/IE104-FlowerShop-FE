@@ -12,6 +12,12 @@ TextInputField.propTypes = {
    disable: PropTypes.bool
 }
 
+TextInputField.defaultProps = {
+   disable: false,
+   label: '',
+   color: 'black'
+}
+
 function TextInputField(props) {
    const { form, name, label, disable, color, ...restProps } = props
    const { control } = form
