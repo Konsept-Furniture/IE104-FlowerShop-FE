@@ -14,6 +14,7 @@ import ProductList from '../components/ProductList'
 import ProductSkeletonList from '../components/ProductSkeletonList'
 import productApi from '../productApi'
 import './ProductListPage.scss'
+import Slide from '@material-ui/core/Slide'
 
 function ProductListPage() {
    const authenticated = useAuthenticated()
@@ -103,7 +104,12 @@ function ProductListPage() {
             const res = await dispatch(addToCart(data))
             const result = unwrapResult(res)
             enqueueSnackbar(result.message, {
-               variant: 'success'
+               variant: 'success',
+               anchorOrigin: {
+                  vertical: 'bottom',
+                  horizontal: 'right'
+               },
+               TransitionComponent: Slide
             })
             // TODO: get cart again
             await dispatch(getCart())

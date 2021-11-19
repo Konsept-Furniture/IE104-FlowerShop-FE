@@ -42,14 +42,20 @@ function Login() {
          const res = await dispatch(login(payload))
          const data = unwrapResult(res)
          enqueueSnackbar(data.message, {
-            variant: 'success'
+            variant: 'success',
+            anchorOrigin: {
+               vertical: 'bottom',
+               horizontal: 'right'
+            },
+            preventDuplicate: true
          })
          history.push(path.home)
          const user = JSON.parse(localStorage.getItem('user'))
          console.log(user.username)
       } catch (error) {
          enqueueSnackbar(error.message, {
-            variant: 'error'
+            variant: 'error',
+            preventDuplicate: true
          })
       }
    }
