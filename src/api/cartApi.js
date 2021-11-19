@@ -1,13 +1,13 @@
 import axiosClient from './axiosCilent'
 
 const cartApi = {
-   getCart: (_id) => {
-      const url = `carts/${_id}`
+   getCart: () => {
+      const url = 'carts/readUserCart'
       return axiosClient.get(url)
    },
-   addToCart: (data) => {
-      const url = 'carts'
-      return axiosClient.post(url, JSON.stringify(data))
+   addToCart: (_id, data) => {
+      const url = `carts/add-item/${_id}`
+      return axiosClient.put(url, JSON.stringify(data))
    }
 }
 export default cartApi
