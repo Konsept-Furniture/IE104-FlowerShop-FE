@@ -6,12 +6,12 @@ Home.propTypes = {
 
 }
 
-function Home (props) {
-  return (
+function Home(props) {
+   return (
       <main className="flex items-center justify-center">
          <HeroSlider />
       </main>
-  )
+   )
 }
 
 export default Home

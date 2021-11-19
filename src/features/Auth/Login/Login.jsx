@@ -21,8 +21,8 @@ function Login() {
    const dispatch = useDispatch()
 
    const schema = yup.object().shape({
-      username: yup.string().max(256).required(),
-      password: yup.string().max(256).min(4).required()
+      username: yup.string().max(32).required(),
+      password: yup.string().max(32).min(4).required()
    })
    const form = useForm({
       defaultValues: {
@@ -42,12 +42,20 @@ function Login() {
          const res = await dispatch(login(payload))
          const data = unwrapResult(res)
          enqueueSnackbar(data.message, {
-            variant: 'success'
+            variant: 'success',
+            anchorOrigin: {
+               vertical: 'bottom',
+               horizontal: 'right'
+            },
+            preventDuplicate: true
          })
          history.push(path.home)
+         const user = JSON.parse(localStorage.getItem('user'))
+         console.log(user.username)
       } catch (error) {
          enqueueSnackbar(error.message, {
-            variant: 'error'
+            variant: 'error',
+            preventDuplicate: true
          })
       }
    }
