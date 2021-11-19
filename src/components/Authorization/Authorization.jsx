@@ -1,7 +1,7 @@
 import { path } from '@/constants/path'
 import { unauthorize } from '@/features/Auth/authSlice'
 import { getCart } from '@/features/Cart/cartSlice'
-import { useAuthenticated } from '@/hooks/useAuthenticated'
+import { useAuth } from '@/hooks/useAuth'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
@@ -9,11 +9,11 @@ import { useHistory } from 'react-router-dom'
 export default function Authorization() {
    const dispatch = useDispatch()
    const status = useSelector(state => state.app.status)
-   const authenticated = useAuthenticated()
    const history = useHistory()
+   const { hasLoggedIn } = useAuth()
 
    useEffect(() => {
-      console.log('status, auth', status, authenticated)
+      console.log('status', status)
       if (status === 401) {
          dispatch(unauthorize())
          history.push(path.login)
@@ -21,11 +21,13 @@ export default function Authorization() {
    }, [dispatch, status, history])
 
    useEffect(() => {
-      console.log('status, auth', status, authenticated)
-      if (authenticated) {
+      console.log('hasLoggedIn', hasLoggedIn)
+      if (hasLoggedIn) {
          dispatch(getCart())
+      } else {
+         dispatch(unauthorize())
       }
-   }, [dispatch, authenticated])
+   }, [hasLoggedIn])
 
    return null
 }

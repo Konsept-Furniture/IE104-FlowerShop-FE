@@ -34,6 +34,10 @@ const addProductToCartLocalStorage = (_id, quantity) => {
    localStorage.setItem(StorageKeys.cart, JSON.stringify(cart))
 }
 
+const resetCartInLocalStorage = () => {
+   localStorage.setItem(StorageKeys.cart, JSON.stringify([]))
+}
+
 const getParamValue = query => {
    const objResult = query
       ? (/^[?#]/.test(query) ? query.slice(1) : query)
@@ -68,6 +72,7 @@ export const common = {
    removeBearerToken,
    removeCurrentUser,
    addProductToCartLocalStorage,
+   resetCartInLocalStorage,
 
    getParamValue,
 
