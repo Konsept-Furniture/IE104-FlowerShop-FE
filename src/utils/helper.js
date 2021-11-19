@@ -35,3 +35,8 @@ export const formatK = value => {
    }
    return value
 }
+
+export const renderPaginationText = (pagination) => {
+   const isLastIndex = pagination.currentPage === pagination.totalPages
+   return `Showing ${(pagination.currentPage - 1) * pagination.pageSize + 1}–${!isLastIndex ? pagination.currentPage * pagination.pageSize : pagination.totalItems} of ${pagination.totalItems} results`
+}

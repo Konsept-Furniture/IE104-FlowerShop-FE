@@ -4,6 +4,7 @@ import { addToCart } from '@/features/Product/productSlice'
 import { useAuthenticated } from '@/hooks/useAuthenticated'
 import useQuery from '@/hooks/useQuery'
 import { common } from '@/utils/common'
+import { renderPaginationText } from '@/utils/helper'
 import { Box, Pagination, Skeleton, Stack } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
@@ -67,7 +68,6 @@ function ProductListPage() {
             pageSize: _pagination.pageSize,
             ...filters
          }
-         console.log('🚀 ~ file: ProductListPage.jsx ~ line 60 ~ getProducts ~ payload', payload)
          const res = await productApi.getProducts(payload)
          console.log(res)
          setData(res.data)
@@ -90,7 +90,6 @@ function ProductListPage() {
 
    const handleAddProductToCart = async(product) => {
       if (authenticated) {
-         // TODO: Add to db if logged in
          try {
             const data = {
                products: [
@@ -100,18 +99,15 @@ function ProductListPage() {
                   }
                ]
             }
-            const res = await dispatch(addToCart(data))
-            const result = unwrapResult(res)
-            enqueueSnackbar(result.message, {
+            const res = await dispatch(addToCart(data)).then(unwrapResult)
+            enqueueSnackbar(res.message, {
                variant: 'success'
             })
-            // TODO: get cart again
-            await dispatch(getCart())
+            await dispatch(getCart()).then(unwrapResult)
          } catch (error) {
-            console.log('🚀 ~ file: ProductListPage.jsx ~ line 109 ~ handleAddProductToCart ~ error', error)
-            // enqueueSnackbar(error.message, {
-            //    variant: 'error'
-            // })
+            enqueueSnackbar(error.message, {
+               variant: 'error'
+            })
          }
       } else {
          console.log(localStorage.getItem(StorageKeys.cart))
@@ -129,7 +125,7 @@ function ProductListPage() {
             <Box pl="10px" mb={3} mt={2} className="text--italic color--gray">
                {loading
                   ? <Skeleton width="180px" height="25px"/>
-                  : <h5>Showing {(pagination.currentPage - 1) * pagination.pageSize + 1}–{pagination.currentPage * pagination.pageSize} of {pagination.totalItems} results</h5>
+                  : <h5>{renderPaginationText(pagination)}</h5>
                }
             </Box>
             {loading
