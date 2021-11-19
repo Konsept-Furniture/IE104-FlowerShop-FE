@@ -23,7 +23,7 @@ function Header() {
          route: path.about
       }
    ]
-
+   const user = JSON.parse(localStorage.getItem('user'))
    return (
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
@@ -52,7 +52,7 @@ function Header() {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <p className="mr-2">username </p>
+               <p className="mr-2">{user.username}</p>
                <div className="header__widget h-full mr-2 lg:mr-6"
                   onClick={() => {
                      history.push(path.login)

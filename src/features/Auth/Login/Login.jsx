@@ -21,8 +21,8 @@ function Login() {
    const dispatch = useDispatch()
 
    const schema = yup.object().shape({
-      username: yup.string().max(256).required(),
-      password: yup.string().max(256).min(4).required()
+      username: yup.string().max(32).required(),
+      password: yup.string().max(32).min(4).required()
    })
    const form = useForm({
       defaultValues: {
@@ -45,6 +45,8 @@ function Login() {
             variant: 'success'
          })
          history.push(path.home)
+         const user = JSON.parse(localStorage.getItem('user'))
+         console.log(user.username)
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error'
