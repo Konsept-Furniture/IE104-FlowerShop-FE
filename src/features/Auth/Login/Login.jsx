@@ -12,13 +12,12 @@ import './Login.scss'
 import { unwrapResult } from '@reduxjs/toolkit'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { Alert } from '@mui/material'
-
 Login.propTypes = {
 
 }
 
 function Login() {
-   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+   // const { enqueueSnackbar, closeSnackbar } = useSnackbar()
    const history = useHistory()
    const dispatch = useDispatch()
 
@@ -47,6 +46,7 @@ function Login() {
          history.push(path.home)
          return <Alert severity="success">{res.message}</Alert>
       } catch (error) {
+         window.alert('Wrong password')
          return <Alert severity="error">{error.message}</Alert>
       }
    }
