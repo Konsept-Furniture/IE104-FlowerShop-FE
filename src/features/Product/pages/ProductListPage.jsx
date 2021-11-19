@@ -1,6 +1,6 @@
 import StorageKeys from '@/constants/StorageKeys'
 import { getCart } from '@/features/Cart/cartSlice'
-import { addToCart } from '@/features/Product/productSlice'
+import { addToCart, getCategories } from '@/features/Product/productSlice'
 import { useAuthenticated } from '@/hooks/useAuthenticated'
 import useQuery from '@/hooks/useQuery'
 import { common } from '@/utils/common'
@@ -9,7 +9,7 @@ import { Box, Pagination, Skeleton, Stack } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import FilterPanel from '../components/Filter/FilterPanel'
 import ProductList from '../components/ProductList'
 import ProductSkeletonList from '../components/ProductSkeletonList'
@@ -20,10 +20,12 @@ function ProductListPage() {
    const authenticated = useAuthenticated()
    const dispatch = useDispatch()
    const { enqueueSnackbar } = useSnackbar()
+   const cartId = useSelector(state => state.cart._id)
 
    const productListRef = useRef(null)
    const [loading, setLoading] = useState(true)
    const [data, setData] = useState([])
+   const [categories, setCategories] = useState([])
    const [pagination, setPagination] = useState({
       totalItems: 0,
       totalPages: 0,
@@ -32,33 +34,22 @@ function ProductListPage() {
    })
 
    const queryParams = useQuery()
-
-   const categories = [
-      {
-         _id: '0',
-         name: 'Art',
-         number: 7
-      },
-      {
-         _id: '1',
-         name: 'Chair',
-         number: 1
-      },
-      {
-         _id: '2',
-         name: 'Creative',
-         number: 7
-      },
-      {
-         _id: '3',
-         name: 'Decorative',
-         number: 17
-      }
-   ]
    const filters = {
       minPrice: Number.parseInt(queryParams.minPrice) || 0,
       maxPrice: Number.parseInt(queryParams.maxPrice) || 100
    }
+
+   useEffect(() => {
+      (async() => {
+         try {
+            const res = await dispatch(getCategories())
+            const result = unwrapResult(res)
+            setCategories(result.data)
+         } catch (error) {
+            console.log(error)
+         }
+      })()
+   }, [dispatch])
 
    const getProducts = async(_pagination) => {
       setLoading(true)
@@ -99,7 +90,7 @@ function ProductListPage() {
                   }
                ]
             }
-            const res = await dispatch(addToCart(data)).then(unwrapResult)
+            const res = await dispatch(addToCart(cartId, data)).then(unwrapResult)
             enqueueSnackbar(res.message, {
                variant: 'success'
             })
