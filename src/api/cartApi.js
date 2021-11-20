@@ -5,9 +5,10 @@ const cartApi = {
       const url = 'carts/readUserCart'
       return axiosClient.get(url)
    },
-   addToCart: (_id, data) => {
-      const url = `carts/add-item/${_id}`
-      return axiosClient.put(url, JSON.stringify(data))
+   addToCart: ({ cartId, payload }) => {
+      const url = `carts/add-item/${cartId}`
+      console.log(cartId, payload)
+      return axiosClient.put(url, JSON.stringify(payload))
    }
 }
 export default cartApi

@@ -1,4 +1,3 @@
-import StorageKeys from '@/constants/StorageKeys'
 import { getCart } from '@/features/Cart/cartSlice'
 import { addToCart, getCategories } from '@/features/Product/productSlice'
 import { useAuthenticated } from '@/hooks/useAuthenticated'
@@ -24,7 +23,7 @@ function ProductListPage() {
 
    const productListRef = useRef(null)
    const [loading, setLoading] = useState(true)
-   const [data, setData] = useState([])
+   const [products, setProducts] = useState([])
    const [categories, setCategories] = useState([])
    const [pagination, setPagination] = useState({
       totalItems: 0,
@@ -61,7 +60,7 @@ function ProductListPage() {
          }
          const res = await productApi.getProducts(payload)
          console.log(res)
-         setData(res.data)
+         setProducts(res.data)
          setPagination(res.pagination)
       } catch (error) {
          console.log(error)
@@ -83,17 +82,28 @@ function ProductListPage() {
       if (authenticated) {
          try {
             const data = {
-               products: [
-                  {
-                     productId: product._id,
-                     quantity: 1
-                  }
-               ]
+               cartId,
+               payload: {
+                  productId: product._id,
+                  quantity: 1
+               }
             }
-            const res = await dispatch(addToCart(cartId, data)).then(unwrapResult)
+            console.log(data)
+            const res = await dispatch(addToCart(data)).then(unwrapResult)
             enqueueSnackbar(res.message, {
                variant: 'success'
             })
+
+            // reduce quantity
+            const _data = [...products]
+            _data.forEach(item => {
+               if (item._id === product._id && item.countInStock > 0) {
+                  item.quantity--
+               }
+            })
+            setProducts(_data)
+
+            // get cart again
             await dispatch(getCart()).then(unwrapResult)
          } catch (error) {
             enqueueSnackbar(error.message, {
@@ -101,9 +111,16 @@ function ProductListPage() {
             })
          }
       } else {
-         console.log(localStorage.getItem(StorageKeys.cart))
          // Add to localStorage
          common.addProductToCartLocalStorage(product._id, 1)
+         // reduce quantity
+         const _data = [...products]
+         _data.forEach(item => {
+            if (item._id === product._id && item.countInStock > 0) {
+               item.quantity--
+            }
+         })
+         setProducts(_data)
       }
    }
 
@@ -121,7 +138,7 @@ function ProductListPage() {
             </Box>
             {loading
                ? <ProductSkeletonList />
-               : <ProductList data={data} onAddCart={handleAddProductToCart}/>
+               : <ProductList data={products} onAddCart={handleAddProductToCart}/>
             }
 
             <Stack

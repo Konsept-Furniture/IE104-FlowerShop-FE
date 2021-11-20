@@ -5,12 +5,12 @@ Loading.propTypes = {
 
 }
 
-function Loading (props) {
-  return (
+function Loading(props) {
+   return (
       <div>
          Loading...
       </div>
-  )
+   )
 }
 
 export default Loading
