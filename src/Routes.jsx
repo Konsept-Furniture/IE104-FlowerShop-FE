@@ -14,7 +14,7 @@ const ProductList = lazy(() => import('./features/Product/pages/ProductListPage'
 const ProductDetail = lazy(() => import('./features/Product/pages/ProductDetailPage'))
 const AboutUs = lazy(() => import('./features/AboutUs/AboutUs'))
 const NotFound = lazy(() => import('./features/NotFound/NotFound'))
-
+const Cart = lazy(() => import('./features/Cart/components/CartPage'))
 Routes.propTypes = {
 
 };
@@ -75,7 +75,7 @@ function Routes(props) {
             </MainLayout>
          </Route>
 
-
+         {/* About */}
          <Route path={path.about} exact>
             <MainLayout>
                <Suspense fallback={<Fallback />}>
@@ -86,6 +86,16 @@ function Routes(props) {
             </MainLayout>
          </Route>
 
+         {/* Cart */}
+         <Route path={path.cart} exact>
+            <MainLayout>
+               <Suspense fallback={<Fallback />}>
+                  <ErrorBoundary>
+                     <Cart />
+                  </ErrorBoundary>
+               </Suspense>
+            </MainLayout>
+         </Route>
 
          <Route path={path.notFound}>
             <Suspense fallback={<Fallback />}>
