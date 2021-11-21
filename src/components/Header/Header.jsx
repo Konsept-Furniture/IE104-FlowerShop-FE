@@ -10,7 +10,7 @@ import './Header.scss'
 
 function Header() {
    const history = useHistory()
-   const currentUser = useSelector(state => state.user)
+   const currentUser = useSelector(state => state.auth.profile)
 
    const navItems = [
       {
@@ -54,7 +54,7 @@ function Header() {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <p className="mr-2">{currentUser ? currentUser.profile.username : ''}</p>
+               <p className="mr-2">{currentUser ? currentUser.username : ''}</p>
                <div className="header__widget h-full mr-2 lg:mr-6"
                   onClick={() => {
                      history.push(path.login)
