@@ -94,12 +94,11 @@ li.subtotal:before {
 }
 
 .price {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     font-size: 1rem;
 }
 
 .subtotal {
-    font-family: "Open Sans", sans-serif;
     font: 1rem sans-serif;
     width: 35%;
 }
@@ -111,6 +110,7 @@ li.subtotal:before {
 }
 
 .subtotal {
+    font-family: 'josefin sans', sans-serif;
     text-align: right;
 }
 
@@ -124,6 +124,7 @@ li.subtotal:before {
 }
 
 .remove button {
+    font-family: 'josefin sans', sans-serif;
     background-color: #9e9e9e;
     padding: 0.5rem;
     color: #eee;
@@ -161,7 +162,7 @@ li.subtotal:before {
 }
 
 .product-details {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     font-size: large;
     font-weight: bold;
     padding: 0 1.5rem 2rem;
@@ -173,7 +174,7 @@ li.subtotal:before {
 .quantity-field {
     background-color: #eee;
     font-size: 0.625rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     align-items: center;
     padding: 2px;
     width: 3.75rem;
@@ -197,7 +198,7 @@ aside {
 
 .summary-total-items {
     color: #1976d2;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     font-weight: bold;
     background-color: #ffffff;
     font-size: 0.875rem;
@@ -215,14 +216,14 @@ aside {
 }
 
 .subtotal-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
 }
 
 .subtotal-title,
 .subtotal-value,
 .total-title,
 .total-value {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     color: #111;
     float: left;
     width: 50%;
@@ -266,7 +267,7 @@ aside {
     text-align: center;
     color: #eee;
     font-size: 0.75rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     text-align: center;
     text-transform: uppercase;
     padding: 0.625rem 0;
@@ -278,7 +279,7 @@ aside {
 }
 
 .summary-delivery-selection {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'josefin sans', sans-serif;
     background-color: #eee;
     border: 1px solid #aaa;
     border-radius: 4px;
