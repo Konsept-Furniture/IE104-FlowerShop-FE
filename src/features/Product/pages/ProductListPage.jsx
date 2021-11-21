@@ -1,6 +1,5 @@
 import { getCart } from '@/features/Cart/cartSlice'
 import { addToCart, getCategories } from '@/features/Product/productSlice'
-import { useAuthenticated } from '@/hooks/useAuthenticated'
 import useQuery from '@/hooks/useQuery'
 import { common } from '@/utils/common'
 import { renderPaginationText } from '@/utils/helper'
@@ -16,7 +15,6 @@ import productApi from '../productApi'
 import './ProductListPage.scss'
 
 function ProductListPage() {
-   const authenticated = useAuthenticated()
    const dispatch = useDispatch()
    const { enqueueSnackbar } = useSnackbar()
    const cartId = useSelector(state => state.cart._id)
@@ -79,7 +77,7 @@ function ProductListPage() {
    const executeScroll = () => productListRef.current.scrollIntoView()
 
    const handleAddProductToCart = async(product) => {
-      if (authenticated) {
+      if (cartId) {
          try {
             const data = {
                cartId,
@@ -113,6 +111,9 @@ function ProductListPage() {
       } else {
          // Add to localStorage
          common.addProductToCartLocalStorage(product._id, 1)
+         enqueueSnackbar('Add to cart successfully', {
+            variant: 'success'
+         })
          // reduce quantity
          const _data = [...products]
          _data.forEach(item => {

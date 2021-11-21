@@ -1,22 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Button } from '@mui/material'
-
 import './Button.scss'
 
-// const Button = ({ className, onClick, children }) => {
-//   return (
-//         <button
-//             className={`btn ${className}`}
-//             onClick={onClick ? () => onClick() : null}
-//         >
-//             {children}
-//         </button>
-//   )
-// }
-
 export const OutlinedButton = (props) => {
-   console.log(props)
    const { children, onClick, ...restProps } = props
    return (
       <Button

@@ -25,13 +25,15 @@ function ProductItem({ product, onAddCart }) {
    }
    return (
       <div className="product">
-         <div className="product__thumbnail">
+         <div className="product__thumbnail"
+            onClick={handleReadMore}>
             <img
                className="product__thumbnail-image"
                src={product.img || 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'}
                alt=""
             />
-            <div className="product__thumbnail-overlay">
+            <div className="product__thumbnail-overlay"
+            >
                <div className="overlay__icons">
                   <a className="wishlist">
                      <IconHeart />
@@ -48,7 +50,7 @@ function ProductItem({ product, onAddCart }) {
                         </a>
                         : <CircularProgress color="black" size={24}/>)
                      : <a className="konsept-link text--italic" onClick={handleReadMore}>
-                     Read more
+                        Read more
                      </a>
                   }
                </div>
