@@ -6,7 +6,7 @@ CartPage.propTypes = {
 
 function CartPage(props) {
    return (
-      <div className="flex w-full">
+      <div className="cart-container">
          <main className="main-space">
             <div className="basket">
                <div className="basket-product">
