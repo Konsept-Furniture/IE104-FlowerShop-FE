@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
-import PropTypes from 'prop-types'
-import IconHeart from '@/assets/icons/IconHeart'
 import IconEye from '@/assets/icons/IconEye'
-import './ProductItem.scss'
-import { useHistory } from 'react-router'
+import IconHeart from '@/assets/icons/IconHeart'
 import { CircularProgress } from '@mui/material'
+import PropTypes from 'prop-types'
+import React, { useState } from 'react'
+import { useHistory } from 'react-router'
+import './ProductItem.scss'
 
 ProductItem.propTypes = {
    product: PropTypes.object,
@@ -15,7 +15,8 @@ function ProductItem({ product, onAddCart }) {
    const history = useHistory()
    const [loading, setLoading] = useState(false)
 
-   const handleAddToCart = async() => {
+   const handleAddToCart = async(e) => {
+      e.stopPropagation()
       setLoading(true)
       if (onAddCart) await onAddCart(product)
       setLoading(false)
@@ -26,14 +27,14 @@ function ProductItem({ product, onAddCart }) {
    return (
       <div className="product">
          <div className="product__thumbnail"
-            onClick={handleReadMore}>
+            onClick={handleReadMore}
+         >
             <img
                className="product__thumbnail-image"
                src={product.img || 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'}
                alt=""
             />
-            <div className="product__thumbnail-overlay"
-            >
+            <div className="product__thumbnail-overlay">
                <div className="overlay__icons">
                   <a className="wishlist">
                      <IconHeart />

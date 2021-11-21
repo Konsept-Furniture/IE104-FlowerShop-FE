@@ -1,4 +1,5 @@
 @use '@/scss' as *;
+
 a:hover {
    color: #1d1d1d;
 }
@@ -8,113 +9,113 @@ a:hover {
       align-items: flex-start;
       width: 100%;
       min-height: 100px;
-   }
-   &__thumbnail {
-      width: 100%;
-      padding: 0 30px;
-   }
-   &__info {
-      width: 100%;
-      padding: 0 30px;
-      form {
-         margin-top: 38px;
+      &__thumbnail {
+         width: 100%;
+         padding: 0 30px;
       }
-   }
-   &__title {
-      font-family: 'josefin sans', sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #1d1d1d;
-      font-size: 40px;
-      line-height: 1.33em;
-      letter-spacing: 0.23em;
-      margin: 25px 0 0;
-      -ms-word-wrap: break-word;
-      word-wrap: break-word;
-   }
-   &__price {
-      font-family: 'eb garamond', serif;
-      font-size: 18px;
-      font-style: italic;
-      -webkit-box-orient: horizontal;
-      -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-      flex-direction: row;
-      -webkit-box-pack: start;
-      -ms-flex-pack: start;
-      justify-content: flex-start;
-      color: #1d1d1d;
-      margin-top: 0;
-   }
-   &__description {
-      margin-top: 28px;
-      font-family: 'open sans', sans-serif;
-      line-height: 1.8em;
-      color: #8b8b8b;
-   }
-   &__quantity {
-      position: relative;
-      display: inline-block;
-      vertical-align: middle;
-      border: 1px solid #ddd;
-      padding: 0 40px;
-      margin-right: 40px;
-      border-radius: 4px;
-
-      &--minus,
-      &--plus,
-      &--input {
-         display: inline-block;
-         vertical-align: middle;
-         font-family: 'eb garamond', serif;
-         font-size: 24px;
-         line-height: 52px;
-         text-align: center;
-         user-select: none;
-         background: 0 0;
-         color: #1d1d1d;
-         cursor: pointer;
+      &__info {
+         width: 100%;
+         padding: 0 30px;
+         form {
+            margin-top: 38px;
+         }
       }
-      &--input {
-         position: relative;
-         height: 52px;
-         width: 36px;
-         padding: 0;
-         margin: 0 5px;
-         border: none;
-         font-size: 18px;
-         line-height: 52px;
-         outline: 0;
-         cursor: text;
-      }
-   }
-
-   &__meta {
-      margin-top: 30px;
-
-      &-label {
-         flex-shrink: 0;
-         margin-right: 8px;
+      &__title {
          font-family: 'josefin sans', sans-serif;
          font-weight: 600;
          text-transform: uppercase;
          color: #1d1d1d;
-         font-size: 13px;
-         line-height: 1.6em;
-         letter-spacing: 0.2em;
-         line-height: 2.7em;
+         font-size: 40px;
+         line-height: 1.33em;
+         letter-spacing: 0.23em;
+         margin: 25px 0 0;
+         -ms-word-wrap: break-word;
+         word-wrap: break-word;
       }
-      &-value {
+      &__price {
          font-family: 'eb garamond', serif;
-         font-size: 17px;
-         font-weight: 400;
+         font-size: 18px;
          font-style: italic;
-         color: #8b8b8b;
-         line-height: 1.8em;
+         -webkit-box-orient: horizontal;
+         -webkit-box-direction: normal;
+         -ms-flex-direction: row;
+         flex-direction: row;
+         -webkit-box-pack: start;
+         -ms-flex-pack: start;
+         justify-content: flex-start;
+         color: #1d1d1d;
+         margin-top: 0;
       }
-   }
-   &__categories {
-      display: flex;
+      &__description {
+         margin-top: 28px;
+         font-family: 'open sans', sans-serif;
+         line-height: 1.8em;
+         color: #8b8b8b;
+      }
+      &__quantity {
+         position: relative;
+         display: inline-block;
+         vertical-align: middle;
+         border: 1px solid #ddd;
+         padding: 0 40px;
+         margin-right: 40px;
+         border-radius: 4px;
+
+         &--minus,
+         &--plus,
+         &--input {
+            display: inline-block;
+            vertical-align: middle;
+            font-family: 'eb garamond', serif;
+            font-size: 24px;
+            line-height: 52px;
+            text-align: center;
+            user-select: none;
+            background: 0 0;
+            color: #1d1d1d;
+            cursor: pointer;
+         }
+         &--input {
+            position: relative;
+            height: 52px;
+            width: 36px;
+            padding: 0;
+            margin: 0 5px;
+            border: none;
+            font-size: 18px;
+            line-height: 52px;
+            outline: 0;
+            cursor: text;
+         }
+      }
+
+      &__meta {
+         margin-top: 30px;
+
+         &-label {
+            flex-shrink: 0;
+            margin-right: 8px;
+            font-family: 'josefin sans', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #1d1d1d;
+            font-size: 13px;
+            line-height: 1.6em;
+            letter-spacing: 0.2em;
+            line-height: 2.7em;
+         }
+         &-value {
+            font-family: 'eb garamond', serif;
+            font-size: 17px;
+            font-weight: 400;
+            font-style: italic;
+            color: #8b8b8b;
+            line-height: 1.8em;
+         }
+      }
+      &__categories {
+         display: flex;
+      }
    }
 
    @include laptop {

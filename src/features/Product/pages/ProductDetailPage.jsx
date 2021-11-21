@@ -24,7 +24,6 @@ function ProductDetailPage(props) {
          setLoading(true)
          try {
             const res = await productApi.getProduct(productId)
-            console.log('🚀 ~ file: ProductDetailPage.jsx ~ line 21 ~ res', res.data)
             setProductData(res.data)
          } catch (error) {
             console.log(error)
@@ -32,6 +31,7 @@ function ProductDetailPage(props) {
          setLoading(false)
       })()
    }, [])
+
    const handleAddToCart = async(_data) => {
       if (cartId) {
          try {
