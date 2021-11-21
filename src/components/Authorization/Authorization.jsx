@@ -1,4 +1,3 @@
-import { path } from '@/constants/path'
 import { unauthorize } from '@/features/Auth/authSlice'
 import { getCart } from '@/features/Cart/cartSlice'
 import { useAuth } from '@/hooks/useAuth'
@@ -16,7 +15,6 @@ export default function Authorization() {
       console.log('status', status)
       if (status === 401) {
          dispatch(unauthorize())
-         history.push(path.login)
       }
    }, [dispatch, status, history])
 

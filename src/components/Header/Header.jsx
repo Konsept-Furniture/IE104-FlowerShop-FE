@@ -4,11 +4,14 @@ import IconHeart from '@/assets/icons/IconHeart'
 import IconUser from '@/assets/icons/IconUser'
 import { path } from '@/constants/path'
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import './Header.scss'
 
 function Header() {
    const history = useHistory()
+   const currentUser = useSelector(state => state.user)
+
    const navItems = [
       {
          label: 'Home',
@@ -23,7 +26,6 @@ function Header() {
          route: path.about
       }
    ]
-   const user = JSON.parse(localStorage.getItem('user'))
    return (
       <header className="header py-4 font-poppins">
          <div className="header--innner konsept-container flex justify-between items-center">
@@ -52,7 +54,7 @@ function Header() {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <p className="mr-2">{user.username}</p>
+               <p className="mr-2">{currentUser ? currentUser.profile.username : ''}</p>
                <div className="header__widget h-full mr-2 lg:mr-6"
                   onClick={() => {
                      history.push(path.login)
