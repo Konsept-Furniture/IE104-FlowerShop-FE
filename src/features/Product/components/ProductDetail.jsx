@@ -1,12 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useHistory } from 'react-router-dom'
-import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
-import './ProductDetail.scss'
 import { OutlinedButton } from '@/components/button/Button'
 import { path } from '@/constants/path'
+import { yupResolver } from '@hookform/resolvers/yup'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import * as yup from 'yup'
+import './ProductDetail.scss'
 
 ProductDetail.propTypes = {
    product: PropTypes.object.isRequired,
@@ -48,30 +48,30 @@ function ProductDetail(props) {
 
    return (
       <div className="product-detail">
-         <div className="product__thumbnail">
-            <img className="product__image" src={product.img}></img>
+         <div className="product-detail__thumbnail">
+            <img className="product-detail__image" src={product.img}></img>
          </div>
-         <div className="product__info">
-            <h1 className="product__title">{product.title}</h1>
-            <p className="product__price">${product.price.toFixed(2)}</p>
-            <div className="product__description">
+         <div className="product-detail__info">
+            <h1 className="product-detail__title">{product.title}</h1>
+            <p className="product-detail__price">${product.price.toFixed(2)}</p>
+            <div className="product-detail__description">
                <p>{product.desc}</p>
             </div>
 
             <form onSubmit={handleSubmit(onAddToCart)}>
-               <div className="product__quantity">
+               <div className="product-detail__quantity">
                   <span
-                     className="product__quantity--minus"
+                     className="product-detail__quantity--minus"
                      onClick={decreaseQuantity}
                   >‒</span>
                   <input
-                     className="product__quantity--input"
+                     className="product-detail__quantity--input"
                      {...register('quantity')}
                      placeholder=""
                      inputMode="numeric"
                   />
                   <span
-                     className="product__quantity--plus"
+                     className="product-detail__quantity--plus"
                      onClick={increaseQuantity}
                   >+</span>
                </div>
@@ -82,10 +82,10 @@ function ProductDetail(props) {
                </OutlinedButton>
             </form>
 
-            <div className="product__meta">
-               <span className="product__categories">
-                  <span className="product__meta-label">Category: </span>
-                  <span className="product__meta-value">
+            <div className="product-detail__meta">
+               <span className="product-detail__categories">
+                  <span className="product-detail__meta-label">Category: </span>
+                  <span className="product-detail__meta-value">
                      {product.categories.map((cate, idx) => (
                         <span key={cate}>
                            {idx !== 0 ? ', ' : ''}
