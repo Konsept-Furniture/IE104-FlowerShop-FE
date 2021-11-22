@@ -1,10 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './CartPage.scss'
 CartPage.propTypes = {
 
 }
 
 function CartPage(props) {
+   const [loading, setLoading] = useState(true)
+   useEffect(() => {
+      (async() => {
+         setLoading(true)
+         try {
+            for (let i = 0; i < 1000; i++) {
+               console.log(i)
+            }
+         } catch (error) {
+            console.log(error)
+         }
+         setLoading(false)
+      })()
+   }, [])
    return (
       <div className="cart-container">
          <main className="main-space">
@@ -63,6 +77,7 @@ function CartPage(props) {
                      <button>Remove</button>
                   </div>
                </div>
+
             </div>
             <aside>
                <div className="summary">
