@@ -21,7 +21,6 @@ button,
 .item,
 .price,
 .quantity,
-.subtotal,
 .basket-product,
 .product-image,
 .product-details {
@@ -100,19 +99,18 @@ li.subtotal:before {
 
 .subtotal {
     font: 1rem sans-serif;
-    width: 35%;
+    width: 20%;
+    float: right;
+    font-family: 'josefin sans', sans-serif;
+    text-align: right;
 }
 
 .price,
 .quantity,
 .subtotal {
-    width: 15%;
+    width: 10%;
 }
 
-.subtotal {
-    font-family: 'josefin sans', sans-serif;
-    text-align: right;
-}
 
 .remove {
     bottom: 1.125rem;
@@ -124,16 +122,14 @@ li.subtotal:before {
 }
 
 .remove button {
-    font-family: 'josefin sans', sans-serif;
-    background-color: #9e9e9e;
-    padding: 0.5rem;
-    color: #eee;
+    padding: 0.6rem;
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
     float: none;
-    text-transform: uppercase;
 }
 
 .remove button:hover {
-    background-color: #ba000d;
+    border: 1px solid #111;
 }
 
 .item-heading {
@@ -150,6 +146,10 @@ li.subtotal:before {
     margin-left: 30px;
 }
 
+.select-checkbox{
+    margin-right: 20px;
+}
+
 .product-image {
     width: 35%;
 }
@@ -160,6 +160,7 @@ li.subtotal:before {
 
 .product-frame {
     border: 1px solid #aaa;
+    margin-left: 5px;
 }
 
 .product-details {

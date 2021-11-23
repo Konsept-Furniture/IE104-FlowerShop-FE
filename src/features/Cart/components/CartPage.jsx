@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './CartPage.scss'
+import { OutlinedButton } from '@/components/button/Button'
 CartPage.propTypes = {
 
 }
@@ -10,6 +11,7 @@ function CartPage(props) {
       (async() => {
          setLoading(true)
          try {
+            // test
             for (let i = 0; i < 1000; i++) {
                console.log(i)
             }
@@ -24,6 +26,9 @@ function CartPage(props) {
          <main className="main-space">
             <div className="basket">
                <div className="basket-product">
+                  <div className="select-checkbox">
+                     <input type="checkbox" />
+                  </div>
                   <div className="item">
                      <div className="product-image">
                         <img src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/home5_6-1.jpg" alt="Placholder Image 2" className="product-frame"/>
@@ -38,10 +43,14 @@ function CartPage(props) {
                   </div>
                   <div className="subtotal">104.00</div>
                   <div className="remove">
-                     <button>Remove</button>
+                     <OutlinedButton>Remove</OutlinedButton>
                   </div>
+
                </div>
                <div className="basket-product">
+                  <div className="select-checkbox">
+                     <input type="checkbox" />
+                  </div>
                   <div className="item">
                      <div className="product-image">
                         <img src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/home5_6-1.jpg" alt="Placholder Image 2" className="product-frame"/>
@@ -56,10 +65,13 @@ function CartPage(props) {
                   </div>
                   <div className="subtotal">26.00</div>
                   <div className="remove">
-                     <button>Remove</button>
+                     <OutlinedButton>Remove</OutlinedButton>
                   </div>
                </div>
                <div className="basket-product">
+                  <div className="select-checkbox">
+                     <input type="checkbox" />
+                  </div>
                   <div className="item">
                      <div className="product-image">
                         <img src="https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/home5_6-1.jpg" alt="Placholder Image 2" className="product-frame"/>
@@ -74,7 +86,7 @@ function CartPage(props) {
                   </div>
                   <div className="subtotal">26.00</div>
                   <div className="remove">
-                     <button>Remove</button>
+                     <OutlinedButton>Remove</OutlinedButton>
                   </div>
                </div>
 
