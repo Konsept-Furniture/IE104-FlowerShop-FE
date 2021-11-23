@@ -3,6 +3,14 @@
 a:hover {
    color: #1d1d1d;
 }
+
+.product-detail__thumbnail img{
+   transition: transform .5s ease;
+}
+
+.product-detail__thumbnail:hover img{
+   transform: scale(1.4);
+}
 .product {
    &-detail {
       display: flex;
@@ -12,6 +20,7 @@ a:hover {
       &__thumbnail {
          width: 100%;
          padding: 0 30px;
+         overflow: hidden;
       }
       &__info {
          width: 100%;
