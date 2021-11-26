@@ -11,7 +11,7 @@ import './Header.scss'
 function Header() {
    const history = useHistory()
    const currentUser = useSelector(state => state.auth.profile)
-
+   const cart = useSelector(state => state.cart)
    const navItems = [
       {
          label: 'Home',
@@ -82,7 +82,7 @@ function Header() {
                      <span>
                         <IconCart />
                      </span>
-                     <span className="ml-1">0</span>
+                     <span className="ml-1">{cart.current.length}</span>
                   </div>
                </div>
                <div className="header__widget h-full mr-2 lg:mr-4">
