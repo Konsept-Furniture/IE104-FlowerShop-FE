@@ -5,7 +5,7 @@
 }
 
 .submit-button{
-    float: left;
+    float: right;
 }
 
 .contact-title{
@@ -60,7 +60,7 @@
   }
 
   .aside-description{
-    width: auto;
+    width: fit-content;
   }
 
   .contact-us-title{
@@ -70,7 +70,7 @@
     color: #8b8b8b;
   }
 
-.description{
+.contact-description{
       font-family: open sans,sans-serif;
       font-size: 16px;
       line-height: 1.8em;
@@ -110,6 +110,20 @@
     .aside-description{
       display: none;
     }
+
+    .main-form{
+      width: 80%;
+      margin-bottom: 50px;
+    }
+
+    .submit-button{
+      float:left
+    }
+
+    .contact-form{
+      margin-bottom: 30px;
+    }
+
     #contact-form h2 {
       margin-left: 26%;
       font-size: 2em;
@@ -124,7 +138,7 @@
       text-align: right;
     }
     input, textarea {
-      width: 90%;
+      width: 100%;
       line-height: 1.5;
     }
     textarea {
@@ -156,11 +170,25 @@
     }
 
     .aside-description{
+      margin-left: 40px;
       width: 45%;
       vertical-align: top;
       display: inline-block;
       text-align: left;
       line-height: 1.5;
+    }
+
+    @media screen and (min-width:640px) and (max-width: 916px) {
+      .main-form {
+        width: 80%;
+        align-items: center;
+      }
+
+      .aside-description{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        width: 80%;
+      }
     }
 
   }

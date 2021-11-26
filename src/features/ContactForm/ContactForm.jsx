@@ -17,7 +17,7 @@ function ContactForm(props) {
          <aside className="aside-description">
             <span className="contact-us-title">Contact Us</span>
             <h2 className="contact-title">GOT ANY QUESTIONS?</h2>
-            <p className="description">Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit.</p>
+            <p className="contact-description">Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat consequat auctor eu in elit.</p>
             <div className="description-address">
                <div className="store-address-container">
                   <h4 className="title-store">STORE</h4>
