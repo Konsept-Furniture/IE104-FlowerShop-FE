@@ -33,6 +33,7 @@ export const OutlinedButton = (props) => {
 OutlinedButton.propTypes = {
    onClick: PropTypes.func,
    children: PropTypes.oneOfType([
+      PropTypes.string,
       PropTypes.element,
       PropTypes.arrayOf(PropTypes.element)
    ])

@@ -2,10 +2,14 @@ import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
 import Button from '@mui/material/Button'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 import React from 'react'
 import { useForm } from 'react-hook-form'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
+import { register } from '../authSlice'
 import './Register.scss'
 
 Register.propTypes = {
@@ -13,9 +17,12 @@ Register.propTypes = {
 }
 
 function Register() {
+   const { enqueueSnackbar } = useSnackbar()
    const history = useHistory()
+   const dispatch = useDispatch()
 
    const schema = yup.object().shape({
+      email: yup.string().email().max(256).required(),
       username: yup.string().max(256).required(),
       password: yup.string().max(256).min(4).required(),
       confirm_password: yup.string().max(256).min(4).required()
@@ -23,6 +30,7 @@ function Register() {
    })
    const form = useForm({
       defaultValues: {
+         email: '',
          username: '',
          password: '',
          confirm_password: ''
@@ -33,16 +41,21 @@ function Register() {
 
    const handleSubmit = async(data) => {
       console.log(data, isSubmitting)
-      const payload = {
-         username: data.username,
-         password: data.password
-      }
       try {
-         const res = await dispatch(login(payload))
-         unwrapResult(res)
-         history.push(path.home)
+         const payload = {
+            email: data.email,
+            username: data.username,
+            password: data.password
+         }
+         await dispatch(register(payload)).then(unwrapResult)
+         history.push({
+            pathname: path.home,
+            search: `?username=${data.username}`
+         })
       } catch (error) {
-         console.log(error)
+         enqueueSnackbar(error.message, {
+            variant: 'error'
+         })
       }
    }
 
@@ -54,6 +67,13 @@ function Register() {
          </div>
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
+            <TextInputField
+               form={form}
+               name="email"
+               label="Email"
+               disable={isSubmitting}
+               color="black"
+            />
             <TextInputField
                form={form}
                name="username"

@@ -1,5 +1,6 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
+import { getCart } from '@/features/Cart/cartSlice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { unwrapResult } from '@reduxjs/toolkit'
@@ -10,6 +11,8 @@ import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
 import { login } from '../authSlice'
+import useQuery from '@/hooks/useQuery'
+
 import './Login.scss'
 Login.propTypes = {
 
@@ -19,6 +22,7 @@ function Login() {
    const { enqueueSnackbar } = useSnackbar()
    const history = useHistory()
    const dispatch = useDispatch()
+   const params = useQuery()
 
    const schema = yup.object().shape({
       username: yup.string().max(32).required(),
@@ -26,7 +30,7 @@ function Login() {
    })
    const form = useForm({
       defaultValues: {
-         username: '',
+         username: params.username || '',
          password: ''
       },
       resolver: yupResolver(schema)
@@ -49,6 +53,9 @@ function Login() {
             },
             preventDuplicate: true
          })
+         // get cart
+         await dispatch(getCart()).then(unwrapResult)
+
          history.push(path.home)
          const user = JSON.parse(localStorage.getItem('user'))
          console.log(user.username)
