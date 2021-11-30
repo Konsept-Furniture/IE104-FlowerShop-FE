@@ -8,7 +8,7 @@ ContactForm.propTypes = {
 function ContactForm(props) {
    return (
       <section id="contact-form">
-         <form className="main-form" id="contact" name="contact" acceptCharset="utf-8">
+         <form className="main-form" id="contact" name="contact" action="mailto:annhien.se@gmail.com" encType="multipart/form-data" method="post" acceptCharset="utf-8">
             <label className="label-name"><input name="name" type="text" placeholder="Name"/></label>
             <label className="label-email"><input name="email" type="email" placeholder="Email"/></label>
             <label className="label-message"><textarea name="message" placeholder="Message"></textarea></label>
