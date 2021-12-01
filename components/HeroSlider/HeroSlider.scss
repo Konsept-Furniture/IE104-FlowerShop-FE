@@ -1,0 +1,112 @@
+@use '@/scss' as *;
+
+.hero-slider {
+	margin-bottom: 3rem;
+	max-width: 100%;
+	height: 545px;
+	max-height: 545px;
+
+	&__item {
+		width: 100%;
+		height: 545px;
+
+		padding: 6rem 0;
+		position: relative;
+		background-position: center;
+		background-size: cover;
+		background-repeat: no-repeat;
+
+		// &::before {
+		// 	content: '';
+		// 	position: absolute;
+		// 	top: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100%;
+		// 	// @include overlay();
+		// }
+
+		// &::after {
+		// 	content: '';
+		// 	position: absolute;
+		// 	bottom: 0;
+		// 	left: 0;
+		// 	width: 100%;
+		// 	height: 100px;
+		// 	background-image: linear-gradient(to top, white, rgba(black, 0));
+		// }
+
+		&__content {
+			@include flex(center, center);
+			position: relative;
+
+			&__info {
+				width: 65%;
+				padding-right: 3rem;
+
+				@include tablet {
+					width: 100%;
+				}
+
+				& .type {
+					font-size: 5rem;
+					font-weight: 400;
+					color: #ef5b47;
+					opacity: 0;
+					transition: all 0.4s ease;
+					transform: translateY(50px);
+				}
+
+				& .title {
+					font-size: 3.5rem;
+					font-weight: 500;
+					letter-spacing: 0.6rem;
+					text-transform: uppercase;
+					opacity: 0;
+					transition: all 0.4s ease 0.2s;
+					transform: translateY(50px);
+				}
+
+				& .description {
+					margin-top: 1rem;
+					opacity: 0;
+					transition: all 0.4s ease 0.4s;
+					transform: translateY(50px);
+				}
+
+				& .read-more {
+					margin-top: 2rem;
+					opacity: 0;
+					transition: all 0.4s ease 0.6s;
+					transform: translateY(50px);
+				}
+			}
+
+			&__image {
+				flex: 1;
+				opacity: 0;
+				transform: scale(0.5);
+				transition: all 0.6s ease 0.6s;
+
+				@include flex(center, flex-start);
+				@include tablet {
+					display: none;
+				}
+			}
+		}
+
+		&.active &__content__info {
+			.type,
+			.title,
+			.description,
+			.read-more {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		&.active &__content__image {
+			opacity: 1;
+			transform: scale(1);
+		}
+	}
+}

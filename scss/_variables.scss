@@ -1,0 +1,123 @@
+$layout-breakpoint-mobile: 575px;
+$layout-breakpoint-tablet: 767px;
+$layout-breakpoint-laptop: 1023px;
+/*
+ * color text.
+ */
+$color--text: #1d1d1d;
+$color--text-2: #65627a;
+$color--disable: #aaa9b7;
+$color--light: #ffffff;
+$color--gray-medium: #65627a;
+$color--pink: #eb236b;
+$color--purple: #8a56be;
+
+/*
+  * color gray.
+  */
+$color--background: #f5f5f5;
+$color--gray-line: #dbdbdb;
+$color--gray-line-light: #ebebeb;
+$color--gray: #8b8b8b;
+$color--gray-hover: #aeaeae;
+/*
+  * color primary.
+  */
+$color--primary: #5840bb;
+$color--primary-light: #714fff;
+$color--primary-dark: #332c6b;
+$color--primary-hover: #453396;
+$color--primary-background: #f2f0ff;
+
+/*
+  * color status.
+  */
+$color--progress: #ff885c;
+$color--progress-dark: #fe7745;
+$color--danger: #ff5f73;
+$color--danger-dark: '#f35367';
+$color--success-default-hover: #6da23a;
+$color--success-default: #81b351;
+$color--success: #47c269;
+
+$color--silver-foil: #afafaf;
+$color--bright-gray: #efefef;
+$color--light-gray: #d3d3d3;
+$color--blue-header: #b1e3ff;
+$color--green-header: #c1efb1;
+$color--button: #6da13a;
+/*
+  * shadow.
+  */
+$box-shadow--small: 0px 0.3px 2px rgba(0, 0, 0, 0.3);
+$box-shadow--medium: 0px 2px 8px rgba(0, 0, 0, 0.1),
+   0px 4px 16px rgba(0, 0, 0, 0.15);
+$box-shadow--big: 0px 4px 12px rgba(0, 0, 0, 0.15),
+   0px 6px 24px rgba(0, 0, 0, 0.2);
+$box-shadow--light: 0px 0px 2px rgba(0, 0, 0, 0.2);
+$inner-shadow: inset 0px 0px 2px 0.5px rgba(0, 0, 0, 0.1);
+$inner-shadow--line-bot: inset 0px -1px 0px rgba(0, 0, 0, 0.08);
+$inner-shadow--line-top: inset 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+/*
+  * border radius.
+  */
+$border-radius--h64: 16px;
+$border-radius--h48: 8px;
+$border-radius--h40: 8px;
+
+/*
+  * font.
+  */
+// $font--regular: (--font-regular);
+// $font--semibold: (--font-semibold);
+// $font--bold: (--font-bold);
+// $font--light: (--font-light);
+// $font--medium: (--font-medium);
+// $font--icon: (--font-icon);
+// $font--certificate-heading: (--font-certificate-heading);
+// $font--certificate-label: (--font-certificate-label);
+
+/*
+  * constant.
+  */
+$z-index--header: (--z-index-header);
+$transition--common: all 0.4s ease;
+
+$height--image-common: (--height-image-common);
+$height--side-bar_outline: (--height-side-bar-outline);
+$height--header_default: (--height-header-default);
+$height--header_lesson: (--height-header-lesson);
+
+$width--right-bar: (--width-right-bar);
+$width--right-bar_transcript: (--width-right-bar-transcript);
+$width--side-bar_outline: (--width-side-bar-outline);
+$width--side-bar_default: (--width-side-bar-default);
+$width--side-bar_lesson: (--width-side-bar-lesson);
+$width--content-page_max: (--width-content-page-max);
+
+/*
+ * Set default constant
+ */
+$default-constant: (
+   --z-index-header: 1000,
+   --transition-common: all 0.3s ease,
+   --height-image-common: 184px,
+   --height-side-bar-outline: 56px,
+   --height-header-default: 56px,
+   --height-header-lesson: 48px,
+   --width-right-bar: 352px,
+   --width-right-bar-transcript: 352px,
+   --width-side-bar-outline: 244px,
+   --width-side-bar-default: 330px,
+   --width-side-bar-lesson: 360px,
+   --width-content-page-max: 988px,
+);
+@mixin spread-map($map: ()) {
+   @each $key, $value in $map {
+      #{$key}: $value;
+   }
+}
+:root {
+   @include spread-map($default-constant);
+}

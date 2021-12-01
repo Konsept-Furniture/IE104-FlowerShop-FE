@@ -1,0 +1,34 @@
+@use '@/scss' as *;
+
+.btn--submit {
+   border-radius: 10px !important;
+   padding: 16px 0 !important;
+   margin-top: 20px !important;
+   text-transform: none !important;
+   font-family: inherit !important;
+   font-size: 16px !important;
+   color: $color--light !important;
+
+   &:hover {
+      // background-color: rgba($color: #000000, $alpha: 0.9) !important;
+   }
+}
+
+.hello {
+   text-align: center;
+   h2 {
+      font-size: 50px;
+      font-weight: 700;
+      font-style: bold;
+      margin-bottom: 20px;
+   }
+   p {
+      margin-bottom: 40px;
+   }
+}
+.sign-up {
+   font-size: 13px;
+}
+.text--success {
+   color: $color--success;
+}

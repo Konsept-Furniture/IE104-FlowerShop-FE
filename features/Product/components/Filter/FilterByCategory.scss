@@ -1,0 +1,26 @@
+@use '@/scss' as *;
+
+.filter-by-category {
+   h4 {
+      font-family: 'josefin sans', sans-serif;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 16px;
+      line-height: 1.5em;
+      letter-spacing: 0.12em;
+      margin-bottom: 10px;
+      -ms-word-wrap: break-word;
+      word-wrap: break-word;
+   }
+
+   .categories {
+      .category {
+         padding: 5px 0;
+         color: $color--gray;
+
+         &:hover {
+            color: $color--gray-hover;
+         }
+      }
+   }
+}

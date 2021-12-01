@@ -1,0 +1,29 @@
+@use '@/scss' as *;
+
+.products {
+   font-family: 'Open Sans', sans-serif;
+   padding-top: 50px;
+   display: grid;
+   grid-template-columns: 1fr 3fr;
+
+   &__filters {
+      padding: 20px 0;
+   }
+   &__list {
+      // padding: 20px;
+
+      // display: grid;
+      // grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+   }
+
+   @include laptop {
+      grid-template-columns: 1fr;
+
+      &__filters {
+         display: none;
+      }
+
+      &__list {
+      }
+   }
+}
