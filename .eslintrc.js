@@ -4,10 +4,7 @@ module.exports = {
       es2021: true,
       node: true
    },
-   extends: [
-      'plugin:react/recommended',
-      'standard'
-   ],
+   extends: ['plugin:react/recommended', 'standard'],
    parserOptions: {
       ecmaFeatures: {
          jsx: true
@@ -15,11 +12,10 @@ module.exports = {
       ecmaVersion: 2018,
       sourceType: 'module'
    },
-   plugins: [
-      'react'
-   ],
+   plugins: ['react'],
    rules: {
       indent: ['error', 3],
-      'space-before-function-paren': ['error', 'never']
+      'space-before-function-paren': ['error', 'never'],
+      'comma-dangle': ['error', 'never']
    }
 }

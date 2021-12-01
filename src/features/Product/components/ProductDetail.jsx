@@ -39,10 +39,10 @@ function ProductDetail(props) {
 
    const increaseQuantity = () => {
       const quantity = Number.parseInt(getValues('quantity')) + 1
-      if (quantity <= product.countInStock) {
+      if (quantity <= product.quantity) {
          setValue('quantity', quantity)
       } else {
-         setValue('quantity', product.countInStock)
+         setValue('quantity', product.quantity)
       }
    }
 
@@ -62,8 +62,9 @@ function ProductDetail(props) {
                <div className="product-detail__quantity">
                   <span
                      className="product-detail__quantity--minus"
-                     onClick={decreaseQuantity}
-                  >‒</span>
+                     onClick={decreaseQuantity}>
+                     ‒
+                  </span>
                   <input
                      className="product-detail__quantity--input"
                      {...register('quantity')}
@@ -72,12 +73,11 @@ function ProductDetail(props) {
                   />
                   <span
                      className="product-detail__quantity--plus"
-                     onClick={increaseQuantity}
-                  >+</span>
+                     onClick={increaseQuantity}>
+                     +
+                  </span>
                </div>
-               <OutlinedButton
-                  type="submit"
-               >
+               <OutlinedButton type="submit">
                   <span>Add to cart</span>
                </OutlinedButton>
             </form>
@@ -95,8 +95,7 @@ function ProductDetail(props) {
                                     pathname: path.products,
                                     search: `?category=${cate}`
                                  })
-                              }}
-                           >
+                              }}>
                               {cate}
                            </a>
                         </span>
