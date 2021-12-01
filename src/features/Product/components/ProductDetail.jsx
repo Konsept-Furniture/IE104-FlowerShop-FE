@@ -26,7 +26,14 @@ function ProductDetail(props) {
       },
       resolver: yupResolver(schema)
    })
-   const { register, handleSubmit, setValue, getValues } = form
+   const {
+      register,
+      handleSubmit,
+      setValue,
+      getValues,
+      formState: { isSubmitSuccessful },
+      reset
+   } = form
 
    const decreaseQuantity = () => {
       const quantity = Number.parseInt(getValues('quantity')) - 1
@@ -46,6 +53,13 @@ function ProductDetail(props) {
       }
    }
 
+   const handleAddToCart = async values => {
+      if (onAddToCart) {
+         await onAddToCart(values)
+         if (isSubmitSuccessful) reset({ quantity: 1 })
+      }
+   }
+
    return (
       <div className="product-detail">
          <div className="product-detail__thumbnail">
@@ -58,11 +72,12 @@ function ProductDetail(props) {
                <p>{product.desc}</p>
             </div>
 
-            <form onSubmit={handleSubmit(onAddToCart)}>
+            <form onSubmit={handleSubmit(handleAddToCart)}>
                <div className="product-detail__quantity">
                   <span
                      className="product-detail__quantity--minus"
-                     onClick={decreaseQuantity}>
+                     onClick={decreaseQuantity}
+                  >
                      ‒
                   </span>
                   <input
@@ -73,7 +88,8 @@ function ProductDetail(props) {
                   />
                   <span
                      className="product-detail__quantity--plus"
-                     onClick={increaseQuantity}>
+                     onClick={increaseQuantity}
+                  >
                      +
                   </span>
                </div>
@@ -95,7 +111,8 @@ function ProductDetail(props) {
                                     pathname: path.products,
                                     search: `?category=${cate}`
                                  })
-                              }}>
+                              }}
+                           >
                               {cate}
                            </a>
                         </span>

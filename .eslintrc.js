@@ -15,7 +15,15 @@ module.exports = {
    plugins: ['react'],
    rules: {
       indent: ['error', 3],
-      'space-before-function-paren': ['error', 'never'],
-      'comma-dangle': ['error', 'never']
+      'space-before-function-paren': [
+         'error',
+         {
+            anonymous: 'always',
+            named: 'never',
+            asyncArrow: 'always'
+         }
+      ],
+      'comma-dangle': ['error', 'never'],
+      'multiline-ternary': ['error', 'never']
    }
 }
