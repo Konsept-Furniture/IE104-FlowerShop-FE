@@ -1,0 +1,16 @@
+
+.container-cover{
+    box-sizing: border-box;
+}
+
+.cover-image-list_item{
+    float: left;
+    width: 16.65%;
+    padding: 10px;
+}
+
+.cover-image-list::after{
+    content: "";
+    display: table;
+    clear: both;
+}

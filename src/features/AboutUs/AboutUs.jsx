@@ -5,6 +5,7 @@ import AboutUsLogo from '@/components/AboutUs/AboutUsLogo'
 import AboutUsTeam from '@/components/AboutUs/AboutUsTeam'
 import AboutUsComment from '@/components/AboutUs/AboutUsComment'
 import ContactForm from '../ContactForm/ContactForm'
+import CoverImageList from '../Home/components/CoverImageList'
 
 AboutUs.propTypes = {
 
@@ -18,6 +19,7 @@ function AboutUs(props) {
          <AboutUsTeam/>
          <AboutUsLogo/>
          <ContactForm/>
+         <CoverImageList />
       </div>
    )
 }
