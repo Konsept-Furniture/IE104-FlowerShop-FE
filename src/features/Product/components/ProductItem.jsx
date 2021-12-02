@@ -15,7 +15,7 @@ function ProductItem({ product, onAddCart }) {
    const history = useHistory()
    const [loading, setLoading] = useState(false)
 
-   const handleAddToCart = async(e) => {
+   const handleAddToCart = async e => {
       e.stopPropagation()
       setLoading(true)
       if (onAddCart) await onAddCart(product)
@@ -26,12 +26,13 @@ function ProductItem({ product, onAddCart }) {
    }
    return (
       <div className="product">
-         <div className="product__thumbnail"
-            onClick={handleReadMore}
-         >
+         <div className="product__thumbnail" onClick={handleReadMore}>
             <img
                className="product__thumbnail-image"
-               src={product.img || 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'}
+               src={
+                  product.img ||
+                  'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'
+               }
                alt=""
             />
             <div className="product__thumbnail-overlay">
@@ -44,16 +45,25 @@ function ProductItem({ product, onAddCart }) {
                   </a>
                </div>
                <div className="overlay__add-cart">
-                  {product.countInStock > 0
-                     ? (!loading
-                        ? <a className="konsept-link text--italic" onClick={handleAddToCart}>
+                  {product.quantity > 0 ? (
+                     !loading ? (
+                        <a
+                           className="konsept-link text--italic"
+                           onClick={handleAddToCart}
+                        >
                            Add To Cart
                         </a>
-                        : <CircularProgress color="black" size={24}/>)
-                     : <a className="konsept-link text--italic" onClick={handleReadMore}>
+                     ) : (
+                        <CircularProgress color="black" size={24} />
+                     )
+                  ) : (
+                     <a
+                        className="konsept-link text--italic"
+                        onClick={handleReadMore}
+                     >
                         Read more
                      </a>
-                  }
+                  )}
                </div>
             </div>
          </div>
@@ -65,7 +75,9 @@ function ProductItem({ product, onAddCart }) {
                   <a>{product.categories[0]}</a>
                </div>
             </div>
-            <div className="product__info-price">${product.price.toFixed(2)}</div>
+            <div className="product__info-price">
+               ${product.price.toFixed(2)}
+            </div>
          </div>
       </div>
    )

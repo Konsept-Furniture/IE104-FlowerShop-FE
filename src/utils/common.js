@@ -1,10 +1,12 @@
+/* eslint-disable indent */
+/* eslint-disable multiline-ternary */
 import StorageKeys from '@/constants/StorageKeys'
 
 const saveBearerToken = token => {
    localStorage.setItem(StorageKeys.accessToken, token)
 }
 
-const saveCurrentUser = (data) => {
+const saveCurrentUser = data => {
    localStorage.setItem(StorageKeys.user, data)
 }
 
@@ -41,14 +43,14 @@ const resetCartInLocalStorage = () => {
 const getParamValue = query => {
    const objResult = query
       ? (/^[?#]/.test(query) ? query.slice(1) : query)
-         .split('&')
-         .reduce((params, param) => {
-            const [key, value] = param.split('=')
-            params[key] = value
-               ? decodeURIComponent(value.replace(/\+/g, ' '))
-               : ''
-            return params
-         }, {})
+           .split('&')
+           .reduce((params, param) => {
+              const [key, value] = param.split('=')
+              params[key] = value
+                 ? decodeURIComponent(value.replace(/\+/g, ' '))
+                 : ''
+              return params
+           }, {})
       : {}
    return objResult || ''
 }
@@ -78,5 +80,4 @@ export const common = {
 
    getBase64,
    getFileName
-
 }

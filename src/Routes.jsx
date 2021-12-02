@@ -10,16 +10,18 @@ import MainLayout from './layouts/MainLayout/MainLayout'
 const Home = lazy(() => import('./features/Home/Home'))
 const Login = lazy(() => import('./features/Auth/Login/Login'))
 const Register = lazy(() => import('./features/Auth/Register/Register'))
-const ProductList = lazy(() => import('./features/Product/pages/ProductListPage'))
-const ProductDetail = lazy(() => import('./features/Product/pages/ProductDetailPage'))
+const ProductList = lazy(() =>
+   import('./features/Product/pages/ProductListPage')
+)
+const ProductDetail = lazy(() =>
+   import('./features/Product/pages/ProductDetailPage')
+)
 const AboutUs = lazy(() => import('./features/AboutUs/AboutUs'))
 const NotFound = lazy(() => import('./features/NotFound/NotFound'))
-const Cart = lazy(() => import('./features/Cart/components/CartPage'))
-Routes.propTypes = {
+const Cart = lazy(() => import('./features/Cart/pages/CartPage'))
+Routes.propTypes = {}
 
-};
-
-function Routes(props) {
+function Routes() {
    return (
       <Switch>
          <Route path={path.home} exact>
@@ -105,7 +107,7 @@ function Routes(props) {
             </Suspense>
          </Route>
       </Switch>
-   );
+   )
 }
 
-export default Routes;
+export default Routes

@@ -1,13 +1,15 @@
+import { path } from '@/constants/path'
 import { getCart } from '@/features/Cart/cartSlice'
 import { addToCart, getCategories } from '@/features/Product/productSlice'
 import useQuery from '@/hooks/useQuery'
 import { common } from '@/utils/common'
 import { renderPaginationText } from '@/utils/helper'
-import { Box, Pagination, Skeleton, Stack } from '@mui/material'
+import { Box, Pagination, Skeleton, Stack, Button } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useHistory } from 'react-router'
 import FilterPanel from '../components/Filter/FilterPanel'
 import ProductList from '../components/ProductList'
 import ProductSkeletonList from '../components/ProductSkeletonList'
@@ -16,7 +18,8 @@ import './ProductListPage.scss'
 
 function ProductListPage() {
    const dispatch = useDispatch()
-   const { enqueueSnackbar } = useSnackbar()
+   const history = useHistory()
+   const { enqueueSnackbar, closeSnackbar } = useSnackbar()
    const cartId = useSelector(state => state.cart._id)
 
    const productListRef = useRef(null)
@@ -37,7 +40,7 @@ function ProductListPage() {
    }
 
    useEffect(() => {
-      (async() => {
+      ;(async () => {
          try {
             const res = await dispatch(getCategories())
             const result = unwrapResult(res)
@@ -48,7 +51,7 @@ function ProductListPage() {
       })()
    }, [dispatch])
 
-   const getProducts = async(_pagination) => {
+   const getProducts = async _pagination => {
       setLoading(true)
       try {
          const payload = {
@@ -76,7 +79,22 @@ function ProductListPage() {
    }
    const executeScroll = () => productListRef.current.scrollIntoView()
 
-   const handleAddProductToCart = async(product) => {
+   const snackbarAction = key => (
+      <>
+         <Button
+            variant="text"
+            color="inherit"
+            onClick={() => {
+               history.push(path.cart)
+               closeSnackbar(key)
+            }}
+         >
+            View Cart
+         </Button>
+      </>
+   )
+
+   const handleAddProductToCart = async product => {
       if (cartId) {
          try {
             const data = {
@@ -89,13 +107,14 @@ function ProductListPage() {
             console.log(data)
             const res = await dispatch(addToCart(data)).then(unwrapResult)
             enqueueSnackbar(res.message, {
-               variant: 'success'
+               variant: 'success',
+               action: snackbarAction
             })
 
             // reduce quantity
             const _data = [...products]
             _data.forEach(item => {
-               if (item._id === product._id && item.countInStock > 0) {
+               if (item._id === product._id && item.quantity > 0) {
                   item.quantity--
                }
             })
@@ -112,12 +131,13 @@ function ProductListPage() {
          // Add to localStorage
          common.addProductToCartLocalStorage(product._id, 1)
          enqueueSnackbar('Add to cart successfully', {
-            variant: 'success'
+            variant: 'success',
+            action: snackbarAction
          })
          // reduce quantity
          const _data = [...products]
          _data.forEach(item => {
-            if (item._id === product._id && item.countInStock > 0) {
+            if (item._id === product._id && item.quantity > 0) {
                item.quantity--
             }
          })
@@ -128,25 +148,31 @@ function ProductListPage() {
    return (
       <main className="products konsept-container">
          <div className="products__filters">
-            <FilterPanel categories={categories} filters={filters}/>
+            <FilterPanel categories={categories} filters={filters} />
          </div>
          <div className="products__list" ref={productListRef}>
             <Box pl="10px" mb={3} mt={2} className="text--italic color--gray">
-               {loading
-                  ? <Skeleton width="180px" height="25px"/>
-                  : <h5>{renderPaginationText(pagination)}</h5>
-               }
+               {loading ? (
+                  <Skeleton width="180px" height="25px" />
+               ) : (
+                  <h5>{renderPaginationText(pagination)}</h5>
+               )}
             </Box>
-            {loading
-               ? <ProductSkeletonList />
-               : <ProductList data={products} onAddCart={handleAddProductToCart}/>
-            }
+            {loading ? (
+               <ProductSkeletonList />
+            ) : (
+               <ProductList
+                  data={products}
+                  onAddCart={handleAddProductToCart}
+               />
+            )}
 
-            <Stack
-               direction="row"
-               justifyContent="center"
-            >
-               <Pagination count={pagination.totalPages} page={pagination.currentPage} onChange={handleChangePagination} />
+            <Stack direction="row" justifyContent="center">
+               <Pagination
+                  count={pagination.totalPages}
+                  page={pagination.currentPage}
+                  onChange={handleChangePagination}
+               />
             </Stack>
          </div>
       </main>
