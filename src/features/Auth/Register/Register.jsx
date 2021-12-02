@@ -12,9 +12,7 @@ import * as yup from 'yup'
 import { register } from '../authSlice'
 import './Register.scss'
 
-Register.propTypes = {
-
-}
+Register.propTypes = {}
 
 function Register() {
    const { enqueueSnackbar } = useSnackbar()
@@ -25,7 +23,11 @@ function Register() {
       email: yup.string().email().max(256).required(),
       username: yup.string().max(256).required(),
       password: yup.string().max(256).min(4).required(),
-      confirm_password: yup.string().max(256).min(4).required()
+      confirm_password: yup
+         .string()
+         .max(256)
+         .min(4)
+         .required()
          .oneOf([yup.ref('password'), null], 'Passwords must match')
    })
    const form = useForm({
@@ -37,9 +39,12 @@ function Register() {
       },
       resolver: yupResolver(schema)
    })
-   const { formState: { isSubmitting } } = form
+   const {
+      formState: { isSubmitting },
+      control
+   } = form
 
-   const handleSubmit = async(data) => {
+   const handleSubmit = async data => {
       console.log(data, isSubmitting)
       try {
          const payload = {
@@ -63,26 +68,29 @@ function Register() {
       <div className="login">
          <div className="hello">
             <h2>Bonjour!</h2>
-            <p>To connect to your account, enter your email address and your password </p>
+            <p>
+               To connect to your account, enter your email address and your
+               password{' '}
+            </p>
          </div>
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
             <TextInputField
-               form={form}
+               control={control}
                name="email"
                label="Email"
                disable={isSubmitting}
                color="black"
             />
             <TextInputField
-               form={form}
+               control={control}
                name="username"
                label="Username"
                disable={isSubmitting}
                color="black"
             />
             <TextInputField
-               form={form}
+               control={control}
                name="password"
                label="Password"
                disable={isSubmitting}
@@ -91,7 +99,7 @@ function Register() {
                sx={{ mt: 1 }}
             />
             <TextInputField
-               form={form}
+               control={control}
                name="confirm_password"
                label="Confirm password"
                disable={isSubmitting}
@@ -104,12 +112,23 @@ function Register() {
                Already have an account?
                <a
                   className="text--success"
-                  onClick={() => { history.push(path.login) }}
-               > Log in
+                  onClick={() => {
+                     history.push(path.login)
+                  }}
+               >
+                  {' '}
+                  Log in
                </a>
             </p>
 
-            <Button fullWidth variant="contained" type="submit" className="btn--submit">Sign Up</Button>
+            <Button
+               fullWidth
+               variant="contained"
+               type="submit"
+               className="btn--submit"
+            >
+               Sign Up
+            </Button>
          </form>
       </div>
    )

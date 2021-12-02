@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Controller } from 'react-hook-form'
+import { useController } from 'react-hook-form'
 import { TextField } from '@mui/material'
 
 TextInputField.propTypes = {
-   form: PropTypes.object.isRequired,
+   control: PropTypes.object.isRequired,
    name: PropTypes.string.isRequired,
 
    label: PropTypes.string,
@@ -19,27 +19,29 @@ TextInputField.defaultProps = {
 }
 
 function TextInputField(props) {
-   const { form, name, label, disable, color, ...restProps } = props
-   const { control } = form
-
+   const { control, name, label, disable, color, ...restProps } = props
+   const {
+      field: { value, onChange, onBlur, ref },
+      fieldState: { invalid, error }
+   } = useController({
+      name,
+      control
+   })
    return (
-      <Controller
-         name={name}
-         control={control}
-         render={({ field, fieldState: { invalid, error } }) => (
-            <TextField
-               {...field}
-               margin="normal"
-               variant="outlined"
-               fullWidth
-               label={label}
-               error={invalid}
-               helperText={error ? error.message : null}
-               disabled={disable}
-               color={color || 'black'}
-               {...restProps}
-            />
-         )}
+      <TextField
+         fullWidth
+         margin="normal"
+         variant="outlined"
+         value={value}
+         onChange={onChange}
+         onBlur={onBlur}
+         label={label}
+         inputRef={ref}
+         error={invalid}
+         helperText={error?.message}
+         disabled={disable}
+         color={color || 'black'}
+         {...restProps}
       />
    )
 }

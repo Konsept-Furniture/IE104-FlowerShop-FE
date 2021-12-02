@@ -36,7 +36,8 @@ function Login() {
       resolver: yupResolver(schema)
    })
    const {
-      formState: { isSubmitting }
+      formState: { isSubmitting },
+      control
    } = form
 
    const handleSubmit = async data => {
@@ -85,14 +86,14 @@ function Login() {
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
             <TextInputField
-               form={form}
+               control={control}
                name="username"
                label="Username"
                disable={isSubmitting}
                color="black"
             />
             <TextInputField
-               form={form}
+               control={control}
                name="password"
                label="Password"
                disable={isSubmitting}
