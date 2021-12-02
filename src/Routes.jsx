@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary'
 import Fallback from './components/Fallback/Fallback'
 import { path } from './constants/path'
+import AuthenticatedGuard from './guards/AuthenticatedGuard'
 import UnauthenticatedGuard from './guards/UnauthenticatedGuard'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import MainLayout from './layouts/MainLayout/MainLayout'
@@ -90,13 +91,15 @@ function Routes() {
 
          {/* Cart */}
          <Route path={path.cart} exact>
-            <MainLayout>
-               <Suspense fallback={<Fallback />}>
-                  <ErrorBoundary>
-                     <Cart />
-                  </ErrorBoundary>
-               </Suspense>
-            </MainLayout>
+            <AuthenticatedGuard>
+               <MainLayout>
+                  <Suspense fallback={<Fallback />}>
+                     <ErrorBoundary>
+                        <Cart />
+                     </ErrorBoundary>
+                  </Suspense>
+               </MainLayout>
+            </AuthenticatedGuard>
          </Route>
 
          <Route path={path.notFound}>

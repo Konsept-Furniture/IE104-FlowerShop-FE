@@ -14,9 +14,9 @@ import { login } from '../authSlice'
 import useQuery from '@/hooks/useQuery'
 
 import './Login.scss'
-Login.propTypes = {
-
-}
+import messages from '@/constants/messages'
+import { Alert } from '@mui/material'
+Login.propTypes = {}
 
 function Login() {
    const { enqueueSnackbar } = useSnackbar()
@@ -35,9 +35,11 @@ function Login() {
       },
       resolver: yupResolver(schema)
    })
-   const { formState: { isSubmitting } } = form
+   const {
+      formState: { isSubmitting }
+   } = form
 
-   const handleSubmit = async(data) => {
+   const handleSubmit = async data => {
       const payload = {
          username: data.username,
          password: data.password
@@ -71,8 +73,15 @@ function Login() {
       <div className="login">
          <div className="hello">
             <h2>Bonjour!</h2>
-            <p>To connect to your account, enter your email address and password.</p>
+            <p>
+               To connect to your account, enter your email address and
+               password.
+            </p>
          </div>
+
+         {params.message_code && (
+            <Alert severity="warning">{messages[params.message_code]}</Alert>
+         )}
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
             <TextInputField
@@ -96,8 +105,12 @@ function Login() {
                Don&lsquo;t have an account?
                <a
                   className="text--success"
-                  onClick={() => { history.push(path.register) }}
-               > Sign up
+                  onClick={() => {
+                     history.push(path.register)
+                  }}
+               >
+                  {' '}
+                  Sign up
                </a>
             </p>
 

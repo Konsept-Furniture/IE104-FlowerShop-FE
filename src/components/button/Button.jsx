@@ -8,7 +8,7 @@ const PrimaryButton = props => {
    return (
       <Button
          sx={{
-            px: 6,
+            px: 5,
             textTransform: 'none',
             fontFamily: 'EB Garamond',
             fontSize: '18px',
@@ -33,8 +33,7 @@ export const OutlinedButton = props => {
    return (
       <Button
          sx={{
-            py: 1.2,
-            px: 6,
+            px: 5,
             textTransform: 'none',
             fontFamily: 'EB Garamond',
             fontSize: '18px',

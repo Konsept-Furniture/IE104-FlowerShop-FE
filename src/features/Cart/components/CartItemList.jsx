@@ -24,6 +24,7 @@ CartItemList.propTypes = {
 }
 
 function CartItemList({ products }) {
+   const [isUpdated, setIsUpdated] = useState(false)
    const [selectedProducts, setSelectedProducts] = useState([])
 
    const handleSelectAll = event => {
@@ -98,7 +99,7 @@ function CartItemList({ products }) {
                <Typography variant="h6" id="tableTitle" component="p">
                   Total: 50.00$
                </Typography>
-               <OutlinedButton>Update Cart</OutlinedButton>
+               {isUpdated && <OutlinedButton>Update Cart</OutlinedButton>}
                {selectedProducts.length > 0 && (
                   <PrimaryButton>Checkout</PrimaryButton>
                )}
