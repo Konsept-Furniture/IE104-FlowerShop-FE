@@ -3,7 +3,7 @@ export const isEmail = value =>
       value
    )
 
-export const payloadCreator = asyncFunc => async(arg, thunkAPI) => {
+export const payloadCreator = asyncFunc => async (arg, thunkAPI) => {
    try {
       const res = await asyncFunc(arg)
       return res
@@ -25,7 +25,7 @@ export const rateSale = (original, sale) =>
 
 export const formatMoney = (value, character = '.') =>
    String(value).replace(/\B(?=(\d{3})+(?!\d))/g, character)
-export const format2Decimal = (numb) => {
+export const format2Decimal = numb => {
    return Math.round((numb + Number.EPSILON) * 100) / 100
 }
 export const formatK = value => {
@@ -36,7 +36,11 @@ export const formatK = value => {
    return value
 }
 
-export const renderPaginationText = (pagination) => {
+export const renderPaginationText = pagination => {
    const isLastIndex = pagination.currentPage === pagination.totalPages
-   return `Showing ${(pagination.currentPage - 1) * pagination.pageSize + 1}–${!isLastIndex ? pagination.currentPage * pagination.pageSize : pagination.totalItems} of ${pagination.totalItems} results`
+   return `Showing ${(pagination.currentPage - 1) * pagination.pageSize + 1}–${
+      !isLastIndex
+         ? pagination.currentPage * pagination.pageSize
+         : pagination.totalItems
+   } of ${pagination.totalItems} results`
 }

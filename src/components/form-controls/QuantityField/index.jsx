@@ -8,7 +8,7 @@ QuantityField.propTypes = {
    name: PropTypes.string.isRequired,
 
    min: PropTypes.number,
-   max: PropTypes.number.isRequired
+   max: PropTypes.number
 }
 
 QuantityField.defaultProps = {
@@ -34,10 +34,15 @@ function QuantityField(props) {
    }
    const increaseQuantity = () => {
       const quantity = Number.parseInt(value) + 1
-      if (quantity <= max) {
-         onChange(quantity)
+
+      if (max) {
+         if (quantity <= max) {
+            onChange(quantity)
+         } else {
+            onChange(max)
+         }
       } else {
-         onChange(max)
+         onChange(quantity)
       }
    }
 
@@ -46,6 +51,7 @@ function QuantityField(props) {
          <span className="quantity--minus" onClick={decreaseQuantity}>
             ‒
          </span>
+         {/* TODO: custom after unfocus, remove alphabet characters */}
          <input
             className="quantity--input"
             {...field}

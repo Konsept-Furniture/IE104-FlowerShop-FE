@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
 import './ProductDetail.scss'
+import { Stack } from '@mui/material'
 
 ProductDetail.propTypes = {
    product: PropTypes.object.isRequired,
@@ -54,19 +55,23 @@ function ProductDetail(props) {
             </div>
 
             <form onSubmit={handleSubmit(handleAddToCart)}>
-               <QuantityField
-                  name="quantity"
-                  control={control}
-                  max={product.quantity}
-               />
-               <OutlinedButton type="submit">
-                  <span>Add to cart</span>
-               </OutlinedButton>
+               <Stack direction="row" spacing={2}>
+                  <QuantityField
+                     name="quantity"
+                     control={control}
+                     max={product.quantity}
+                  />
+                  <OutlinedButton type="submit">
+                     <span>Add to cart</span>
+                  </OutlinedButton>
+               </Stack>
             </form>
 
             <div className="product-detail__meta">
                <span className="product-detail__categories">
-                  <span className="product-detail__meta-label">Category: </span>
+                  <span className="product-detail__meta-label">
+                     Categories:{' '}
+                  </span>
                   <span className="product-detail__meta-value">
                      {product.categories.map((cate, idx) => (
                         <span key={cate}>
