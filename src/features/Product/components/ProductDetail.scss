@@ -4,11 +4,11 @@ a:hover {
    color: #1d1d1d;
 }
 
-.product-detail__thumbnail img{
-   transition: transform .5s ease;
+.product-detail__thumbnail img {
+   transition: transform 0.5s ease;
 }
 
-.product-detail__thumbnail:hover img{
+.product-detail__thumbnail:hover img {
    transform: scale(1.4);
 }
 .product {
@@ -61,42 +61,42 @@ a:hover {
          line-height: 1.8em;
          color: #8b8b8b;
       }
-      &__quantity {
-         position: relative;
-         display: inline-block;
-         vertical-align: middle;
-         border: 1px solid #ddd;
-         padding: 0 40px;
-         margin-right: 40px;
-         border-radius: 4px;
+      // &__quantity {
+      //    position: relative;
+      //    display: inline-block;
+      //    vertical-align: middle;
+      //    border: 1px solid #ddd;
+      //    padding: 0 40px;
+      //    margin-right: 40px;
+      //    border-radius: 4px;
 
-         &--minus,
-         &--plus,
-         &--input {
-            display: inline-block;
-            vertical-align: middle;
-            font-family: 'eb garamond', serif;
-            font-size: 24px;
-            line-height: 52px;
-            text-align: center;
-            user-select: none;
-            background: 0 0;
-            color: #1d1d1d;
-            cursor: pointer;
-         }
-         &--input {
-            position: relative;
-            height: 52px;
-            width: 36px;
-            padding: 0;
-            margin: 0 5px;
-            border: none;
-            font-size: 18px;
-            line-height: 52px;
-            outline: 0;
-            cursor: text;
-         }
-      }
+      //    &--minus,
+      //    &--plus,
+      //    &--input {
+      //       display: inline-block;
+      //       vertical-align: middle;
+      //       font-family: 'eb garamond', serif;
+      //       font-size: 24px;
+      //       line-height: 52px;
+      //       text-align: center;
+      //       user-select: none;
+      //       background: 0 0;
+      //       color: #1d1d1d;
+      //       cursor: pointer;
+      //    }
+      //    &--input {
+      //       position: relative;
+      //       height: 52px;
+      //       width: 36px;
+      //       padding: 0;
+      //       margin: 0 5px;
+      //       border: none;
+      //       font-size: 18px;
+      //       line-height: 52px;
+      //       outline: 0;
+      //       cursor: text;
+      //    }
+      // }
 
       &__meta {
          margin-top: 30px;

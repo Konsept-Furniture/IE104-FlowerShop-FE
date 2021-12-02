@@ -1,4 +1,5 @@
 import { OutlinedButton } from '@/components/button/Button'
+import QuantityField from '@/components/form-controls/QuantityField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
 import PropTypes from 'prop-types'
@@ -27,31 +28,11 @@ function ProductDetail(props) {
       resolver: yupResolver(schema)
    })
    const {
-      register,
+      control,
       handleSubmit,
-      setValue,
-      getValues,
       formState: { isSubmitSuccessful },
       reset
    } = form
-
-   const decreaseQuantity = () => {
-      const quantity = Number.parseInt(getValues('quantity')) - 1
-      if (quantity > 0) {
-         setValue('quantity', quantity)
-      } else {
-         setValue('quantity', 1)
-      }
-   }
-
-   const increaseQuantity = () => {
-      const quantity = Number.parseInt(getValues('quantity')) + 1
-      if (quantity <= product.quantity) {
-         setValue('quantity', quantity)
-      } else {
-         setValue('quantity', product.quantity)
-      }
-   }
 
    const handleAddToCart = async values => {
       if (onAddToCart) {
@@ -73,26 +54,11 @@ function ProductDetail(props) {
             </div>
 
             <form onSubmit={handleSubmit(handleAddToCart)}>
-               <div className="product-detail__quantity">
-                  <span
-                     className="product-detail__quantity--minus"
-                     onClick={decreaseQuantity}
-                  >
-                     ‒
-                  </span>
-                  <input
-                     className="product-detail__quantity--input"
-                     {...register('quantity')}
-                     placeholder=""
-                     inputMode="numeric"
-                  />
-                  <span
-                     className="product-detail__quantity--plus"
-                     onClick={increaseQuantity}
-                  >
-                     +
-                  </span>
-               </div>
+               <QuantityField
+                  name="quantity"
+                  control={control}
+                  max={product.quantity}
+               />
                <OutlinedButton type="submit">
                   <span>Add to cart</span>
                </OutlinedButton>
