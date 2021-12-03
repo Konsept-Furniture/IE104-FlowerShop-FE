@@ -31,9 +31,6 @@ module.exports = (env, agrv) => {
                   },
                   'postcss-loader',
                   {
-                     loader: 'resolve-url-loader'
-                  },
-                  {
                      loader: 'sass-loader',
                      options: { sourceMap: !!isDev }
                   }
@@ -53,7 +50,7 @@ module.exports = (env, agrv) => {
          ]
       },
       resolve: {
-         extensions: ['.js', '.jsx'],
+         extensions: ['.jsx', '.js'],
          alias: {
             '@': path.resolve('src'),
             '@@': path.resolve()
@@ -77,7 +74,7 @@ module.exports = (env, agrv) => {
       devServer: {
          hot: true,
          devMiddleware: {
-            publicPath: '/dist/'
+            publicPath: './dist/'
          },
          historyApiFallback: true,
          static: {
