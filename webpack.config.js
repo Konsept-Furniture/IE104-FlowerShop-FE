@@ -58,7 +58,7 @@ module.exports = (env, agrv) => {
       },
       output: {
          path: path.resolve('public/dist'),
-         publicPath: './dist/',
+         publicPath: '/dist/',
          filename: 'bundle.js',
          environment: {
             arrowFunction: false,
@@ -74,7 +74,7 @@ module.exports = (env, agrv) => {
       devServer: {
          hot: true,
          devMiddleware: {
-            publicPath: './dist/'
+            publicPath: '/dist/'
          },
          historyApiFallback: true,
          static: {
