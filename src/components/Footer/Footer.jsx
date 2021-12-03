@@ -74,7 +74,7 @@ function Footer(_props) {
                            <GithubIcon />
                         </div>
                      </a>
-                     <a href="https://hackertyper.com/" title="Facebook" className="flex items-center p-1">
+                     <a href="https://hackertyper.comm/" title="Facebook" className="flex items-center p-1">
                         <div>
                            <FacebookIcon />
                         </div>
