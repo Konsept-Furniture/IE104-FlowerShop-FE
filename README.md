@@ -13,10 +13,10 @@ Final Project of IE104.M11 - Internet and Web Technologies
 
 ## Deployment
 
-To deploy this project run
+To start this project at development environent, run these commands
 
 ```bash
-  npm i
+  npm install
 ```
 
 ```bash
