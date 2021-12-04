@@ -9,6 +9,7 @@ import AddressField from '@/components/form-controls/AddressField'
 import { Stack } from '@mui/material'
 import provinceApi from '@/api/provinceApi'
 import { common } from '@/utils/common'
+import CheckboxField from '@/components/form-controls/CheckboxField'
 
 ShippingAddressForm.propTypes = {
    onSubmit: PropTypes.func.isRequired
@@ -36,7 +37,8 @@ function ShippingAddressForm({ onSubmit }) {
          district: yup.string().required().label('District'),
          ward: yup.string().required().label('Ward'),
          street: yup.string().required().label('Street')
-      })
+      }),
+      save: yup.boolean()
    })
    const form = useForm({
       defaultValues: {
@@ -48,7 +50,8 @@ function ShippingAddressForm({ onSubmit }) {
             district: '',
             ward: ''
          },
-         email: ''
+         email: '',
+         save: false
       },
       resolver: yupResolver(schema)
    })
@@ -58,7 +61,6 @@ function ShippingAddressForm({ onSubmit }) {
       ;(async () => {
          try {
             const res = await provinceApi.getProvinces()
-            console.log(res.data)
             setProvinceList(
                res.data.map(item => ({
                   label: item.name,
@@ -102,8 +104,8 @@ function ShippingAddressForm({ onSubmit }) {
    }
 
    const handleSubmitOrder = async values => {
+      console.log('submit order', values)
       if (onSubmit) {
-         console.log(values.shippingAddress.province)
          const province = provinceList.find(
             item =>
                item.value === Number.parseInt(values.shippingAddress.province)
@@ -116,14 +118,14 @@ function ShippingAddressForm({ onSubmit }) {
             item => item.value === Number.parseInt(values.shippingAddress.ward)
          )
          const shippingAddress = {
-            address: values.shippingAddress.street,
+            street: values.shippingAddress.street,
             province: province.label,
             district: district.label,
             ward: ward.label
          }
          await onSubmit({
             ...values,
-            address: `${shippingAddress.address}, ${shippingAddress.ward}, ${shippingAddress.district}, ${shippingAddress.province}`
+            address: shippingAddress
          })
       }
    }
@@ -151,6 +153,11 @@ function ShippingAddressForm({ onSubmit }) {
             wardList={wardList}
             onChangeProvince={handleChangeProvince}
             onChangeDistrict={handleChangeDistrict}
+         />
+         <CheckboxField
+            label="Save shipping information for the next time"
+            name="save"
+            control={control}
          />
 
          <PrimaryButton type="submit">Place Order</PrimaryButton>

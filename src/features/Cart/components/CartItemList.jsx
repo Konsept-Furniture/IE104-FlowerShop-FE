@@ -24,12 +24,18 @@ import CartItem from './Cartitem'
 import './CartItemList.scss'
 
 CartItemList.propTypes = {
+   creatingOrder: PropTypes.bool.isRequired,
    products: PropTypes.array.isRequired,
    onUpdateList: PropTypes.func.isRequired,
    onCheckoutClick: PropTypes.func.isRequired
 }
 
-function CartItemList({ products, onUpdateList, onCheckoutClick }) {
+function CartItemList({
+   creatingOrder,
+   products,
+   onUpdateList,
+   onCheckoutClick
+}) {
    const cart = useSelector(state => state.cart)
    const [currentCartProducts, setCurrentCartProducts] = useState([])
 
@@ -242,7 +248,10 @@ function CartItemList({ products, onUpdateList, onCheckoutClick }) {
                         </OutlinedButton>
                      )}
                      {!isUpdated && selectedProducts.length > 0 && (
-                        <PrimaryButton onClick={handleCheckoutClick}>
+                        <PrimaryButton
+                           loading={creatingOrder}
+                           onClick={handleCheckoutClick}
+                        >
                            Checkout
                         </PrimaryButton>
                      )}

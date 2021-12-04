@@ -1,26 +1,99 @@
-import { Grid, Typography } from '@mui/material'
+import orderApi from '@/api/orderApi'
+import userApi from '@/api/userApi'
+import { addPurchaseProducts } from '@/features/Cart/cartSlice'
+import { Grid, Typography, CircularProgress, Backdrop } from '@mui/material'
 import { Box } from '@mui/system'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
+import { useSnackbar } from 'notistack'
 
 function OrderPage() {
+   const { enqueueSnackbar } = useSnackbar()
    const purchaseProducts = useSelector(state => state.cart.purchaseProducts)
    const { deliveryInfo } = useSelector(state => state.auth.profile)
+   const [loading, setLoading] = useState(false)
+   const dispatch = useDispatch()
+   const { orderId } = useParams()
 
-   const handleSubmitOrder = async values => {
+   const handleSubmitShippingInfo = async values => {
+      setLoading(true)
       console.log(values)
+
+      try {
+         const deliveryInfo = {
+            name: values.name,
+            phone: values.phone,
+            email: values.email,
+            address: values.address
+         }
+         const payload = {
+            deliveryInfo
+         }
+         const res = await orderApi.update(orderId, payload)
+         console.log(res)
+
+         // save deliveryInfo
+         if (values.save) {
+            await saveShippingInfomation(deliveryInfo)
+         }
+
+         enqueueSnackbar(res.message, {
+            variant: 'success'
+         })
+      } catch (error) {
+         console.log('error to update shipping info for order', error)
+      }
+
+      setLoading(false)
    }
+
+   const saveShippingInfomation = async deliveryInfo => {
+      try {
+         const payload = {
+            deliveryInfo
+         }
+         const res = await userApi.updateMe(payload)
+         console.log(res)
+      } catch (error) {
+         console.log('error to save shipping info for user', error)
+      }
+   }
+
+   useEffect(() => {
+      ;(async () => {
+         try {
+            const res = await orderApi.get(orderId)
+            console.log(res)
+            // Save to redux
+            dispatch(addPurchaseProducts(res.data.products))
+         } catch (error) {
+            console.log('error to get order', error)
+         }
+      })()
+   }, [])
+
+   if (purchaseProducts.length === 0) {
+      return <p>loading...</p>
+   }
+
    return (
       <div className="konsept-container">
+         <Backdrop
+            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+            open={loading}
+         >
+            <CircularProgress color="inherit" />
+         </Backdrop>
          <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
             <Grid item lg={8}>
                <Typography variant="h4">Shipping Information</Typography>
 
                <ShippingAddressForm
                   defaultValues={deliveryInfo}
-                  onSubmit={handleSubmitOrder}
+                  onSubmit={handleSubmitShippingInfo}
                />
             </Grid>
             <Grid item lg={4}>

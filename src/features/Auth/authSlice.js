@@ -51,7 +51,6 @@ const auth = createSlice({
       [login.fulfilled]: handleAuthFulfilled,
       [getMe.fulfilled]: (state, action) => {
          const user = action.payload.data
-         console.log('🚀 ~ file: authSlice.js ~ line 55 ~ user', user)
          state.profile = user
          common.saveCurrentUser(JSON.stringify(user))
       }

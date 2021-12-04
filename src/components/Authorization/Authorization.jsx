@@ -1,4 +1,4 @@
-import { unauthorize } from '@/features/Auth/authSlice'
+import { getMe, unauthorize } from '@/features/Auth/authSlice'
 import { getCart } from '@/features/Cart/cartSlice'
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect } from 'react'
@@ -22,6 +22,7 @@ export default function Authorization() {
       console.log('hasLoggedIn', hasLoggedIn)
       if (hasLoggedIn) {
          dispatch(getCart())
+         dispatch(getMe())
       } else {
          dispatch(unauthorize())
       }

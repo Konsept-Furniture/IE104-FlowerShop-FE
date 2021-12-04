@@ -1,12 +1,12 @@
-import React from 'react'
+import { LoadingButton } from '@mui/lab'
 import PropTypes from 'prop-types'
-import { Button } from '@mui/material'
+import React from 'react'
 import './Button.scss'
 
 const PrimaryButton = props => {
    const { children, onClick, ...restProps } = props
    return (
-      <Button
+      <LoadingButton
          sx={{
             px: 5,
             textTransform: 'none',
@@ -14,7 +14,6 @@ const PrimaryButton = props => {
             fontSize: '18px',
             fontWeight: 400,
             fontStyle: 'italic',
-            border: '1px solid black',
             backgroundColor: '#000',
             color: 'white'
          }}
@@ -24,14 +23,14 @@ const PrimaryButton = props => {
          {...restProps}
       >
          {children}
-      </Button>
+      </LoadingButton>
    )
 }
 
 export const OutlinedButton = props => {
    const { children, onClick, ...restProps } = props
    return (
-      <Button
+      <LoadingButton
          sx={{
             px: 5,
             textTransform: 'none',
@@ -48,11 +47,12 @@ export const OutlinedButton = props => {
          {...restProps}
       >
          {children}
-      </Button>
+      </LoadingButton>
    )
 }
 
 PrimaryButton.propTypes = {
+   loading: PropTypes.bool,
    onClick: PropTypes.func,
    children: PropTypes.oneOfType([
       PropTypes.string,

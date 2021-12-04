@@ -49,12 +49,7 @@ function Login() {
          const res = await dispatch(login(payload))
          const data = unwrapResult(res)
          enqueueSnackbar(data.message, {
-            variant: 'success',
-            anchorOrigin: {
-               vertical: 'bottom',
-               horizontal: 'right'
-            },
-            preventDuplicate: true
+            variant: 'success'
          })
          // get cart
          await dispatch(getCart()).then(unwrapResult)

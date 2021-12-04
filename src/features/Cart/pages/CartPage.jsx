@@ -2,9 +2,14 @@
 import { Grid } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addPurchaseProducts, getCart, updateCart } from '../cartSlice'
+import {
+   addPurchaseProducts,
+   createOrder,
+   getCart,
+   updateCart
+} from '../cartSlice'
 import CartItemList from '../components/CartItemList'
 import './CartPage.scss'
 import { useHistory } from 'react-router-dom'
@@ -14,10 +19,12 @@ function CartPage() {
    const dispatch = useDispatch()
    const history = useHistory()
    const cart = useSelector(state => state.cart)
+   const [creatingOrder, setCreatingOrder] = useState(false)
 
    const handleUpdateList = async payload => {
       try {
          const res = await dispatch(updateCart(payload)).then(unwrapResult)
+
          // get cart again
          await dispatch(getCart()).then(unwrapResult)
          enqueueSnackbar(res.message, {
@@ -30,12 +37,28 @@ function CartPage() {
       }
    }
 
-   const handleCheckoutClick = selectedProducts => {
+   const handleCheckoutClick = async selectedProducts => {
+      setCreatingOrder(true)
       // Save to redux
       dispatch(addPurchaseProducts(selectedProducts))
-
-      const orderId = 1
-      history.push(`order/${orderId}`)
+      try {
+         const payload = {
+            products: selectedProducts.map(item => ({
+               productId: item._id,
+               quantity: item.quantity,
+               amount: item.quantity * item.price
+            })),
+            amount: selectedProducts.reduce((prev, cur) => {
+               return prev + cur.quantity * cur.price
+            }, 0)
+         }
+         const res = await dispatch(createOrder(payload)).then(unwrapResult)
+         const order = res.data
+         history.push(`order/${order._id}`)
+      } catch (error) {
+         console.log('error to create order', error)
+      }
+      setCreatingOrder(false)
    }
 
    return (
@@ -45,6 +68,7 @@ function CartPage() {
          <Grid item lg={12}>
             {/* <OrderStep step={0} /> */}
             <CartItemList
+               creatingOrder={creatingOrder}
                products={cart.current}
                onUpdateList={handleUpdateList}
                onCheckoutClick={handleCheckoutClick}
