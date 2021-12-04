@@ -1,0 +1,24 @@
+.order-summary {
+   display: flex;
+
+   .products {
+      display: flex;
+      flex-direction: column;
+      padding: 40px 40px 20px 0;
+      .product-card {
+         display: flex;
+
+         img {
+            height: 100px;
+            object-fit: cover;
+         }
+
+         &__info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+         }
+      }
+   }
+}

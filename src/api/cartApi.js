@@ -14,6 +14,10 @@ const cartApi = {
       const url = `carts/add-item/${cartId}`
       console.log(cartId, payload)
       return axiosClient.put(url, JSON.stringify(payload))
+   },
+   createOrder: payload => {
+      const url = 'orders'
+      return axiosClient.post(url, JSON.stringify(payload))
    }
 }
 export default cartApi

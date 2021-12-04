@@ -10,6 +10,9 @@ const theme = createTheme({
       black: {
          main: '#000'
       }
+   },
+   typography: {
+      fontFamily: ['Poppins', 'sans-serif'].join(',')
    }
 })
 

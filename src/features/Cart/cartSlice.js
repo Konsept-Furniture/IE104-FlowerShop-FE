@@ -1,4 +1,5 @@
 import cartApi from '@/api/cartApi'
+import orderApi from '@/api/orderApi'
 import { common } from '@/utils/common'
 import { payloadCreator } from '@/utils/helper'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
@@ -11,18 +12,26 @@ export const updateCart = createAsyncThunk(
    'cart/updateCart',
    payloadCreator(cartApi.update)
 )
+export const createOrder = createAsyncThunk(
+   'cart/createOrder',
+   payloadCreator(orderApi.create)
+)
 
 const cart = createSlice({
    name: 'cart',
    initialState: {
       _id: null,
-      current: []
+      current: [],
+      purchaseProducts: []
    },
    reducers: {
       removeCartItem: (state, action) => {
          state.current = state.current.filter(
             item => item._id !== action.payload._id
          )
+      },
+      addPurchaseProducts: (state, action) => {
+         state.purchaseProducts = action.payload
       }
    },
    extraReducers: {
@@ -40,5 +49,5 @@ const cart = createSlice({
 })
 
 const cartReducer = cart.reducer
-export const { removeCartItem } = cart.actions
+export const { removeCartItem, addPurchaseProducts } = cart.actions
 export default cartReducer

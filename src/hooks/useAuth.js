@@ -6,7 +6,7 @@ export function useAuth() {
    const [isLoading, setIsLoading] = useState(true)
 
    useEffect(() => {
-      (async() => {
+      ;(async () => {
          try {
             await authApi.checkAccessToken()
          } catch (error) {

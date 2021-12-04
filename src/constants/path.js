@@ -8,10 +8,10 @@ class Path {
       this.products = '/products'
       this.productDetail = '/products/:productId'
       this.cart = '/cart'
+      this.order = '/order/:orderId'
       // this.user = '/user'
       // this.profile = this.user + '/profile'
       // this.password = this.user + '/password'
-      // this.purchase = this.user + '/purchase'
       this.notFound = '*'
    }
 }

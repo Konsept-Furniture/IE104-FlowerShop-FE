@@ -1,4 +1,6 @@
 import PrimaryButton, { OutlinedButton } from '@/components/button/Button'
+import { path } from '@/constants/path'
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
    Backdrop,
    Checkbox,
@@ -14,27 +16,20 @@ import {
 } from '@mui/material'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCart, updateCart } from '../cartSlice'
+import { useForm } from 'react-hook-form'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import * as yup from 'yup'
 import CartItem from './Cartitem'
 import './CartItemList.scss'
-import { unwrapResult } from '@reduxjs/toolkit'
-import { useSnackbar } from 'notistack'
-import { Link } from 'react-router-dom'
-import { path } from '@/constants/path'
-import * as yup from 'yup'
-import { useForm } from 'react-hook-form'
-import { yupResolver } from '@hookform/resolvers/yup'
 
 CartItemList.propTypes = {
    products: PropTypes.array.isRequired,
    onUpdateList: PropTypes.func.isRequired,
-   onPurchase: PropTypes.func.isRequired
+   onCheckoutClick: PropTypes.func.isRequired
 }
 
-function CartItemList() {
-   const { enqueueSnackbar } = useSnackbar()
-   const dispatch = useDispatch()
+function CartItemList({ products, onUpdateList, onCheckoutClick }) {
    const cart = useSelector(state => state.cart)
    const [currentCartProducts, setCurrentCartProducts] = useState([])
 
@@ -55,17 +50,17 @@ function CartItemList() {
    } = form
 
    useEffect(() => {
-      setCurrentCartProducts(cart.current)
-   }, [cart.current])
+      setCurrentCartProducts(products)
+   }, [products])
 
    useEffect(() => {
-      if (cart.current.length > 0) {
-         const defaultValues = cart.current.map(item => item.quantity)
+      if (products.length > 0) {
+         const defaultValues = products.map(item => item.quantity)
          reset({
             quantity: defaultValues
          })
       }
-   }, [cart.current])
+   }, [products])
 
    useEffect(() => {
       if (isDirty) {
@@ -119,7 +114,8 @@ function CartItemList() {
 
    const handleUpdateCart = async () => {
       setUpdating(true)
-      try {
+
+      if (onUpdateList) {
          const payload = {
             cartId: cart._id,
             payload: {
@@ -129,22 +125,19 @@ function CartItemList() {
                }))
             }
          }
-         console.log(payload)
-         const res = await dispatch(updateCart(payload)).then(unwrapResult)
-         console.log(res)
 
-         setIsUpdated(false)
-         setUpdating(false)
-         setSelectedProducts([])
-         enqueueSnackbar(res.message, {
-            variant: 'success'
-         })
+         const isSuccess = await onUpdateList(payload)
+         if (isSuccess) {
+            setIsUpdated(false)
+            setSelectedProducts([])
+         }
+      }
+      setUpdating(false)
+   }
 
-         // get cart again
-         await dispatch(getCart()).then(unwrapResult)
-      } catch (error) {
-         setUpdating(false)
-         console.log('error to update cart', error)
+   const handleCheckoutClick = () => {
+      if (onCheckoutClick) {
+         onCheckoutClick(selectedProducts)
       }
    }
 
@@ -164,50 +157,9 @@ function CartItemList() {
          >
             <CircularProgress color="inherit" />
          </Backdrop>
-         {cart.current.length > 0 ? (
-            <>
-               <Toolbar
-                  sx={{
-                     pl: { sm: 2 },
-                     pr: { xs: 1, sm: 1 },
-                     whiteSpace: 'nowrap',
-                     alignItems: 'center'
-                  }}
-               >
-                  {selectedProducts.length > 0 ? (
-                     <Typography
-                        sx={{ flex: '1 1 100%' }}
-                        color="inherit"
-                        variant="subtitle1"
-                        component="div"
-                     >
-                        {selectedProducts.length} item(s) selected
-                     </Typography>
-                  ) : (
-                     <Typography
-                        sx={{ flex: '1 1 100%' }}
-                        variant="h6"
-                        id="tableTitle"
-                        component="h6"
-                     ></Typography>
-                  )}
 
-                  <Stack direction="row" spacing={2} alignItems="center">
-                     {!isUpdated && selectedProducts.length > 0 && (
-                        <Typography variant="h6" id="tableTitle" component="p">
-                           Total: {renderTotal().toFixed(2)}$
-                        </Typography>
-                     )}
-                     {isUpdated && (
-                        <OutlinedButton onClick={handleUpdateCart}>
-                           Update Cart
-                        </OutlinedButton>
-                     )}
-                     {!isUpdated && selectedProducts.length > 0 && (
-                        <PrimaryButton>Checkout</PrimaryButton>
-                     )}
-                  </Stack>
-               </Toolbar>
+         {cart.current.length > 0 ? (
+            <Stack direction="column" spacing={3}>
                <Table>
                   <TableHead>
                      <TableRow>
@@ -252,7 +204,51 @@ function CartItemList() {
                      ))}
                   </TableBody>
                </Table>
-            </>
+               <Toolbar
+                  sx={{
+                     pl: { sm: 2 },
+                     pr: { xs: 1, sm: 1 },
+                     whiteSpace: 'nowrap',
+                     alignItems: 'center'
+                  }}
+               >
+                  {selectedProducts.length > 0 ? (
+                     <Typography
+                        sx={{ flex: '1 1 100%' }}
+                        color="inherit"
+                        variant="subtitle1"
+                        component="div"
+                     >
+                        {selectedProducts.length} item(s) selected
+                     </Typography>
+                  ) : (
+                     <Typography
+                        sx={{ flex: '1 1 100%' }}
+                        variant="h6"
+                        id="tableTitle"
+                        component="h6"
+                     ></Typography>
+                  )}
+
+                  <Stack direction="row" spacing={2} alignItems="center">
+                     {!isUpdated && selectedProducts.length > 0 && (
+                        <Typography variant="h6" id="tableTitle" component="p">
+                           Total: {renderTotal().toFixed(2)}$
+                        </Typography>
+                     )}
+                     {isUpdated && (
+                        <OutlinedButton onClick={handleUpdateCart}>
+                           Update Cart
+                        </OutlinedButton>
+                     )}
+                     {!isUpdated && selectedProducts.length > 0 && (
+                        <PrimaryButton onClick={handleCheckoutClick}>
+                           Checkout
+                        </PrimaryButton>
+                     )}
+                  </Stack>
+               </Toolbar>
+            </Stack>
          ) : (
             <Typography
                sx={{ flex: '1 1 100%' }}

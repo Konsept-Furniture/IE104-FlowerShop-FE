@@ -67,7 +67,9 @@ function getBase64(file) {
 const getFileName = file => {
    return file.replace(/\.[^/.]+$/, '')
 }
-
+function isVietnamesePhoneNumber(number) {
+   return /(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/.test(number)
+}
 export const common = {
    saveBearerToken,
    saveCurrentUser,
@@ -79,5 +81,7 @@ export const common = {
    getParamValue,
 
    getBase64,
-   getFileName
+   getFileName,
+
+   isVietnamesePhoneNumber
 }

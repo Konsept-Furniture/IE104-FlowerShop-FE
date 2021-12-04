@@ -1,5 +1,9 @@
 // @charset "utf-8";
-// @use "@/scss" as *;
+@use '@/scss' as *;
+
+.cart-page {
+   margin-top: 50px;
+}
 
 // input,
 // button {
