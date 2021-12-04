@@ -1,5 +1,10 @@
 // import OrderStep from '@/components/OrderStep/OrderStep'
-import { Grid } from '@mui/material'
+import {
+   CircularProgress,
+   Grid,
+   LinearProgress,
+   Typography
+} from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
@@ -12,7 +17,9 @@ import {
 } from '../cartSlice'
 import CartItemList from '../components/CartItemList'
 import './CartPage.scss'
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { Box } from '@mui/system'
+import { path } from '@/constants/path'
 
 function CartPage() {
    const { enqueueSnackbar } = useSnackbar()
@@ -61,12 +68,45 @@ function CartPage() {
       setCreatingOrder(false)
    }
 
+   if (cart.current.length === 0) {
+      return (
+         <Box
+            sx={{
+               pt: 20,
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center'
+            }}
+         >
+            {cart.getting ? (
+               <CircularProgress color="black" />
+            ) : (
+               <Typography variant="h4" component="div">
+                  Your cart is empty. {"Let's "}
+                  <Link
+                     to={path.products}
+                     style={{ textDecoration: 'underline' }}
+                  >
+                     shopping
+                  </Link>
+                  !
+               </Typography>
+            )}
+         </Box>
+      )
+   }
+
    return (
-      <Grid container className="konsept-container cart-page">
-         {/* TODO: Add cover */}
+      <Grid
+         container
+         className="konsept-container cart-page"
+         sx={{ height: '100%' }}
+      >
+         <LinearProgress />
 
          <Grid item lg={12}>
             {/* <OrderStep step={0} /> */}
+
             <CartItemList
                creatingOrder={creatingOrder}
                products={cart.current}

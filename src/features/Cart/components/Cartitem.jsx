@@ -1,14 +1,6 @@
 import QuantityField from '@/components/form-controls/QuantityField'
 import { path } from '@/constants/path'
-import ClearIcon from '@mui/icons-material/Clear'
-import {
-   Checkbox,
-   IconButton,
-   TableCell,
-   TableRow,
-   Tooltip,
-   Typography
-} from '@mui/material'
+import { Checkbox, TableCell, TableRow, Typography } from '@mui/material'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { Link } from 'react-router-dom'
@@ -49,10 +41,19 @@ function CartItem({
          </TableCell>
          <TableCell align="left">
             <div>
-               <Typography variant="h6" component="div">
-                  {data.title}
+               <Link to={`${path.products}/${data._id}`}>
+                  <Typography variant="h6" component="div">
+                     {data.title}
+                  </Typography>
+               </Link>
+               <Typography
+                  variant="p"
+                  sx={{ cursor: 'pointer' }}
+                  color="error"
+                  onClick={handleRemove}
+               >
+                  Remove
                </Typography>
-               <Link to={`${path.products}/${data._id}`}>View detail</Link>
             </div>
          </TableCell>
          <TableCell align="right">{data.price.toFixed(2)}$</TableCell>
@@ -63,15 +64,6 @@ function CartItem({
          {/* //FIXME: */}
          <TableCell align="right">
             {(watchQuantity * data.price).toFixed(2)}$
-         </TableCell>
-         <TableCell align="right">
-            <div className="product__remove-btn">
-               <Tooltip title="Remove item" placement="top">
-                  <IconButton onClick={handleRemove}>
-                     <ClearIcon color="error" />
-                  </IconButton>
-               </Tooltip>
-            </div>
          </TableCell>
       </TableRow>
    )

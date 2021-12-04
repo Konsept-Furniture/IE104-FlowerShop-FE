@@ -21,6 +21,7 @@ const cart = createSlice({
    name: 'cart',
    initialState: {
       _id: null,
+      getting: false,
       current: [],
       purchaseProducts: []
    },
@@ -39,7 +40,11 @@ const cart = createSlice({
          console.log('cart: ', action.payload.data)
          state._id = action.payload.data._id
          state.current = action.payload.data.products
+         state.getting = false
          common.resetCartInLocalStorage()
+      },
+      [getCart.pending]: (state, action) => {
+         state.getting = true
       }
       // TODO: reset cart after logout
       // [logout.fulfilled]: state => {

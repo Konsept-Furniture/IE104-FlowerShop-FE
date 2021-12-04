@@ -34,7 +34,7 @@ a {
    cursor: pointer;
    transition: $transition--common;
    &:hover {
-      color: #aeaeae;
+      color: rgba(0, 0, 0, 0.87);
    }
 }
 

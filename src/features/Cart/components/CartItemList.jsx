@@ -6,6 +6,7 @@ import {
    Checkbox,
    CircularProgress,
    Stack,
+   TableContainer,
    Table,
    TableBody,
    TableCell,
@@ -14,6 +15,7 @@ import {
    Toolbar,
    Typography
 } from '@mui/material'
+import { Box } from '@mui/system'
 import PropTypes from 'prop-types'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -166,50 +168,51 @@ function CartItemList({
 
          {cart.current.length > 0 ? (
             <Stack direction="column" spacing={3}>
-               <Table>
-                  <TableHead>
-                     <TableRow>
-                        <TableCell padding="checkbox">
-                           <Checkbox
-                              checked={
-                                 selectedProducts.length ===
-                                 currentCartProducts.length
-                              }
-                              color="black"
-                              indeterminate={
-                                 selectedProducts.length > 0 &&
-                                 selectedProducts.length <
+               <TableContainer sx={{ overflowX: 'auto' }}>
+                  <Table>
+                     <TableHead>
+                        <TableRow>
+                           <TableCell padding="checkbox">
+                              <Checkbox
+                                 checked={
+                                    selectedProducts.length ===
                                     currentCartProducts.length
+                                 }
+                                 color="black"
+                                 indeterminate={
+                                    selectedProducts.length > 0 &&
+                                    selectedProducts.length <
+                                       currentCartProducts.length
+                                 }
+                                 onChange={handleSelectAll}
+                              />
+                           </TableCell>
+                           <TableCell align="right" width="200px"></TableCell>
+                           <TableCell align="left">Product Detail</TableCell>
+                           <TableCell align="right">Price</TableCell>
+                           <TableCell align="right">Quantity</TableCell>
+                           <TableCell align="right">Subtotal</TableCell>
+                        </TableRow>
+                     </TableHead>
+                     <TableBody>
+                        {currentCartProducts.map((item, idx) => (
+                           <CartItem
+                              key={item._id}
+                              data={item}
+                              form={{ form, name: `quantity.${idx}` }}
+                              selected={
+                                 selectedProducts.length > 0 &&
+                                 selectedProducts.findIndex(
+                                    product => product?._id === item._id
+                                 ) !== -1
                               }
-                              onChange={handleSelectAll}
+                              onSelect={handleSelectOne}
+                              onRemove={handleRemoveOne}
                            />
-                        </TableCell>
-                        <TableCell align="right" width="200px"></TableCell>
-                        <TableCell align="left">Product Detail</TableCell>
-                        <TableCell align="right">Price</TableCell>
-                        <TableCell align="right">Quantity</TableCell>
-                        <TableCell align="right">Subtotal</TableCell>
-                        <TableCell align="right">Action</TableCell>
-                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                     {currentCartProducts.map((item, idx) => (
-                        <CartItem
-                           key={item._id}
-                           data={item}
-                           form={{ form, name: `quantity.${idx}` }}
-                           selected={
-                              selectedProducts.length > 0 &&
-                              selectedProducts.findIndex(
-                                 product => product?._id === item._id
-                              ) !== -1
-                           }
-                           onSelect={handleSelectOne}
-                           onRemove={handleRemoveOne}
-                        />
-                     ))}
-                  </TableBody>
-               </Table>
+                        ))}
+                     </TableBody>
+                  </Table>
+               </TableContainer>
                <Toolbar
                   sx={{
                      pl: { sm: 2 },
@@ -259,15 +262,33 @@ function CartItemList({
                </Toolbar>
             </Stack>
          ) : (
-            <Typography
-               sx={{ flex: '1 1 100%' }}
-               variant="h6"
-               id="tableTitle"
-               component="div"
+            <Box
+               sx={{
+                  width: '100%',
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+               }}
             >
-               Your cart is empty. {"Let's "}
-               <Link to={path.products}>shopping</Link>!
-            </Typography>
+               <Typography
+                  sx={{
+                     flex: '1 1 100%'
+                  }}
+                  variant="h6"
+                  id="tableTitle"
+                  component="div"
+               >
+                  Your cart is empty. {"Let's "}
+                  <Link
+                     to={path.products}
+                     style={{ textDecoration: 'underline' }}
+                  >
+                     shopping
+                  </Link>
+                  !
+               </Typography>
+            </Box>
          )}
       </div>
    )
