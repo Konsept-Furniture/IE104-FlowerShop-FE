@@ -2,13 +2,9 @@ import React from 'react'
 import FacebookIcon from '@/assets/icons/FacebookIcon'
 import GithubIcon from '@/assets/icons/GithubIcon'
 
-AboutUsTeam.propTypes = {
-
-}
-
-function AboutUsTeam(props) {
+function AboutUsTeam() {
    return (
-      <div>
+      <div className="konsept-container">
          <>
             <section className="relative py-10 overflow-hidden bg-white">
                <span className="absolute top-0 right-0 flex flex-col items-end mt-0 -mr-16 opacity-60">
@@ -17,7 +13,7 @@ function AboutUsTeam(props) {
                <span className="absolute"> </span>
                <div className="relative px-2 mx-auto max-w-7xl">
                   <h2 className="font-josefins relative max-w-lg mt-5 mb-10 text-4xl font-bold leading-tight lg:text-5xl">
-              Our team
+                     Our team
                   </h2>
                   <div className="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-3">
                      <div className="flex flex-col items-center justify-center col-span-1">
@@ -32,13 +28,21 @@ function AboutUsTeam(props) {
                         <div className="mt-3 space-y-2 text-center">
                            <div className="space-y-1 font-josefins text-lg font-medium leading-6">
                               <h3>Nhien Nguyen</h3>
-                              <p className="font-josefins text-blue-600">Product Management</p>
+                              <p className="font-josefins text-blue-600">
+                                 Product Management
+                              </p>
                            </div>
                            <div className="relative flex items-center justify-center space-x-3">
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <FacebookIcon />
                               </a>
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <GithubIcon />
                               </a>
                            </div>
@@ -55,13 +59,21 @@ function AboutUsTeam(props) {
                         <div className="mt-3 space-y-2 text-center">
                            <div className="font-josefins space-y-1 text-lg font-medium leading-6">
                               <h3>Khoa Vo</h3>
-                              <p className="font-josefins text-blue-600">Frontend Leader</p>
+                              <p className="font-josefins text-blue-600">
+                                 Frontend Leader
+                              </p>
                            </div>
                            <div className="relative flex items-center justify-center space-x-3">
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <FacebookIcon />
                               </a>
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <GithubIcon />
                               </a>
                            </div>
@@ -78,13 +90,21 @@ function AboutUsTeam(props) {
                         <div className="mt-3 space-y-2 text-center">
                            <div className="font-josefins space-y-1 text-lg font-medium leading-6">
                               <h3>Binh Dinh</h3>
-                              <p className="font-josefins text-blue-600">Backend Leader</p>
+                              <p className="font-josefins text-blue-600">
+                                 Backend Leader
+                              </p>
                            </div>
                            <div className="relative flex items-center justify-center space-x-3">
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <FacebookIcon />
                               </a>
-                              <a href="#_" className="text-gray-300 hover:text-gray-400">
+                              <a
+                                 href="#_"
+                                 className="text-gray-300 hover:text-gray-400"
+                              >
                                  <GithubIcon />
                               </a>
                            </div>
@@ -94,7 +114,6 @@ function AboutUsTeam(props) {
                </div>
             </section>
          </>
-
       </div>
    )
 }

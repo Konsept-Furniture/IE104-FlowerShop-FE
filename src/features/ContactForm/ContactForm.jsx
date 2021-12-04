@@ -5,7 +5,7 @@ ContactForm.propTypes = {}
 
 function ContactForm(props) {
    return (
-      <section id="contact-form">
+      <section id="contact-form" className="konsept-container">
          <form
             className="main-form"
             id="contact"
