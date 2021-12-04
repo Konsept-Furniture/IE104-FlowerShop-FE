@@ -11,12 +11,13 @@ function ContactForm(props) {
             id="contact"
             name="contact"
             action="mailto:annhien.se@gmail.com"
+            target="_top"
             encType="multipart/form-data"
             method="post"
             acceptCharset="utf-8"
          >
             <label className="label-name">
-               <input name="name" type="text" placeholder="Name" />
+               <input name="name" type="text" placeholder="Name" autoComplete="new-password" />
             </label>
             <label className="label-email">
                <input name="email" type="email" placeholder="Email" />

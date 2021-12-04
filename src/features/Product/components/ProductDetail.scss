@@ -11,6 +11,11 @@ a:hover {
 .product-detail__thumbnail:hover img {
    transform: scale(1.4);
 }
+
+.product-detail__info{
+   margin-top: 40px;
+}
+
 .product {
    &-detail {
       display: flex;

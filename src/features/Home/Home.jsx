@@ -1,6 +1,8 @@
 import React from 'react'
 import HeroSlider from '@/components/HeroSlider/HeroSlider'
 import CoverImageList from './components/CoverImageList'
+import AboutUsLogo from '@/components/AboutUs/AboutUsLogo'
+import ContactForm from '../ContactForm/ContactForm'
 
 Home.propTypes = {
 
@@ -8,10 +10,12 @@ Home.propTypes = {
 
 function Home(props) {
    return (
-      <main className="flex items-center justify-center">
+      <div>
          <HeroSlider />
          <CoverImageList />
-      </main>
+         <AboutUsLogo />
+         <ContactForm />
+      </div>
    )
 }
 

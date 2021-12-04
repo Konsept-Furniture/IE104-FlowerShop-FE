@@ -69,12 +69,12 @@ function Footer(_props) {
                <div className="space-y-3 ml-2">
                   <div className="font-bold font-poppins uppercase text-lg text-konsept">Social media</div>
                   <div className="flex ml-1 justify-start space-x-3">
-                     <a href="https://hackertyper.com/" title="Github" className="flex items-center p-1">
+                     <a href="https://hackertyper.comm/" title="Github" className="flex items-center p-1">
                         <div>
                            <GithubIcon />
                         </div>
                      </a>
-                     <a href="https://hackertyper.com/" title="Facebook" className="flex items-center p-1">
+                     <a href="https://hackertyper.comm/" title="Facebook" className="flex items-center p-1">
                         <div>
                            <FacebookIcon />
                         </div>
