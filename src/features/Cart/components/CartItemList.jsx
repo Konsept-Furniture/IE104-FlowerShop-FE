@@ -150,7 +150,6 @@ function CartItemList({
    }
 
    const renderTotal = () => {
-      console.log('render total', selectedProducts)
       return selectedProducts.reduce((prev, cur, curIndex) => {
          return prev + cur.quantity * cur.price
       }, 0)

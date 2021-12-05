@@ -9,6 +9,7 @@ import { useSnackbar } from 'notistack'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
+import { Link } from 'react-router-dom'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
 
@@ -19,6 +20,7 @@ function OrderPage() {
    const { deliveryInfo } = useSelector(state => state.auth.profile)
    // const [deliveryInfo, setDeliveryInfo] = useState({})
    const [loading, setLoading] = useState(false)
+   const [order, setOrder] = useState(null)
    const dispatch = useDispatch()
    const { orderId } = useParams()
 
@@ -28,30 +30,33 @@ function OrderPage() {
       console.log(values)
 
       try {
-         const deliveryInfo = {
-            name: values.name,
-            phone: values.phone,
-            email: values.email,
-            address: values.address
-         }
          const payload = {
-            deliveryInfo
+            deliveryInfo: {
+               address: values.address,
+               name: values.name,
+               email: values.email,
+               phone: values.phone
+            },
+            status: 'PROCESSING'
          }
          const res = await orderApi.update(orderId, payload)
          console.log(res)
 
          // save deliveryInfo
          if (values.save) {
-            await saveShippingInfomation(deliveryInfo)
+            await saveDeliveryInfo({
+               address: values.address_code,
+               name: values.name,
+               email: values.email,
+               phone: values.phone
+            })
          }
 
          enqueueSnackbar(res.message, {
             variant: 'success'
          })
 
-         history.push({
-            pathname: `${path.user}?tab=1`
-         })
+         history.push(`${path.user}?tab=2`)
       } catch (error) {
          console.log('error to update shipping info for order', error)
       }
@@ -59,7 +64,7 @@ function OrderPage() {
       setLoading(false)
    }
 
-   const saveShippingInfomation = async deliveryInfo => {
+   const saveDeliveryInfo = async deliveryInfo => {
       try {
          const payload = {
             deliveryInfo
@@ -76,6 +81,7 @@ function OrderPage() {
          try {
             const res = await orderApi.get(orderId)
             console.log(res)
+            setOrder(res.data)
             // Save to redux
             dispatch(addPurchaseProducts(res.data.products))
          } catch (error) {
@@ -95,6 +101,30 @@ function OrderPage() {
             }}
          >
             <CircularProgress color="black" />
+         </Box>
+      )
+   }
+
+   if (order?.status === 'PROCESSING' || order?.status === 'DELIVERIED') {
+      return (
+         <Box
+            sx={{
+               pt: 20,
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center'
+            }}
+         >
+            <Typography variant="h5">
+               Your order is updated shipping information. If you want to track
+               your order, go{' '}
+               <Link
+                  to={`${path.user}?tab=1`}
+                  style={{ textDecoration: 'underline' }}
+               >
+                  HERE
+               </Link>
+            </Typography>
          </Box>
       )
    }

@@ -32,9 +32,9 @@ const schema = yup.object().shape({
       ),
    email: yup.string().email().max(255).required().label('Email address'),
    shippingAddress: yup.object().shape({
-      province: yup.string().required().label('Province'),
-      district: yup.string().required().label('District'),
-      ward: yup.string().required().label('Ward'),
+      province: yup.number().required().label('Province'),
+      district: yup.number().required().label('District'),
+      ward: yup.number().required().label('Ward'),
       street: yup.string().required().label('Street')
    }),
    save: yup.boolean(),
@@ -134,7 +134,13 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
          }
          await onSubmit({
             ...values,
-            address: shippingAddress
+            address: shippingAddress,
+            address_code: {
+               street: values.shippingAddress.street,
+               province: values.shippingAddress.province,
+               district: values.shippingAddress.district,
+               ward: values.shippingAddress.ward
+            }
          })
       }
    }

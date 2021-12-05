@@ -16,7 +16,6 @@ AccordionOrderTracking.propTypes = {
 }
 
 function AccordionOrderTracking({ order }) {
-   console.log(order)
    return (
       <Accordion>
          <AccordionSummary

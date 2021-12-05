@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { Divider, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import PropTypes from 'prop-types'
@@ -29,19 +30,21 @@ function OrderSummary({ products }) {
             spacing={2}
             divider={<Divider orientation="horizontal" flexItem />}
          >
-            {products.map(product => (
-               <div key={product.productId} className="product-card">
-                  <div className="product-card__image">
-                     <img width={150} src={product.img} alt="" />
-                  </div>
-                  <div className="product-card__info">
-                     <Typography variant="h6">{product.title}</Typography>
-                     <Typography variant="subtitle1">
-                        {product.quantity} ⨉ ${product.price?.toFixed(2)}
-                     </Typography>
-                  </div>
-               </div>
-            ))}
+            {products.length > 0
+               ? products.map((product, idx) => (
+                    <div key={idx} className="product-card">
+                       <div className="product-card__image">
+                          <img width={150} src={product.img} alt="" />
+                       </div>
+                       <div className="product-card__info">
+                          <Typography variant="h6">{product.title}</Typography>
+                          <Typography variant="subtitle1">
+                             {product.quantity} ⨉ ${product.price?.toFixed(2)}
+                          </Typography>
+                       </div>
+                    </div>
+                 ))
+               : null}
          </Stack>
 
          {/* <Box>discount</Box> */}

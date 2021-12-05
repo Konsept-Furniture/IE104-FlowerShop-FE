@@ -7,6 +7,7 @@ import { useHistory } from 'react-router'
 import ChangePasswordForm from '../components/ChangePasswordForm'
 import AccountDetailTab from '../components/tabs/AccountDetailTab'
 import OrdersTrackingTab from '../components/tabs/OrdersTrackingTab'
+import ShippingInfoTab from '../components/tabs/ShippingInfoTab'
 import './MyAccountPage.scss'
 
 TabPanel.propTypes = {
@@ -63,20 +64,24 @@ function MyAccount(props) {
                sx={{ borderRight: 1, borderColor: 'divider' }}
             >
                <Tab label="Account Detail" {...a11yProps(0)} />
-               <Tab label="Orders" {...a11yProps(1)} />
-               <Tab label="Change password" {...a11yProps(2)} />
-               <Tab label="Logout" {...a11yProps(3)} />
+               <Tab label="Shipping Information" {...a11yProps(1)} />
+               <Tab label="Orders" {...a11yProps(3)} />
+               <Tab label="Change password" {...a11yProps(3)} />
+               <Tab label="Logout" {...a11yProps(4)} />
             </Tabs>
             <TabPanel value={value} index={0}>
                <AccountDetailTab />
             </TabPanel>
             <TabPanel value={value} index={1}>
-               <OrdersTrackingTab />
+               <ShippingInfoTab />
             </TabPanel>
             <TabPanel value={value} index={2}>
-               <ChangePasswordForm />
+               <OrdersTrackingTab />
             </TabPanel>
             <TabPanel value={value} index={3}>
+               <ChangePasswordForm />
+            </TabPanel>
+            <TabPanel value={value} index={4}>
                Logout
             </TabPanel>
          </Box>
