@@ -6,16 +6,20 @@ import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import PrimaryButton from '@/components/button/Button'
 import AddressField from '@/components/form-controls/AddressField'
-import { Stack } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import provinceApi from '@/api/provinceApi'
 import { common } from '@/utils/common'
 import CheckboxField from '@/components/form-controls/CheckboxField'
+import SelectPaymentMethod from './PaymentMethod'
+import { PaymentMethod } from '@/constants/enum'
+import { Box } from '@mui/system'
 
 ShippingAddressForm.propTypes = {
-   onSubmit: PropTypes.func.isRequired
+   onSubmit: PropTypes.func.isRequired,
+   defaultValues: PropTypes.object
 }
 
-function ShippingAddressForm({ onSubmit }) {
+function ShippingAddressForm({ defaultValues, onSubmit }) {
    const [provinceList, setProvinceList] = useState([])
    const [districtList, setDistrictList] = useState([])
    const [wardList, setWardList] = useState([])
@@ -38,7 +42,8 @@ function ShippingAddressForm({ onSubmit }) {
          ward: yup.string().required().label('Ward'),
          street: yup.string().required().label('Street')
       }),
-      save: yup.boolean()
+      save: yup.boolean(),
+      payment: yup.string()
    })
    const form = useForm({
       defaultValues: {
@@ -51,7 +56,8 @@ function ShippingAddressForm({ onSubmit }) {
             ward: ''
          },
          email: '',
-         save: false
+         save: false,
+         payment: PaymentMethod.COD
       },
       resolver: yupResolver(schema)
    })
@@ -131,6 +137,8 @@ function ShippingAddressForm({ onSubmit }) {
    }
    return (
       <form onSubmit={handleSubmit(handleSubmitOrder)}>
+         <Typography variant="h4">Shipping Information</Typography>
+
          <TextInputField
             label="Recipient's name"
             name="name"
@@ -154,13 +162,20 @@ function ShippingAddressForm({ onSubmit }) {
             onChangeProvince={handleChangeProvince}
             onChangeDistrict={handleChangeDistrict}
          />
+
          <CheckboxField
             label="Save shipping information for the next time"
             name="save"
             control={control}
          />
 
-         <PrimaryButton type="submit">Place Order</PrimaryButton>
+         <Typography variant="h4">Payment Method</Typography>
+
+         <SelectPaymentMethod name="payment" control={control} />
+
+         <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
+            <PrimaryButton type="submit">Place Order</PrimaryButton>
+         </Box>
       </form>
    )
 }

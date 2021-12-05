@@ -1,4 +1,6 @@
-@use '@/scss' as *;
+@use '@/scss/variables' as *;
+@use '@/scss/mixin' as *;
+@use '@/scss/breakpoints' as *;
 
 .auth {
    font-family: 'Lato';
@@ -62,13 +64,13 @@
          padding-bottom: 20px;
          text-align: center;
          .footer {
-            &__contact{
+            &__contact {
                margin-bottom: 50px;
 
-               p{
+               p {
                   margin-bottom: 5px;
                }
-               a{
+               a {
                   color: $color--success;
                }
             }
@@ -80,7 +82,7 @@
                .color--danger {
                   fill: $color--danger-dark;
                }
-               svg{
+               svg {
                   color: $color--danger-dark;
                   display: inline-block;
                   vertical-align: text-bottom;
@@ -91,18 +93,18 @@
    }
 
    @include tablet {
-      &__image{
+      &__image {
          display: none;
       }
 
-      &__content{
+      &__content {
          width: 100%;
       }
    }
 
-   @include mobile{
-      .form-container{
-         width:  100%;
+   @include mobile {
+      .form-container {
+         width: 100%;
       }
    }
 }

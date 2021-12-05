@@ -1,23 +1,26 @@
+/* eslint-disable multiline-ternary */
 import orderApi from '@/api/orderApi'
 import userApi from '@/api/userApi'
 import { addPurchaseProducts } from '@/features/Cart/cartSlice'
-import { Grid, Typography, CircularProgress, Backdrop } from '@mui/material'
+import { Backdrop, CircularProgress, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { useSnackbar } from 'notistack'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
-import { useSnackbar } from 'notistack'
 
 function OrderPage() {
    const { enqueueSnackbar } = useSnackbar()
    const purchaseProducts = useSelector(state => state.cart.purchaseProducts)
    const { deliveryInfo } = useSelector(state => state.auth.profile)
+   // const [deliveryInfo, setDeliveryInfo] = useState({})
    const [loading, setLoading] = useState(false)
    const dispatch = useDispatch()
    const { orderId } = useParams()
 
+   // handle submit
    const handleSubmitShippingInfo = async values => {
       setLoading(true)
       console.log(values)
@@ -76,7 +79,18 @@ function OrderPage() {
    }, [])
 
    if (purchaseProducts.length === 0) {
-      return <p>loading...</p>
+      return (
+         <Box
+            sx={{
+               pt: 20,
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center'
+            }}
+         >
+            <CircularProgress color="black" />
+         </Box>
+      )
    }
 
    return (
@@ -89,8 +103,6 @@ function OrderPage() {
          </Backdrop>
          <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
             <Grid item lg={8}>
-               <Typography variant="h4">Shipping Information</Typography>
-
                <ShippingAddressForm
                   defaultValues={deliveryInfo}
                   onSubmit={handleSubmitShippingInfo}
