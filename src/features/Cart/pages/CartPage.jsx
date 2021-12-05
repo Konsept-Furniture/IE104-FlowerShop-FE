@@ -20,6 +20,8 @@ import './CartPage.scss'
 import { Link, useHistory } from 'react-router-dom'
 import { Box } from '@mui/system'
 import { path } from '@/constants/path'
+import ShoppingIcon from '@/assets/icons/ShoppingIcon'
+import { OutlinedButton } from '@/components/button/Button'
 
 function CartPage() {
    const { enqueueSnackbar } = useSnackbar()
@@ -70,29 +72,16 @@ function CartPage() {
 
    if (cart.current.length === 0) {
       return (
-         <Box
-            sx={{
-               pt: 20,
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center'
-            }}
-         >
-            {cart.getting ? (
-               <CircularProgress color="black" />
-            ) : (
-               <Typography variant="h4" component="div">
-                  Your cart is empty. {"Let's "}
-                  <Link
-                     to={path.products}
-                     style={{ textDecoration: 'underline' }}
-                  >
-                     shopping
-                  </Link>
-                  !
-               </Typography>
-            )}
-         </Box>
+         <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4">
+            <h2 className="lg:text-2xl md:text-xl font-josefins text-3xl font-bold py-2">Your cart is empty</h2>
+            <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
+               <img src="https://i.imgur.com/dCYujyC.png" alt="epmty" />
+            </div>
+            <div className="md:hidden grid place-content-center">
+               <img className="w-60 h-60" src="https://i.imgur.com/dCYujyC.png" alt="empty" />
+            </div>
+            <OutlinedButton component={Link} to={path.products}>Shopping now</OutlinedButton>
+         </div>
       )
    }
 

@@ -13,7 +13,6 @@ function AboutUs(props) {
          <AboutUsComment />
          <AboutUsTeam />
          <ContactForm />
-         <CoverImageList />
       </div>
    )
 }

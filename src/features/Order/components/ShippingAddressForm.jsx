@@ -164,7 +164,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
          />
 
          <CheckboxField
-            label="Save shipping information for the next time"
+            label="Save delivery information for the next time"
             name="save"
             control={control}
          />
