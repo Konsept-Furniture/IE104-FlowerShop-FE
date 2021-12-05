@@ -12,7 +12,7 @@ OrderStep.defaultProps = {
 
 const steps = [
    'Select product to checkout',
-   'Fill in shipping information',
+   'Fill in delivery information',
    'Purchase order'
 ]
 

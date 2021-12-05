@@ -89,7 +89,7 @@ function OrderPage() {
          </Backdrop>
          <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
             <Grid item lg={8}>
-               <Typography variant="h4">Shipping Information</Typography>
+               <Typography variant="h4">Delivery Information</Typography>
 
                <ShippingAddressForm
                   defaultValues={deliveryInfo}

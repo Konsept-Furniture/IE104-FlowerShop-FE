@@ -155,12 +155,12 @@ function ShippingAddressForm({ onSubmit }) {
             onChangeDistrict={handleChangeDistrict}
          />
          <CheckboxField
-            label="Save shipping information for the next time"
+            label="Save delivery information for the next time"
             name="save"
             control={control}
          />
 
-         <PrimaryButton type="submit">Place Order</PrimaryButton>
+         <PrimaryButton type="submit">Submit Order</PrimaryButton>
       </form>
    )
 }
