@@ -37,7 +37,7 @@ function AboutUsComment() {
                                  <h4 className="font-josefins font-bold text-gray-800">
                                     Luu Ngoc Sang
                                  </h4>
-                                 <p className="font-josefins text-gray-600">
+                                 <p className="font-josefins font-bold   text-gray-600">
                                     CEO at VNG
                                  </p>
                               </div>
@@ -60,7 +60,7 @@ function AboutUsComment() {
                                  <h4 className="font-josefins text-konsept font-bold text-gray-800">
                                     Tran Thanh Hien
                                  </h4>
-                                 <p className="font-josefins text-gray-600">
+                                 <p className="font-josefins font-bold text-gray-600">
                                     CTO at Tiki
                                  </p>
                               </div>
@@ -83,7 +83,7 @@ function AboutUsComment() {
                                  <h4 className="font-josefins font-bold text-gray-800">
                                     Pham Hon Tuyen
                                  </h4>
-                                 <p className="font-josefins text-gray-600">
+                                 <p className="font-josefins font-bold text-gray-600">
                                     CEO at HTML
                                  </p>
                               </div>

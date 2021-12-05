@@ -279,7 +279,7 @@ function CartItemList({
                   id="tableTitle"
                   component="div"
                >
-                  Your cart is empty. {"Let's "}
+                  Your cart is empty. {"\nLet's "}
                   <Link
                      to={path.products}
                      style={{ textDecoration: 'underline' }}
