@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import { path } from '@/constants/path'
 import { getCart } from '@/features/Cart/cartSlice'
 import { addToCart, getCategories } from '@/features/Product/productSlice'

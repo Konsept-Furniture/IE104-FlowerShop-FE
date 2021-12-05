@@ -1,17 +1,19 @@
 /* eslint-disable multiline-ternary */
 import orderApi from '@/api/orderApi'
 import userApi from '@/api/userApi'
+import { path } from '@/constants/path'
 import { addPurchaseProducts } from '@/features/Cart/cartSlice'
 import { Backdrop, CircularProgress, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import { useSnackbar } from 'notistack'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
+import { useHistory, useParams } from 'react-router'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
 
 function OrderPage() {
+   const history = useHistory()
    const { enqueueSnackbar } = useSnackbar()
    const purchaseProducts = useSelector(state => state.cart.purchaseProducts)
    const { deliveryInfo } = useSelector(state => state.auth.profile)
@@ -45,6 +47,10 @@ function OrderPage() {
 
          enqueueSnackbar(res.message, {
             variant: 'success'
+         })
+
+         history.push({
+            pathname: `${path.user}?tab=1`
          })
       } catch (error) {
          console.log('error to update shipping info for order', error)

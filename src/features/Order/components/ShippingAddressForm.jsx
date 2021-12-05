@@ -19,32 +19,34 @@ ShippingAddressForm.propTypes = {
    defaultValues: PropTypes.object
 }
 
+const schema = yup.object().shape({
+   name: yup.string().max(255).required().label("Recipient's name"),
+   phone: yup
+      .string()
+      .required()
+      .label('Phone number')
+      .test(
+         'is-vietnamese-phonenumber',
+         'Incorrect phone number format.',
+         common.isVietnamesePhoneNumber
+      ),
+   email: yup.string().email().max(255).required().label('Email address'),
+   shippingAddress: yup.object().shape({
+      province: yup.string().required().label('Province'),
+      district: yup.string().required().label('District'),
+      ward: yup.string().required().label('Ward'),
+      street: yup.string().required().label('Street')
+   }),
+   save: yup.boolean(),
+   payment: yup.string(),
+   notes: yup.string()
+})
+
 function ShippingAddressForm({ defaultValues, onSubmit }) {
    const [provinceList, setProvinceList] = useState([])
    const [districtList, setDistrictList] = useState([])
    const [wardList, setWardList] = useState([])
 
-   const schema = yup.object().shape({
-      name: yup.string().max(255).required().label("Recipient's name"),
-      phone: yup
-         .string()
-         .required()
-         .label('Phone number')
-         .test(
-            'is-vietnamese-phonenumber',
-            'Incorrect phone number format.',
-            common.isVietnamesePhoneNumber
-         ),
-      email: yup.string().email().max(255).required().label('Email address'),
-      shippingAddress: yup.object().shape({
-         province: yup.string().required().label('Province'),
-         district: yup.string().required().label('District'),
-         ward: yup.string().required().label('Ward'),
-         street: yup.string().required().label('Street')
-      }),
-      save: yup.boolean(),
-      payment: yup.string()
-   })
    const form = useForm({
       defaultValues: {
          name: '',
@@ -57,7 +59,8 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
          },
          email: '',
          save: false,
-         payment: PaymentMethod.COD
+         payment: PaymentMethod.COD,
+         notes: ''
       },
       resolver: yupResolver(schema)
    })
@@ -162,6 +165,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
             onChangeProvince={handleChangeProvince}
             onChangeDistrict={handleChangeDistrict}
          />
+         <TextInputField label="Notes" name="note" control={control} />
 
          <CheckboxField
             label="Save delivery information for the next time"

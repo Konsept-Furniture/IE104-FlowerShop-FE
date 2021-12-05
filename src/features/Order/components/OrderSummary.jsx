@@ -37,7 +37,7 @@ function OrderSummary({ products }) {
                   <div className="product-card__info">
                      <Typography variant="h6">{product.title}</Typography>
                      <Typography variant="subtitle1">
-                        {product.quantity} ⨉ {product.price?.toFixed(2)}$
+                        {product.quantity} ⨉ ${product.price?.toFixed(2)}
                      </Typography>
                   </div>
                </div>
@@ -59,11 +59,13 @@ function OrderSummary({ products }) {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                <Typography variant="subtitle1">Shipping</Typography>
-               <Typography variant="subtitle1">${'15.00'}</Typography>
+               <Typography variant="subtitle1">${'0.00'}</Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                <Typography variant="h6">Total</Typography>
-               <Typography variant="h6">${renderTotal(products)}</Typography>
+               <Typography variant="h6">
+                  ${renderTotal(products).toFixed(2)}
+               </Typography>
             </Box>
          </Box>
       </Stack>

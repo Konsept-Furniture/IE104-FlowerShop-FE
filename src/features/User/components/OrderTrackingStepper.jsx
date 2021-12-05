@@ -3,7 +3,6 @@ import IconProcessing from '@/assets/icons/IconProcessing'
 import IconShoppingBag from '@/assets/icons/IconShoppingBag'
 import IconWallet from '@/assets/icons/IconWallet'
 import { OrderStatus } from '@/constants/enum'
-import { path } from '@/constants/path'
 import { Step, StepLabel, Stepper } from '@mui/material'
 import StepConnector, {
    stepConnectorClasses
