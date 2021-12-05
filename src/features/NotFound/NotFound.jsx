@@ -1,26 +1,38 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import PrimaryButton, { OutlinedButton } from '@/components/button/Button'
+import { Link } from 'react-router-dom'
+import { path } from '@/constants/path'
+import Header from '@/components/Header/Header'
 
 NotFound.propTypes = {
 
 }
 
-function NotFound (props) {
-  return (
-      <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4">
-         <h2 className="lg:text-5xl md:text-4xl font-poppins text-3xl font-bold text-red-500 py-2">CANNOT FIND THIS PAGE</h2>
-         <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
-            <img src="https://image.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg" alt="cc" />
-         </div>
-         <div className="md:hidden grid place-content-center">
-            <img src="https://image.freepik.com/free-vector/oops-404-error-with-broken-robot-concept-illustration_114360-1932.jpg" alt="cc" />
-         </div>
-         <div className="flex md:flex-row flex-col items-center justify-center md:gap-8 mt-4 mb-12 w-full">
-            <button className="p-4 text-base text-center font-bold text-white md:w-auto md:mb-0 mb-4 w-full bg-blue-500 border rounded-md hover:bg-red-500">Get back to Homepage</button>
-            <button className="p-4 text-base text-white font-bold text-center md:w-auto w-full bg-blue-500 border rounded-md hover:bg-red-500">Contact Support</button>
+function NotFound(props) {
+   return (
+      <div>
+         <Header/>
+         <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4 mt-20">
+            <h2 className="lg:text-4xl md:text-2xl tracking-widest font-josefins text-3xl font-bold py-2 mb-8">
+         ERROR PAGE
+            </h2>
+            <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
+               <p className="text-gray-notfound font-sans text-base text-center mb-8">The page you are looking for doesn't exist. It may have been moved or removed altogether. Please try searching for some other page, or return to the website's homepage to find what you're looking for.</p>
+            </div>
+            <div className="md:hidden grid place-content-center">
+               <img
+                  className="w-60 h-60"
+                  src="https://i.imgur.com/dCYujyC.png"
+                  alt="empty"
+               />
+            </div>
+            <PrimaryButton component={Link} to={path.home}>
+         Back To Home
+            </PrimaryButton>
          </div>
       </div>
-  )
+   )
 }
 
 export default NotFound
