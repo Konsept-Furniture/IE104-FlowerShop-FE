@@ -55,10 +55,16 @@ function Header() {
 
             <div className="header__widgets-holder ml-3">
                <p className="mr-2">{currentUser ? currentUser.username : ''}</p>
-               <div className="header__widget h-full mr-2 lg:mr-6"
+               <div
+                  className="header__widget h-full mr-2 lg:mr-6"
                   onClick={() => {
-                     history.push(path.login)
-                  }}>
+                     if (!currentUser) {
+                        history.push(path.login)
+                     } else {
+                        history.push(path.user)
+                     }
+                  }}
+               >
                   <div className="header__widget-content">
                      <span>
                         <IconUser />
@@ -74,10 +80,12 @@ function Header() {
                      <span className="ml-1">0</span>
                   </div>
                </div>
-               <div className="header__widget h-full mr-2 lg:mr-4"
+               <div
+                  className="header__widget h-full mr-2 lg:mr-4"
                   onClick={() => {
                      history.push(path.cart)
-                  }}>
+                  }}
+               >
                   <div className="header__widget-content">
                      <span>
                         <IconCart />

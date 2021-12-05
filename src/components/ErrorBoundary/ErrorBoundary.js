@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { path } from '@/constants/path'
+import { Box } from '@mui/system'
 
 export default class ErrorBoundary extends React.Component {
    constructor(props) {
@@ -20,12 +21,24 @@ export default class ErrorBoundary extends React.Component {
 
    render() {
       if (this.state.hasError) {
-      // You can render any custom fallback UI
+         // You can render any custom fallback UI
          return (
-            <h1>
-          Something went wrong.
-               <Link to={path.home}>Click To Home Page</Link>
-            </h1>
+            <Box
+               sx={{
+                  mt: 10,
+                  height: '100%',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+               }}
+            >
+               <h1>
+                  Something went wrong. Click to{' '}
+                  <Link to={path.home} sx={{ textDecoration: 'underline' }}>
+                     Home Page
+                  </Link>
+               </h1>
+            </Box>
          )
       }
       return this.props.children

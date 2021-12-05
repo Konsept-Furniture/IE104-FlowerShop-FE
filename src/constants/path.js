@@ -9,7 +9,7 @@ class Path {
       this.productDetail = '/products/:productId'
       this.cart = '/cart'
       this.order = '/order/:orderId'
-      // this.user = '/user'
+      this.user = '/user'
       // this.profile = this.user + '/profile'
       // this.password = this.user + '/password'
       this.notFound = '*'

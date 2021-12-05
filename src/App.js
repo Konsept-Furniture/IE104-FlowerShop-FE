@@ -13,6 +13,15 @@ const theme = createTheme({
    },
    typography: {
       fontFamily: ['Poppins', 'sans-serif'].join(',')
+   },
+   components: {
+      MuiTabs: {
+         styleOverrides: {
+            indicator: {
+               backgroundColor: 'black'
+            }
+         }
+      }
    }
 })
 

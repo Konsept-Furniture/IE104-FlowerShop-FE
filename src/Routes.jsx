@@ -21,6 +21,7 @@ const AboutUs = lazy(() => import('./features/AboutUs/AboutUs'))
 const NotFound = lazy(() => import('./features/NotFound/NotFound'))
 const Cart = lazy(() => import('./features/Cart/pages/CartPage'))
 const Order = lazy(() => import('./features/Order/pages/OrderPage'))
+const MyAccount = lazy(() => import('./features/User/pages/MyAccountPage'))
 
 Routes.propTypes = {}
 
@@ -109,6 +110,18 @@ function Routes() {
                   <Suspense fallback={<Fallback />}>
                      <ErrorBoundary>
                         <Order />
+                     </ErrorBoundary>
+                  </Suspense>
+               </MainLayout>
+            </AuthenticatedGuard>
+         </Route>
+
+         <Route path={path.user} exact>
+            <AuthenticatedGuard>
+               <MainLayout>
+                  <Suspense fallback={<Fallback />}>
+                     <ErrorBoundary>
+                        <MyAccount />
                      </ErrorBoundary>
                   </Suspense>
                </MainLayout>
