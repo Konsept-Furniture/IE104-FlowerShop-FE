@@ -1,14 +1,13 @@
 // import OrderStep from '@/components/OrderStep/OrderStep'
-import {
-   CircularProgress,
-   Grid,
-   LinearProgress,
-   Typography
-} from '@mui/material'
+import { OutlinedButton } from '@/components/button/Button'
+import { path } from '@/constants/path'
+import { CircularProgress, Grid } from '@mui/material'
+import { Box } from '@mui/system'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useHistory } from 'react-router-dom'
 import {
    addPurchaseProducts,
    createOrder,
@@ -17,11 +16,6 @@ import {
 } from '../cartSlice'
 import CartItemList from '../components/CartItemList'
 import './CartPage.scss'
-import { Link, useHistory } from 'react-router-dom'
-import { Box } from '@mui/system'
-import { path } from '@/constants/path'
-import ShoppingIcon from '@/assets/icons/ShoppingIcon'
-import { OutlinedButton } from '@/components/button/Button'
 
 function CartPage() {
    const { enqueueSnackbar } = useSnackbar()
@@ -70,17 +64,40 @@ function CartPage() {
       setCreatingOrder(false)
    }
 
-   if (cart.current.length === 0) {
+   if (cart.getting) {
+      return (
+         <Box
+            sx={{
+               pt: 20,
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center'
+            }}
+         >
+            <CircularProgress color="black" />
+         </Box>
+      )
+   }
+
+   if (!cart.getting && cart.current.length === 0) {
       return (
          <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4">
-            <h2 className="lg:text-2xl md:text-xl font-josefins text-3xl font-bold py-2">Your cart is empty</h2>
+            <h2 className="lg:text-2xl md:text-xl font-poppins text-3xl font-bold py-2">
+               Your cart is empty
+            </h2>
             <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
                <img src="https://i.imgur.com/dCYujyC.png" alt="epmty" />
             </div>
             <div className="md:hidden grid place-content-center">
-               <img className="w-60 h-60" src="https://i.imgur.com/dCYujyC.png" alt="empty" />
+               <img
+                  className="w-60 h-60"
+                  src="https://i.imgur.com/dCYujyC.png"
+                  alt="empty"
+               />
             </div>
-            <OutlinedButton component={Link} to={path.products}>Shopping now</OutlinedButton>
+            <OutlinedButton component={Link} to={path.products}>
+               Shopping now
+            </OutlinedButton>
          </div>
       )
    }
@@ -91,8 +108,6 @@ function CartPage() {
          className="konsept-container cart-page"
          sx={{ height: '100%' }}
       >
-         <LinearProgress />
-
          <Grid item lg={12}>
             {/* <OrderStep step={0} /> */}
 

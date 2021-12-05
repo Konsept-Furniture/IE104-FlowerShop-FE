@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import PrimaryButton, { OutlinedButton } from '@/components/button/Button'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -6,7 +7,6 @@ import {
    Checkbox,
    CircularProgress,
    Stack,
-   TableContainer,
    Table,
    TableBody,
    TableCell,
@@ -152,7 +152,6 @@ function CartItemList({
    const renderTotal = () => {
       console.log('render total', selectedProducts)
       return selectedProducts.reduce((prev, cur, curIndex) => {
-         console.log(cur)
          return prev + cur.quantity * cur.price
       }, 0)
    }
@@ -168,51 +167,49 @@ function CartItemList({
 
          {cart.current.length > 0 ? (
             <Stack direction="column" spacing={3}>
-               <TableContainer sx={{ overflowX: 'auto' }}>
-                  <Table>
-                     <TableHead>
-                        <TableRow>
-                           <TableCell padding="checkbox">
-                              <Checkbox
-                                 checked={
-                                    selectedProducts.length ===
-                                    currentCartProducts.length
-                                 }
-                                 color="black"
-                                 indeterminate={
-                                    selectedProducts.length > 0 &&
-                                    selectedProducts.length <
-                                       currentCartProducts.length
-                                 }
-                                 onChange={handleSelectAll}
-                              />
-                           </TableCell>
-                           <TableCell align="right" width="200px"></TableCell>
-                           <TableCell align="left">Product Detail</TableCell>
-                           <TableCell align="right">Price</TableCell>
-                           <TableCell align="right">Quantity</TableCell>
-                           <TableCell align="right">Subtotal</TableCell>
-                        </TableRow>
-                     </TableHead>
-                     <TableBody>
-                        {currentCartProducts.map((item, idx) => (
-                           <CartItem
-                              key={item._id}
-                              data={item}
-                              form={{ form, name: `quantity.${idx}` }}
-                              selected={
-                                 selectedProducts.length > 0 &&
-                                 selectedProducts.findIndex(
-                                    product => product?._id === item._id
-                                 ) !== -1
+               <Table>
+                  <TableHead>
+                     <TableRow>
+                        <TableCell padding="checkbox">
+                           <Checkbox
+                              checked={
+                                 selectedProducts.length ===
+                                 currentCartProducts.length
                               }
-                              onSelect={handleSelectOne}
-                              onRemove={handleRemoveOne}
+                              color="black"
+                              indeterminate={
+                                 selectedProducts.length > 0 &&
+                                 selectedProducts.length <
+                                    currentCartProducts.length
+                              }
+                              onChange={handleSelectAll}
                            />
-                        ))}
-                     </TableBody>
-                  </Table>
-               </TableContainer>
+                        </TableCell>
+                        <TableCell align="right" width="200px"></TableCell>
+                        <TableCell align="left">Product Detail</TableCell>
+                        <TableCell align="right">Price</TableCell>
+                        <TableCell align="right">Quantity</TableCell>
+                        <TableCell align="right">Subtotal</TableCell>
+                     </TableRow>
+                  </TableHead>
+                  <TableBody>
+                     {currentCartProducts.map((item, idx) => (
+                        <CartItem
+                           key={item._id}
+                           data={item}
+                           form={{ form, name: `quantity.${idx}` }}
+                           selected={
+                              selectedProducts.length > 0 &&
+                              selectedProducts.findIndex(
+                                 product => product?._id === item._id
+                              ) !== -1
+                           }
+                           onSelect={handleSelectOne}
+                           onRemove={handleRemoveOne}
+                        />
+                     ))}
+                  </TableBody>
+               </Table>
                <Toolbar
                   sx={{
                      pl: { sm: 2 },
