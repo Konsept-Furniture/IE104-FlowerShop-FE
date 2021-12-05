@@ -140,7 +140,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
    }
    return (
       <form onSubmit={handleSubmit(handleSubmitOrder)}>
-         <Typography variant="h4">Shipping Information</Typography>
+         <Typography variant="h4">Delivery Information</Typography>
 
          <TextInputField
             label="Recipient's name"
@@ -178,7 +178,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
          <SelectPaymentMethod name="payment" control={control} />
 
          <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 3 }}>
-            <PrimaryButton type="submit">Place Order</PrimaryButton>
+            <PrimaryButton type="submit">Confirm Order</PrimaryButton>
          </Box>
       </form>
    )
