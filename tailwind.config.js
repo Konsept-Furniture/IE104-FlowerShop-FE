@@ -35,7 +35,8 @@ module.exports = {
                DEFAULT: '#c0ccda',
                light: '#e0e6ed',
                lightest: '#f9fafc',
-               footer: '#f4f2f2'
+               footer: '#f4f2f2',
+               notfound: '#8b8b8b'
             },
             green: {
                DEFAULT: '#00c853',

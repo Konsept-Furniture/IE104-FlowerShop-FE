@@ -43,48 +43,63 @@ function MyAccount(props) {
       setValue(newValue)
       history.push(`${path.user}?tab=${newValue}`)
    }
-
+   const background =
+      'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/account_.jpg'
    return (
-      <div className="my-account konsept-container">
-         <Box
-            sx={{
-               flexGrow: 1,
-               bgcolor: 'background.paper',
-               display: 'flex'
-            }}
+      <div className="my-account">
+         <div
+            className="w-full bg-cover bg-center h-96 mb-12"
+            style={{ backgroundImage: 'url(' + background + ')' }}
          >
-            <Tabs
-               textColor="inherit"
-               indicatorColor="primary"
-               orientation="vertical"
-               variant="scrollable"
-               value={value}
-               onChange={handleChange}
-               aria-label="Vertical tabs example"
-               sx={{ borderRight: 1, borderColor: 'divider' }}
+            <div className="flex items-center justify-center h-full w-full bg-opacity-50">
+               <div className="text-center">
+                  <h1 className="text-white text-3xl font-josefins tracking-widest font-bold uppercase md:text-4xl">
+                     MY ACCOUNT
+                  </h1>
+               </div>
+            </div>
+         </div>
+         <div className="konsept-container">
+            <Box
+               sx={{
+                  flexGrow: 1,
+                  bgcolor: 'background.paper',
+                  display: 'flex'
+               }}
             >
-               <Tab label="Account Detail" {...a11yProps(0)} />
-               <Tab label="Shipping Information" {...a11yProps(1)} />
-               <Tab label="Orders" {...a11yProps(3)} />
-               <Tab label="Change password" {...a11yProps(3)} />
-               <Tab label="Logout" {...a11yProps(4)} />
-            </Tabs>
-            <TabPanel value={value} index={0}>
-               <AccountDetailTab />
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-               <ShippingInfoTab />
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-               <OrdersTrackingTab />
-            </TabPanel>
-            <TabPanel value={value} index={3}>
-               <ChangePasswordForm />
-            </TabPanel>
-            <TabPanel value={value} index={4}>
-               Logout
-            </TabPanel>
-         </Box>
+               <Tabs
+                  textColor="inherit"
+                  indicatorColor="primary"
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="Vertical tabs example"
+                  sx={{ borderRight: 1, borderColor: 'divider' }}
+               >
+                  <Tab label="Account Detail" {...a11yProps(0)} />
+                  <Tab label="Shipping Information" {...a11yProps(1)} />
+                  <Tab label="Orders" {...a11yProps(2)} />
+                  <Tab label="Change password" {...a11yProps(3)} />
+                  <Tab label="Logout" {...a11yProps(4)} />
+               </Tabs>
+               <TabPanel value={value} index={0}>
+                  <AccountDetailTab />
+               </TabPanel>
+               <TabPanel value={value} index={1}>
+                  <ShippingInfoTab />
+               </TabPanel>
+               <TabPanel value={value} index={2}>
+                  <OrdersTrackingTab />
+               </TabPanel>
+               <TabPanel value={value} index={3}>
+                  <ChangePasswordForm />
+               </TabPanel>
+               <TabPanel value={value} index={4}>
+                  Logout
+               </TabPanel>
+            </Box>
+         </div>
       </div>
    )
 }
