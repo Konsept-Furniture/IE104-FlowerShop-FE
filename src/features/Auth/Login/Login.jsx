@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -15,7 +15,7 @@ import useQuery from '@/hooks/useQuery'
 
 import './Login.scss'
 import messages from '@/constants/messages'
-import { Alert } from '@mui/material'
+import { Alert, Backdrop, CircularProgress } from '@mui/material'
 import StorageKeys from '@/constants/StorageKeys'
 Login.propTypes = {}
 
@@ -24,6 +24,7 @@ function Login() {
    const history = useHistory()
    const dispatch = useDispatch()
    const params = useQuery()
+   const [loading, setLoading] = useState(false)
 
    const schema = yup.object().shape({
       username: yup.string().max(32).required(),
@@ -37,11 +38,12 @@ function Login() {
       resolver: yupResolver(schema)
    })
    const {
-      formState: { isSubmitting },
+      formState: { isSubmitting, isSubmitSuccessful },
       control
    } = form
 
    const handleSubmit = async data => {
+      setLoading(true)
       try {
          const payload = {
             username: data.username,
@@ -66,18 +68,28 @@ function Login() {
             }
             await dispatch(updateCart(updateCartPayload)).then(unwrapResult)
          }
-
-         history.push(path.home)
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error',
             preventDuplicate: true
          })
       }
+      setLoading(false)
    }
+
+   useEffect(() => {
+      if (isSubmitSuccessful) history.push(path.home)
+   }, [isSubmitSuccessful])
 
    return (
       <div className="login">
+         <Backdrop
+            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+            open={loading}
+         >
+            <CircularProgress color="inherit" />
+         </Backdrop>
+
          <div className="hello">
             <h2>Bonjour!</h2>
             <p>

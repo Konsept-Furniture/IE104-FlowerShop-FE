@@ -24,7 +24,7 @@ module.exports = {
             asyncArrow: 'always'
          }
       ],
-      'comma-dangle': ['error', 'never']
-      // 'multiline-ternary': ['error', 'never']
+      'comma-dangle': ['error', 'never'],
+      'multiline-ternary': ['error', 'never']
    }
 }

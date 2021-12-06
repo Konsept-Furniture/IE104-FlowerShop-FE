@@ -1,6 +1,6 @@
 import { path } from '@/constants/path'
 import useQuery from '@/hooks/useQuery'
-import { Box, Tab, Tabs } from '@mui/material'
+import { Backdrop, Box, CircularProgress, Tab, Tabs } from '@mui/material'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
@@ -43,19 +43,29 @@ function MyAccount(props) {
    const history = useHistory()
    const { tab } = useQuery()
    const [value, setValue] = useState(tab ? Number.parseInt(tab) : 0)
+   const [loading, setLoading] = useState(false)
 
    const handleChange = (event, newValue) => {
       setValue(newValue)
       history.push(`${path.user}?tab=${newValue}`)
    }
    const handleLogout = async e => {
+      setLoading(true)
       // e.preventDefault()
-      history.push(path.home)
       await dispatch(logout()).then(unwrapResult)
+      history.push(path.home)
+      setLoading(false)
    }
    const background = IMAGES.MyAccount
    return (
       <div className="my-account">
+         <Backdrop
+            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+            open={loading}
+         >
+            <CircularProgress color="inherit" />
+         </Backdrop>
+
          <div
             className="w-full bg-cover bg-center h-96 mb-12"
             style={{ backgroundImage: 'url(' + background + ')' }}
