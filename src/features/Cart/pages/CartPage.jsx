@@ -9,14 +9,10 @@ import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useHistory } from 'react-router-dom'
-import {
-   addPurchaseProducts,
-   createOrder,
-   getCart,
-   updateCart
-} from '../cartSlice'
+import { addPurchaseProducts, getCart, updateCart } from '../cartSlice'
 import CartItemList from '../components/CartItemList'
 import './CartPage.scss'
+import { createOrder } from '@/features/Order/orderSlice'
 
 function CartPage() {
    const { enqueueSnackbar } = useSnackbar()
@@ -90,11 +86,7 @@ function CartPage() {
                <img src={IMAGES.CartEmpty} alt="empty" />
             </div>
             <div className="md:hidden grid place-content-center">
-               <img
-                  className="w-60 h-60"
-                  src={IMAGES.CartEmpty}
-                  alt="empty"
-               />
+               <img className="w-60 h-60" src={IMAGES.CartEmpty} alt="empty" />
             </div>
             <OutlinedButton component={Link} to={path.products}>
                Shopping now

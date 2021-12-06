@@ -13,15 +13,15 @@ import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
+import { getOrder } from '../orderSlice'
 
 function OrderPage() {
    const history = useHistory()
    const { enqueueSnackbar } = useSnackbar()
    const purchaseProducts = useSelector(state => state.cart.purchaseProducts)
-   const { deliveryInfo } = useSelector(state => state.auth.profile)
+   const order = useSelector(state => state.order.current)
    // const [deliveryInfo, setDeliveryInfo] = useState({})
    const [loading, setLoading] = useState(false)
-   const [order, setOrder] = useState(null)
    const dispatch = useDispatch()
    const { orderId } = useParams()
 
@@ -80,9 +80,7 @@ function OrderPage() {
    useEffect(() => {
       ;(async () => {
          try {
-            const res = await orderApi.get(orderId)
-            console.log(res)
-            setOrder(res.data)
+            const res = await dispatch(getOrder(orderId)).then(unwrapResult)
             // Save to redux
             dispatch(addPurchaseProducts(res.data.products))
          } catch (error) {
@@ -106,54 +104,51 @@ function OrderPage() {
       )
    }
 
-   if (order?.status === 'PROCESSING' || order?.status === 'DELIVERIED') {
+   if (order?.status === 'PENDING') {
       return (
-         <Box
-            sx={{
-               pt: 20,
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center'
-            }}
-         >
-            <Typography variant="h5">
-               Your order is updated shipping information. If you want to track
-               your order, go{' '}
-               <Link
-                  to={`${path.user}?tab=1`}
-                  style={{ textDecoration: 'underline' }}
-               >
-                  HERE
-               </Link>
-            </Typography>
-         </Box>
+         <div className="konsept-container">
+            <Backdrop
+               sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
+               open={loading}
+            >
+               <CircularProgress color="inherit" />
+            </Backdrop>
+            <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
+               <Grid item lg={8}>
+                  <ShippingAddressForm onSubmit={handleSubmitShippingInfo} />
+               </Grid>
+               <Grid item lg={4}>
+                  <Box>
+                     <Typography variant="h5">Order Summary</Typography>
+
+                     <OrderSummary products={purchaseProducts} />
+                  </Box>
+               </Grid>
+            </Grid>
+         </div>
       )
    }
 
    return (
-      <div className="konsept-container">
-         <Backdrop
-            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-            open={loading}
-         >
-            <CircularProgress color="inherit" />
-         </Backdrop>
-         <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
-            <Grid item lg={8}>
-               <ShippingAddressForm
-                  defaultValues={deliveryInfo}
-                  onSubmit={handleSubmitShippingInfo}
-               />
-            </Grid>
-            <Grid item lg={4}>
-               <Box>
-                  <Typography variant="h5">Order Summary</Typography>
-
-                  <OrderSummary products={purchaseProducts} />
-               </Box>
-            </Grid>
-         </Grid>
-      </div>
+      <Box
+         sx={{
+            pt: 20,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+         }}
+      >
+         <Typography variant="h5">
+            Your order is updated shipping information. If you want to track
+            your order, go{' '}
+            <Link
+               to={`${path.user}?tab=1`}
+               style={{ textDecoration: 'underline' }}
+            >
+               HERE
+            </Link>
+         </Typography>
+      </Box>
    )
 }
 

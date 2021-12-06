@@ -1,5 +1,4 @@
 import cartApi from '@/api/cartApi'
-import orderApi from '@/api/orderApi'
 import { common } from '@/utils/common'
 import { payloadCreator } from '@/utils/helper'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
@@ -12,11 +11,6 @@ export const updateCart = createAsyncThunk(
    'cart/updateCart',
    payloadCreator(cartApi.update)
 )
-export const createOrder = createAsyncThunk(
-   'cart/createOrder',
-   payloadCreator(orderApi.create)
-)
-
 const cart = createSlice({
    name: 'cart',
    initialState: {

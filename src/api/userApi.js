@@ -5,7 +5,7 @@ const userApi = {
       const url = 'users/read/infor'
       return axiosClient.get(url)
    },
-   updateMe: (payload) => {
+   updateMe: payload => {
       const url = 'users/update/infor'
       return axiosClient.put(url, JSON.stringify(payload))
    }

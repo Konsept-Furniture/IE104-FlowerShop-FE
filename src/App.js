@@ -1,4 +1,5 @@
 import { Button, createTheme, ThemeProvider } from '@mui/material'
+import { PayPalScriptProvider } from '@paypal/react-paypal-js'
 import { SnackbarProvider } from 'notistack'
 import React, { createRef } from 'react'
 import './App.scss'
@@ -46,11 +47,21 @@ function App() {
             </Button>
          )}
       >
-         <ThemeProvider theme={theme}>
-            <Routes />
-            {/* <Loading /> */}
-            <Authorization />
-         </ThemeProvider>
+         <PayPalScriptProvider
+            options={{
+               'client-id':
+                  'AeQPKGlwzOSTo6mj9ntmlt-c53skqFU49FV45zLFd78gyB-eAl0Eq-5aQEhCzvxSiktcxnk9wxVcLcvu',
+               components: 'buttons',
+               currency: 'USD'
+            }}
+            deferLoading={true}
+         >
+            <ThemeProvider theme={theme}>
+               <Routes />
+               {/* <Loading /> */}
+               <Authorization />
+            </ThemeProvider>
+         </PayPalScriptProvider>
       </SnackbarProvider>
    )
 }
