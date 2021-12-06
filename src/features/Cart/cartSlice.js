@@ -42,7 +42,9 @@ const cart = createSlice({
          state.getting = true
       },
       [logout.fulfilled]: state => {
+         state._id = null
          state.current = []
+         state.purchaseProducts = []
       }
    }
 })
