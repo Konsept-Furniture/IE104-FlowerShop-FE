@@ -1,5 +1,7 @@
+/* eslint-disable multiline-ternary */
 import IconDeliveryTruck from '@/assets/icons/IconDeliveryTruck'
 import IconProcessing from '@/assets/icons/IconProcessing'
+import IconRefund from '@/assets/icons/IconRefund'
 import IconShoppingBag from '@/assets/icons/IconShoppingBag'
 import IconWallet from '@/assets/icons/IconWallet'
 import { OrderStatus } from '@/constants/enum'
@@ -61,7 +63,8 @@ function ColorlibStepIcon(props) {
       1: <IconShoppingBag width={30} />,
       2: <IconWallet width={30} />,
       3: <IconProcessing width={30} />,
-      4: <IconDeliveryTruck width={40} />
+      4: <IconDeliveryTruck width={40} />,
+      5: <IconRefund width={30} />
    }
 
    return (
@@ -104,7 +107,15 @@ const steps = {
    3: 'Deliveried'
 }
 function OrderTrackingStepper({ order }) {
+   console.log(
+      '🚀 ~ file: OrderTrackingStepper.jsx ~ line 111 ~ OrderTrackingStepper ~ order',
+      order
+   )
    const activeStep = OrderStatus[order.status]
+   const currentSteps = {
+      ...steps,
+      3: order.status === 'REFUNDED' ? 'Refunded' : 'Deliveried'
+   }
 
    return (
       <Stepper
@@ -112,15 +123,28 @@ function OrderTrackingStepper({ order }) {
          activeStep={activeStep}
          connector={<ColorlibConnector />}
       >
-         {Object.entries(steps).map(([key, value]) => (
+         {Object.entries(currentSteps).map(([key, value]) => (
             <Step key={key}>
-               <StepLabel StepIconComponent={ColorlibStepIcon}>
-                  {value}{' '}
+               <StepLabel
+                  StepIconComponent={ColorlibStepIcon}
+                  StepIconProps={{
+                     icon: (() => {
+                        console.log(value)
+                        if (value === 'Refunded') {
+                           return Number.parseInt(key) + 2
+                        }
+
+                        return Number.parseInt(key) + 1
+                     })()
+                  }}
+               >
+                  {value}
                   {Number.parseInt(key) === 1 && activeStep === 1 && (
                      <Link
                         to={`order/${order._id}`}
                         style={{ textDecoration: 'underline' }}
                      >
+                        {' '}
                         HERE
                      </Link>
                   )}

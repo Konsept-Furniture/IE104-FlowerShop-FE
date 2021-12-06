@@ -15,10 +15,7 @@ function AccountDetailTab() {
       setLoading(true)
       console.log(values)
       try {
-         const payload = {
-            ...values
-         }
-         const res = await dispatch(updateMe(payload)).then(unwrapResult)
+         const res = await dispatch(updateMe(values)).then(unwrapResult)
 
          enqueueSnackbar(res.message, {
             variant: 'success'

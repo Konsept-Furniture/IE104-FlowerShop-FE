@@ -1,6 +1,6 @@
 export const OrderStatus = {
-   CREATED: 0,
-   CONFIRMED: 1,
+   PENDING: 1,
    PROCESSING: 2,
-   DELIVERIED: 3
+   DELIVERIED: 3,
+   REFUNDED: 4
 }
