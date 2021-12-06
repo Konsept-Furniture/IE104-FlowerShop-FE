@@ -26,9 +26,8 @@ export default class ErrorBoundary extends React.Component {
          // You can render any custom fallback UI
          return (
             <div>
-               <Header/>
                <div className="flex flex-col items-center justify-center py-24 lg:py-12 md:px-16 px-4 mt-20">
-                  <h2 className="lg:text-4xl md:text-2xl tracking-widest font-josefins text-3xl font-bold py-2 mb-8">
+                  <h2 className="lg:text-4xl md:text-2xl tracking-widest text-red font-josefins text-3xl font-bold py-2 mb-8">
             ERROR PAGE
                   </h2>
                   <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
@@ -41,9 +40,9 @@ export default class ErrorBoundary extends React.Component {
                         alt="empty"
                      />
                   </div>
-                  <PrimaryButton component={Link} to={path.home}>
-            Back To Home
-                  </PrimaryButton>
+                  <Link to={path.home}>
+                     <PrimaryButton> Go to Homepage </PrimaryButton>
+                  </Link>
                </div>
             </div>
          )
