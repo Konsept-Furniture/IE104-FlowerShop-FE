@@ -1,3 +1,4 @@
+import { IMAGES } from '@/assets/images'
 import React from 'react'
 
 function AboutUsComment() {
@@ -29,7 +30,7 @@ function AboutUsComment() {
                            <div className="flex items-center justify-center">
                               <div className="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
                                  <img
-                                    src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.18169-9/12512709_534785683358159_7105796898860586026_n.jpg?_nc_cat=110&ccb=1-5&_nc_sid=174925&_nc_ohc=tjsAbl5cCBUAX_bHnob&_nc_ht=scontent.fsgn2-6.fna&oh=31f7209d206bbfa9ae4fc59b48f7d6ad&oe=61AE3098"
+                                    src={IMAGES.Sang}
                                     className="object-cover w-full h-full"
                                  />
                               </div>
@@ -52,7 +53,7 @@ function AboutUsComment() {
                            <div className="flex items-center justify-center">
                               <div className="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
                                  <img
-                                    src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t31.18172-8/16836447_1854818098098917_5893584736665286545_o.jpg?_nc_cat=101&ccb=1-5&_nc_sid=174925&_nc_ohc=IO9EpbeBbFwAX8aGBW_&_nc_ht=scontent.fsgn2-4.fna&oh=43c1b3358c4aa5bc83e4d3ddbeb588b3&oe=61ABF112"
+                                    src={IMAGES.Hien}
                                     className="object-cover w-full h-full"
                                  />
                               </div>
@@ -75,7 +76,7 @@ function AboutUsComment() {
                            <div className="flex items-center justify-center">
                               <div className="w-16 h-16 mr-4 overflow-hidden bg-gray-200 rounded-full">
                                  <img
-                                    src="https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/51989147_1274878772669907_7207140248663359488_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=I05cRlz1a4sAX9s8lIy&_nc_ht=scontent.fsgn2-6.fna&oh=5ddab124261a7bbbf9c3d609222048bc&oe=61AD6635"
+                                    src={IMAGES.Tuyen}
                                     className="object-cover w-full h-full"
                                  />
                               </div>

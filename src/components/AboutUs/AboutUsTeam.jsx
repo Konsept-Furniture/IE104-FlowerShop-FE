@@ -1,7 +1,7 @@
 import React from 'react'
 import FacebookIcon from '@/assets/icons/FacebookIcon'
 import GithubIcon from '@/assets/icons/GithubIcon'
-
+import { IMAGES } from '@/assets/images'
 function AboutUsTeam() {
    return (
       <div className="konsept-container">
@@ -22,7 +22,7 @@ function AboutUsTeam() {
                            <img
                               className="relative z-20 w-full rounded-full"
                               // src="https://i.imgur.com/VKd7Duy.jpg"
-                              src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.6435-9/135121865_1592249227645949_2183249827713725508_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=QAy9aT5iAjEAX-8hSNJ&tn=fzNmh_cihSsodmn2&_nc_ht=scontent.fsgn2-2.fna&oh=64944ffdc94068ef00e23788871114b8&oe=61AC6201"
+                              src={IMAGES.Nhien}
                            />
                         </div>
                         <div className="mt-3 space-y-2 text-center">
@@ -53,7 +53,7 @@ function AboutUsTeam() {
                            <div className="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-green-50" />
                            <img
                               className="relative z-20 w-full rounded-full"
-                              src="https://i.imgur.com/YcMPbMo.jpg"
+                              src={IMAGES.Khoa}
                            />
                         </div>
                         <div className="mt-3 space-y-2 text-center">
@@ -84,7 +84,7 @@ function AboutUsTeam() {
                            <div className="absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none bg-pink-50" />
                            <img
                               className="relative z-20 w-full rounded-full"
-                              src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-9/134475129_1749506711893480_7264643796702855515_n.jpg?_nc_cat=101&ccb=1-5&_nc_sid=174925&_nc_ohc=kXP1oFCXFuwAX9Aac41&tn=fzNmh_cihSsodmn2&_nc_ht=scontent.fsgn2-4.fna&oh=c8969fab956982434804cdc906694bee&oe=61AD759A"
+                              src={IMAGES.Binh}
                            />
                         </div>
                         <div className="mt-3 space-y-2 text-center">
