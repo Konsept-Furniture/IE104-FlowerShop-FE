@@ -137,6 +137,7 @@ function OrderTrackingStepper({ order }) {
                         return Number.parseInt(key) + 1
                      })()
                   }}
+                  error={Number.parseInt(key) === 1 && activeStep === 1}
                >
                   {value}
                   {Number.parseInt(key) === 1 && activeStep === 1 && (
