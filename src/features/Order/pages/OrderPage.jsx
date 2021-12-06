@@ -85,7 +85,10 @@ function OrderPage() {
                // Save to redux
                dispatch(addPurchaseProducts(res.data.products))
             } catch (error) {
-               console.log('error to get order', error)
+               enqueueSnackbar(error.message, {
+                  variant: 'error'
+               })
+               history.push(`${path.user}?tab=2`)
             }
          })()
       }

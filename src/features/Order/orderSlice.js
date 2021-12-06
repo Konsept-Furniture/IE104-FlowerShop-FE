@@ -23,14 +23,12 @@ const order = createSlice({
    },
    extraReducers: {
       [getOrder.fulfilled]: (state, action) => {
-         console.log('get order', action.payload.data)
          state.current = action.payload.data
       },
       [getOrder.rejected]: (state, action) => {
-         console.log('error to get order', action.payload.data)
+         // TODO: redirect
       },
       [createOrder.fulfilled]: (state, action) => {
-         console.log('create order', action.payload.data)
          state.current = action.payload.data
       }
    }
