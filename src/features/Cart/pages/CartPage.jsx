@@ -1,5 +1,6 @@
 // import OrderStep from '@/components/OrderStep/OrderStep'
 import { OutlinedButton } from '@/components/button/Button'
+import { IMAGES } from '@/assets/images'
 import { path } from '@/constants/path'
 import { CircularProgress, Grid } from '@mui/material'
 import { Box } from '@mui/system'
@@ -86,12 +87,12 @@ function CartPage() {
                Your cart is empty
             </h2>
             <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
-               <img src="https://i.imgur.com/dCYujyC.png" alt="epmty" />
+               <img src={IMAGES.CartEmpty} alt="empty" />
             </div>
             <div className="md:hidden grid place-content-center">
                <img
                   className="w-60 h-60"
-                  src="https://i.imgur.com/dCYujyC.png"
+                  src={IMAGES.CartEmpty}
                   alt="empty"
                />
             </div>

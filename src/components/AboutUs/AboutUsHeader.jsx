@@ -1,10 +1,11 @@
+import { IMAGES } from '@/assets/images'
 import React from 'react'
 
 AboutUsHeader.propTypes = {
 }
 
 function AboutUsHeader(props) {
-   const background = 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/About-us_title.jpg'
+   const background = IMAGES.AboutUs
    return (
       <div className="flex">
          <div className="w-full bg-cover bg-center h-96" style ={{ backgroundImage: 'url(' + background + ')' } }>

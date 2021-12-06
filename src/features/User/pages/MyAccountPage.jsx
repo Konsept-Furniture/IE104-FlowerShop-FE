@@ -7,6 +7,7 @@ import { useHistory } from 'react-router'
 import ChangePasswordForm from '../components/ChangePasswordForm'
 import AccountDetailTab from '../components/tabs/AccountDetailTab'
 import OrdersTrackingTab from '../components/tabs/OrdersTrackingTab'
+import { IMAGES } from '@/assets/images'
 import './MyAccountPage.scss'
 
 TabPanel.propTypes = {
@@ -43,7 +44,7 @@ function MyAccount(props) {
       setValue(newValue)
       history.push(`${path.user}?tab=${newValue}`)
    }
-   const background = 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/account_.jpg'
+   const background = IMAGES.MyAccount
    return (
       <div className="my-account">
          <div className="w-full bg-cover bg-center h-96 mb-12" style ={{ backgroundImage: 'url(' + background + ')' } }>

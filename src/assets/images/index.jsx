@@ -1,4 +1,6 @@
 export const IMAGES = {
-  ComingSoon: require('./coming-soon.jpg').default,
-  AuthCover: require('./auth-cover.jpg').default
+   AuthCover: require('./auth-cover.jpg').default,
+   CartEmpty: require('./empty.png').default,
+   MyAccount: require('./my-account.jpg').default,
+   AboutUs: require('./about-us.jpg').default
 }
