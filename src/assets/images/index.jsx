@@ -8,5 +8,6 @@ export const IMAGES = {
    Binh: require('./binh.jpg').default,
    Sang: require('./sang.jpg').default,
    Hien: require('./hien.jpg').default,
-   Tuyen: require('./tuyen.jpg').default
+   Tuyen: require('./tuyen.jpg').default,
+   EmptySvg: require('./empty.svg').default
 }

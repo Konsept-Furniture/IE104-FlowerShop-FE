@@ -1,6 +1,5 @@
 // import OrderStep from '@/components/OrderStep/OrderStep'
 import { OutlinedButton } from '@/components/button/Button'
-import { IMAGES } from '@/assets/images'
 import { path } from '@/constants/path'
 import { CircularProgress, Grid } from '@mui/material'
 import { Box } from '@mui/system'
@@ -13,6 +12,7 @@ import { addPurchaseProducts, getCart, updateCart } from '../cartSlice'
 import CartItemList from '../components/CartItemList'
 import './CartPage.scss'
 import { createOrder } from '@/features/Order/orderSlice'
+import ShoppingIcon from '@/assets/icons/ShoppingIcon'
 
 function CartPage() {
    const { enqueueSnackbar } = useSnackbar()
@@ -83,10 +83,10 @@ function CartPage() {
                Your cart is empty
             </h2>
             <div className="hidden md:grid place-content-center lg:w-1/3 w-1/2">
-               <img src={IMAGES.CartEmpty} alt="empty" />
+               <ShoppingIcon />
             </div>
             <div className="md:hidden grid place-content-center">
-               <img className="w-60 h-60" src={IMAGES.CartEmpty} alt="empty" />
+               <ShoppingIcon />
             </div>
             <OutlinedButton component={Link} to={path.products}>
                Shopping now
