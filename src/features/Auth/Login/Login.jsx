@@ -1,6 +1,6 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
-import { getCart } from '@/features/Cart/cartSlice'
+import { getCart, updateCart } from '@/features/Cart/cartSlice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import LoadingButton from '@mui/lab/LoadingButton'
 import { unwrapResult } from '@reduxjs/toolkit'
@@ -16,6 +16,7 @@ import useQuery from '@/hooks/useQuery'
 import './Login.scss'
 import messages from '@/constants/messages'
 import { Alert } from '@mui/material'
+import StorageKeys from '@/constants/StorageKeys'
 Login.propTypes = {}
 
 function Login() {
@@ -41,22 +42,32 @@ function Login() {
    } = form
 
    const handleSubmit = async data => {
-      const payload = {
-         username: data.username,
-         password: data.password
-      }
       try {
-         const res = await dispatch(login(payload))
-         const data = unwrapResult(res)
-         enqueueSnackbar(data.message, {
+         const payload = {
+            username: data.username,
+            password: data.password
+         }
+         const res = await dispatch(login(payload)).then(unwrapResult)
+         enqueueSnackbar(res.message, {
             variant: 'success'
          })
          // get cart
-         await dispatch(getCart()).then(unwrapResult)
+         const { data: cart } = await dispatch(getCart()).then(unwrapResult)
+
+         const productsInLocalCart = JSON.parse(
+            localStorage.getItem(StorageKeys.cart)
+         )
+         if (productsInLocalCart.length > 0) {
+            const updateCartPayload = {
+               cartId: cart._id,
+               payload: {
+                  products: productsInLocalCart
+               }
+            }
+            await dispatch(updateCart(updateCartPayload)).then(unwrapResult)
+         }
 
          history.push(path.home)
-         const user = JSON.parse(localStorage.getItem('user'))
-         console.log(user.username)
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error',
