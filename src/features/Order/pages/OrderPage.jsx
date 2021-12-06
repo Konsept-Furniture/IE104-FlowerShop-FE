@@ -78,15 +78,17 @@ function OrderPage() {
    }
 
    useEffect(() => {
-      ;(async () => {
-         try {
-            const res = await dispatch(getOrder(orderId)).then(unwrapResult)
-            // Save to redux
-            dispatch(addPurchaseProducts(res.data.products))
-         } catch (error) {
-            console.log('error to get order', error)
-         }
-      })()
+      if (!order) {
+         ;(async () => {
+            try {
+               const res = await dispatch(getOrder(orderId)).then(unwrapResult)
+               // Save to redux
+               dispatch(addPurchaseProducts(res.data.products))
+            } catch (error) {
+               console.log('error to get order', error)
+            }
+         })()
+      }
    }, [])
 
    if (purchaseProducts.length === 0) {

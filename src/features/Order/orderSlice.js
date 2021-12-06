@@ -28,6 +28,10 @@ const order = createSlice({
       },
       [getOrder.rejected]: (state, action) => {
          console.log('error to get order', action.payload.data)
+      },
+      [createOrder.fulfilled]: (state, action) => {
+         console.log('create order', action.payload.data)
+         state.current = action.payload.data
       }
    }
 })

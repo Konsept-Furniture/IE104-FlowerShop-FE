@@ -41,6 +41,7 @@ function CartPage() {
       setCreatingOrder(true)
       // Save to redux
       dispatch(addPurchaseProducts(selectedProducts))
+
       try {
          const payload = {
             products: selectedProducts.map(item => ({
