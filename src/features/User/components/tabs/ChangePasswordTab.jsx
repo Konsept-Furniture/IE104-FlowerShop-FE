@@ -1,21 +1,35 @@
+import { changePassword } from '@/features/Auth/authSlice'
 import { Backdrop, CircularProgress } from '@mui/material'
+import { unwrapResult } from '@reduxjs/toolkit'
+import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import ChangePasswordForm from '../ChangePasswordForm'
 
-ChangePasswordTab.propTypes = {}
-
-function ChangePasswordTab(props) {
+function ChangePasswordTab() {
+   const { enqueueSnackbar } = useSnackbar()
+   const dispatch = useDispatch()
    const [loading, setLoading] = useState(false)
 
    const handleChangePassword = async values => {
       setLoading(true)
       try {
-         console.log(values)
+         const res = await dispatch(changePassword(values)).then(unwrapResult)
+         console.log(
+            '🚀 ~ file: ChangePasswordTab.jsx ~ line 20 ~ ChangePasswordTab ~ res',
+            res
+         )
+         enqueueSnackbar(res.message, {
+            variant: 'success'
+         })
       } catch (error) {
-         console.log('error to change password', error)
+         enqueueSnackbar(error.message, {
+            variant: 'error'
+         })
       }
       setLoading(false)
    }
+
    return (
       <>
          <Backdrop
@@ -24,7 +38,7 @@ function ChangePasswordTab(props) {
          >
             <CircularProgress color="inherit" />
          </Backdrop>
-         <ChangePasswordForm onChangePasswordClick={handleChangePassword} />
+         <ChangePasswordForm onChangePassword={handleChangePassword} />
       </>
    )
 }

@@ -1,5 +1,6 @@
 import PrimaryButton from '@/components/button/Button'
 import TextInputField from '@/components/form-controls/TextInputField'
+import authApi from '@/features/Auth/authApi'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
@@ -9,14 +10,30 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 ChangePasswordForm.propTypes = {
-   onChangePasswordClick: PropTypes.func
+   onChangePassword: PropTypes.func.isRequired
 }
 const schema = yup.object().shape({
-   oldPassword: yup.string().max(255).label('Old password').required(),
-   newPassword: yup.string().min(8).max(255).label('New password').required(),
-   confirmNewPassword: yup
+   oldPassword: yup
       .string()
-      .min(8)
+      .max(255)
+      .label('Old password')
+      .required()
+      .test(
+         'check-old-password-is-correct',
+         'Old password is not correct',
+         async value => {
+            try {
+               await authApi.changePassword({ oldPassword: value })
+               return true
+            } catch (error) {
+               return false
+            }
+         }
+      ),
+   newPassword: yup.string().min(4).max(255).label('New password').required(),
+   confirmPassword: yup
+      .string()
+      .min(4)
       .max(255)
       .label('Confirm new password')
       .oneOf(
@@ -26,21 +43,31 @@ const schema = yup.object().shape({
       .required()
 })
 
-function ChangePasswordForm({ onChangePasswordClick }) {
+function ChangePasswordForm({ onChangePassword }) {
    const form = useForm({
       defaultValues: {
          oldPassword: '',
          newPassword: '',
-         confirmNewPassword: ''
+         confirmPassword: ''
       },
-      resolver: yupResolver(schema)
+      resolver: yupResolver(schema),
+      reValidateMode: 'onBlur'
    })
-   const { control, handleSubmit } = form
+   const {
+      control,
+      handleSubmit,
+      reset,
+      formState: { isSubmitSuccessful }
+   } = form
 
    const handleChangePassword = async values => {
       console.log(values)
-      if (onChangePasswordClick) await onChangePasswordClick(values)
+      if (onChangePassword) {
+         await onChangePassword(values)
+         if (isSubmitSuccessful) reset()
+      }
    }
+
    return (
       <form onSubmit={handleSubmit(handleChangePassword)}>
          <Typography variant="h4">Change password</Typography>
@@ -59,7 +86,7 @@ function ChangePasswordForm({ onChangePasswordClick }) {
          />
          <TextInputField
             label="Confirm new password"
-            name="confirmNewPassword"
+            name="confirmPassword"
             control={control}
             type="password"
          />

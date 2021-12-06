@@ -15,13 +15,17 @@ export const login = createAsyncThunk(
    'auth/login',
    payloadCreator(authApi.login)
 )
-// export const logout = createAsyncThunk(
-//    'auth/logout',
-//    payloadCreator(authApi.logout)
-// )
+export const logout = createAsyncThunk(
+   'auth/logout',
+   payloadCreator(authApi.logout)
+)
 export const getMe = createAsyncThunk(
    'auth/getMe',
    payloadCreator(userApi.getMe)
+)
+export const changePassword = createAsyncThunk(
+   'auth/changePassword',
+   payloadCreator(authApi.changePassword)
 )
 export const updateMe = createAsyncThunk(
    'auth/updateMe',
@@ -58,7 +62,11 @@ const auth = createSlice({
          state.profile = user
          common.saveCurrentUser(JSON.stringify(user))
       },
-      // [logout.fulfilled]: handleUnauth,
+      [logout.fulfilled]: handleUnauth,
+      [changePassword.fulfilled]: (state, action) => {
+         state.profile = action.payload.data
+         localStorage.setItem(StorageKeys.user, JSON.stringify(state.profile))
+      },
       [updateMe.fulfilled]: (state, action) => {
          state.profile = action.payload.data
          localStorage.setItem(StorageKeys.user, JSON.stringify(state.profile))
