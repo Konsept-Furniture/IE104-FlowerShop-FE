@@ -2,6 +2,7 @@ import cartApi from '@/api/cartApi'
 import { common } from '@/utils/common'
 import { payloadCreator } from '@/utils/helper'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { logout } from '../Auth/authSlice'
 
 export const getCart = createAsyncThunk(
    'cart/getCart',
@@ -39,11 +40,10 @@ const cart = createSlice({
       },
       [getCart.pending]: (state, action) => {
          state.getting = true
+      },
+      [logout.fulfilled]: state => {
+         state.current = []
       }
-      // TODO: reset cart after logout
-      // [logout.fulfilled]: state => {
-      //   state.current = []
-      // }
    }
 })
 
