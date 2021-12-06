@@ -23,6 +23,10 @@ export const getMe = createAsyncThunk(
    'auth/getMe',
    payloadCreator(userApi.getMe)
 )
+export const updateMe = createAsyncThunk(
+   'auth/updateMe',
+   payloadCreator(userApi.updateMe)
+)
 
 const handleAuthFulfilled = (state, action) => {
    const { user, accessToken } = action.payload.data
@@ -53,12 +57,12 @@ const auth = createSlice({
          const user = action.payload.data
          state.profile = user
          common.saveCurrentUser(JSON.stringify(user))
-      }
+      },
       // [logout.fulfilled]: handleUnauth,
-      // [updateMe.fulfilled]: (state, action) => {
-      //    state.profile = action.payload.data
-      //    localStorage.setItem(LocalStorage.user, JSON.stringify(state.profile))
-      // }
+      [updateMe.fulfilled]: (state, action) => {
+         state.profile = action.payload.data
+         localStorage.setItem(StorageKeys.user, JSON.stringify(state.profile))
+      }
    }
 })
 

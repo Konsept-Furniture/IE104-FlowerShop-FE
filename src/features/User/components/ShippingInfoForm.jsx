@@ -39,7 +39,7 @@ const schema = yup.object().shape({
 })
 
 function ShippingInfoForm({ onSubmit }) {
-   const user = useSelector(state => state.auth.profile)
+   const { deliveryInfo } = useSelector(state => state.auth.profile)
    const [provinceList, setProvinceList] = useState([])
    const [districtList, setDistrictList] = useState([])
    const [wardList, setWardList] = useState([])
@@ -61,10 +61,11 @@ function ShippingInfoForm({ onSubmit }) {
    const { control, handleSubmit, reset } = form
 
    useEffect(() => {
-      if (user && user.deliveryInfo) {
-         reset(user.deliveryInfo)
+      if (deliveryInfo) {
+         reset(deliveryInfo)
       }
-   }, [user])
+   }, [deliveryInfo])
+
    useEffect(() => {
       ;(async () => {
          try {
@@ -82,9 +83,9 @@ function ShippingInfoForm({ onSubmit }) {
    }, [])
 
    useEffect(() => {
-      if (user && user.deliveryInfo) {
+      if (deliveryInfo) {
          ;(async () => {
-            const province = user.deliveryInfo.address.province
+            const province = deliveryInfo.address.province
             if (province) {
                try {
                   const res = await provinceApi.getDistricts(province)
@@ -100,7 +101,7 @@ function ShippingInfoForm({ onSubmit }) {
             }
          })()
          ;(async () => {
-            const district = user.deliveryInfo.address.district
+            const district = deliveryInfo.address.district
             if (district) {
                try {
                   const res = await provinceApi.getWards(district)
@@ -116,7 +117,7 @@ function ShippingInfoForm({ onSubmit }) {
             }
          })()
       }
-   }, [user])
+   }, [deliveryInfo])
 
    const handleChangeProvince = async e => {
       try {

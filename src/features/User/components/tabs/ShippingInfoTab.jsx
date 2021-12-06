@@ -1,12 +1,15 @@
-import userApi from '@/api/userApi'
+import { updateMe } from '@/features/Auth/authSlice'
+import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import ShippingInfoForm from '../ShippingInfoForm'
 
 ShippingInfoTab.propTypes = {}
 
 function ShippingInfoTab(props) {
    const { enqueueSnackbar } = useSnackbar()
+   const dispatch = useDispatch()
 
    const handleSave = async values => {
       console.log(values)
@@ -14,11 +17,7 @@ function ShippingInfoTab(props) {
          const payload = {
             deliveryInfo: values
          }
-         const res = await userApi.updateMe(payload)
-         console.log(
-            '🚀 ~ file: ShippingInfoTab.jsx ~ line 18 ~ ShippingInfoTab ~ res',
-            res
-         )
+         const res = await dispatch(updateMe(payload)).then(unwrapResult)
          enqueueSnackbar(res.message, {
             variant: 'success'
          })

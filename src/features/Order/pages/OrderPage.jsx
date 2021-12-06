@@ -1,10 +1,11 @@
 /* eslint-disable multiline-ternary */
 import orderApi from '@/api/orderApi'
-import userApi from '@/api/userApi'
 import { path } from '@/constants/path'
+import { updateMe } from '@/features/Auth/authSlice'
 import { addPurchaseProducts } from '@/features/Cart/cartSlice'
 import { Backdrop, CircularProgress, Grid, Typography } from '@mui/material'
 import { Box } from '@mui/system'
+import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -69,7 +70,7 @@ function OrderPage() {
          const payload = {
             deliveryInfo
          }
-         const res = await userApi.updateMe(payload)
+         const res = await dispatch(updateMe(payload)).then(unwrapResult)
          console.log(res)
       } catch (error) {
          console.log('error to save shipping info for user', error)

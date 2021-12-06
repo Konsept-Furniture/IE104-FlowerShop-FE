@@ -1,5 +1,4 @@
-import userApi from '@/api/userApi'
-import { getMe } from '@/features/Auth/authSlice'
+import { updateMe } from '@/features/Auth/authSlice'
 import { Backdrop, CircularProgress } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
@@ -19,9 +18,7 @@ function AccountDetailTab() {
          const payload = {
             ...values
          }
-         const res = await userApi.updateMe(payload)
-         console.log(res)
-         await dispatch(getMe()).then(unwrapResult)
+         const res = await dispatch(updateMe(payload)).then(unwrapResult)
 
          enqueueSnackbar(res.message, {
             variant: 'success'
