@@ -4,12 +4,15 @@ import { Box, Tab, Tabs } from '@mui/material'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
-import ChangePasswordForm from '../components/ChangePasswordForm'
 import AccountDetailTab from '../components/tabs/AccountDetailTab'
 import OrdersTrackingTab from '../components/tabs/OrdersTrackingTab'
 import ShippingInfoTab from '../components/tabs/ShippingInfoTab'
 import { IMAGES } from '@/assets/images'
 import './MyAccountPage.scss'
+import ChangePasswordTab from '../components/tabs/ChangePasswordTab'
+import { useDispatch } from 'react-redux'
+import { logout } from '@/features/Auth/authSlice'
+import { unwrapResult } from '@reduxjs/toolkit'
 
 TabPanel.propTypes = {
    children: PropTypes.node,
@@ -36,6 +39,7 @@ function TabPanel(props) {
 MyAccount.propTypes = {}
 
 function MyAccount(props) {
+   const dispatch = useDispatch()
    const history = useHistory()
    const { tab } = useQuery()
    const [value, setValue] = useState(tab ? Number.parseInt(tab) : 0)
@@ -43,6 +47,11 @@ function MyAccount(props) {
    const handleChange = (event, newValue) => {
       setValue(newValue)
       history.push(`${path.user}?tab=${newValue}`)
+   }
+   const handleLogout = async e => {
+      // e.preventDefault()
+      history.push(path.home)
+      await dispatch(logout()).then(unwrapResult)
    }
    const background = IMAGES.MyAccount
    return (
@@ -81,7 +90,12 @@ function MyAccount(props) {
                   <Tab label="Shipping Information" {...a11yProps(1)} />
                   <Tab label="Orders" {...a11yProps(2)} />
                   <Tab label="Change password" {...a11yProps(3)} />
-                  <Tab label="Logout" {...a11yProps(4)} />
+                  <Tab
+                     // component="a"
+                     onClick={handleLogout}
+                     label="Logout"
+                     {...a11yProps(4)}
+                  />
                </Tabs>
                <TabPanel value={value} index={0}>
                   <AccountDetailTab />
@@ -93,11 +107,12 @@ function MyAccount(props) {
                   <OrdersTrackingTab />
                </TabPanel>
                <TabPanel value={value} index={3}>
-                  <ChangePasswordForm />
+                  <ChangePasswordTab />
                </TabPanel>
-               <TabPanel value={value} index={4}>
-                  Logout
-               </TabPanel>
+
+               {/* <TabPanel value={value} index={4} onClick={handleLogout}>
+                  Logou
+               </TabPanel> */}
             </Box>
          </div>
       </div>

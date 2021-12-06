@@ -1,10 +1,18 @@
 import axiosClient from '@/api/axiosCilent'
 const authApi = {
-   login: (data) => {
+   login: data => {
       const url = 'auth/login'
       return axiosClient.post(url, data)
    },
-   register: (data) => {
+   logout: () => {
+      const url = 'auth/logout'
+      return axiosClient.get(url)
+   },
+   changePassword: payload => {
+      const url = 'auth/change-password'
+      return axiosClient.put(url, JSON.stringify(payload))
+   },
+   register: data => {
       const url = 'auth/register'
       return axiosClient.post(url, data)
    },
