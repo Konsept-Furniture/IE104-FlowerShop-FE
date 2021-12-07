@@ -176,7 +176,7 @@ function ProductListPage() {
             ) : (
                <Box sx={{ mt: 5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   <Typography variant="h5">
-                     No product found. Please try with new filters.
+                     No product found. Please try again with new filters.
                   </Typography>
                </Box>
             )}
