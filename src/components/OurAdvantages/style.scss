@@ -1,0 +1,51 @@
+@use '@/scss/breakpoints' as *;
+
+#our-advantages {
+   margin-top: 100px;
+   margin-bottom: 100px;
+}
+.advantage {
+   &__container {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: 'Poppins';
+   }
+   &__item {
+      margin-top: 30px;
+      width: 25%;
+      display: flex;
+      &-icon {
+         width: 50px;
+         margin-right: 19px;
+      }
+      &-content {
+         padding-top: 10px;
+         h4 {
+            font-family: 'Josefin Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.1rem;
+         }
+         a {
+            font-family: 'EB Garamond', serif;
+            font-weight: 400;
+            font-size: 17px;
+            line-height: 17px;
+            font-style: italic;
+            text-decoration: underline;
+         }
+      }
+   }
+
+   @include laptop {
+      &__item {
+         width: 50%;
+      }
+   }
+   @include mobile {
+      &__item {
+         width: 100%;
+      }
+   }
+}
