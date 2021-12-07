@@ -31,8 +31,7 @@ function OrderSummary({ products }) {
             spacing={2}
             divider={<Divider orientation="horizontal" flexItem />}
          >
-            {products.length > 0
-               ? products.map((product, idx) => (
+            {products.length > 0 ? products.map((product, idx) => (
                     <div key={idx} className="product-card">
                        <div className="product-card__image">
                           <img width={150} src={product.img} alt="" />
@@ -44,8 +43,7 @@ function OrderSummary({ products }) {
                           </Typography>
                        </div>
                     </div>
-                 ))
-               : null}
+                 )) : null}
          </Stack>
 
          {/* <Box>discount</Box> */}
