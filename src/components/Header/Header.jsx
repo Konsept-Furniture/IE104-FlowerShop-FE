@@ -80,11 +80,8 @@ function Header() {
                   <div className="header__widget-content">
                      <span></span>
                      <IconButton aria-label="cart">
-                        <StyledBadge badgeContent={cart.current.length} color="black">
-                           <IconUser />
-                           {/* <IconCart /> */}
-                           <span className="ml-1 hidden">Login/Register</span>
-                        </StyledBadge>
+                        <IconUser />
+                        <span className="ml-1 hidden">Login/Register</span>
                      </IconButton>
                   </div>
                </div>
