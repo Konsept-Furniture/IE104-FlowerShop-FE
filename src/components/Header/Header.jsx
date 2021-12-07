@@ -2,7 +2,7 @@ import IconBurger from '@/assets/icons/IconBurger'
 import IconCart from '@/assets/icons/IconCart'
 import IconUser from '@/assets/icons/IconUser'
 import { path } from '@/constants/path'
-import { IconButton } from '@mui/material'
+import { IconButton, Tooltip } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink, useHistory } from 'react-router-dom'
@@ -78,11 +78,12 @@ function Header() {
                >
                   <p className="cursor-pointer mr-1">{currentUser ? currentUser.username : ''}</p>
                   <div className="header__widget-content">
-                     <span></span>
-                     <IconButton aria-label="cart">
-                        <IconUser />
-                        <span className="ml-1 hidden">Login/Register</span>
-                     </IconButton>
+                     <Tooltip title="User">
+                        <IconButton aria-label="user">
+                           <IconUser />
+                           <span className="ml-1 hidden">Login/Register</span>
+                        </IconButton>
+                     </Tooltip>
                   </div>
                </div>
                <div
@@ -92,11 +93,13 @@ function Header() {
                   }}
                >
                   <div className="header__widget-content">
-                     <IconButton aria-label="cart">
-                        <StyledBadge badgeContent={cart.current.length} color="black">
-                           <IconCart />
-                        </StyledBadge>
-                     </IconButton>
+                     <Tooltip title="Cart">
+                        <IconButton aria-label="cart">
+                           <StyledBadge badgeContent={cart.current.length} color="black">
+                              <IconCart />
+                           </StyledBadge>
+                        </IconButton>
+                     </Tooltip>
                   </div>
                </div>
                <div className="header__widget h-full">

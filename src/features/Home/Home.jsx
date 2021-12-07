@@ -1,9 +1,8 @@
-import React from 'react'
 import HeroSlider from '@/components/HeroSlider/HeroSlider'
-import CoverImageList from './components/CoverImageList'
-import AboutUsLogo from '@/components/AboutUs/AboutUsLogo'
 import OurAdvantages from '@/components/OurAdvantages'
-import ContactForm from '../ContactForm/ContactForm'
+import React from 'react'
+import CoverImageList from './components/CoverImageList'
+import LastestItems from './components/LastestItems'
 
 Home.propTypes = {}
 
@@ -11,6 +10,7 @@ function Home() {
    return (
       <div>
          <HeroSlider />
+         <LastestItems />
          <OurAdvantages />
          <CoverImageList />
          {/* <AboutUsLogo /> */}
