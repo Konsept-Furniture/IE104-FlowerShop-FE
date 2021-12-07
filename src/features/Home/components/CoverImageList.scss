@@ -1,38 +1,30 @@
+@use '@/scss/breakpoints' as *;
 
-.container-cover{
-    box-sizing: border-box;
+.container-cover {
+   box-sizing: border-box;
 }
 
-.cover-image-list_item_1,
-.cover-image-list_item_2,
-.cover-image-list_item_3,
-.cover-image-list_item_4,
-.cover-image-list_item_5,
-.cover-image-list_item_6{
-    float: left;
-    width: 16.65%;
-    padding: 5px;
+.cover-image-list_item {
+   float: left;
+   width: 16.65%;
+   padding: 5px;
 }
 
-.cover-image-list::after{
-    content: "";
-    display: table;
-    clear: both;
+.cover-image-list::after {
+   content: '';
+   display: table;
+   clear: both;
 }
 
-.cover-img{
-    display: block;
+.cover-img {
+   display: block;
 }
 
-.cover-image-list_item_1:hover,
-.cover-image-list_item_2:hover,
-.cover-image-list_item_3:hover,
-.cover-image-list_item_4:hover,
-.cover-image-list_item_5:hover,
-.cover-image-list_item_6:hover {
-    opacity: 0.8;
+.cover-image-list_item:hover {
+   opacity: 0.8;
 }
-
-
-
-  
+@include tablet {
+   .cover-image-list_item {
+      width: 33.33%;
+   }
+} ;

@@ -4,11 +4,9 @@ import CoverImageList from './components/CoverImageList'
 import AboutUsLogo from '@/components/AboutUs/AboutUsLogo'
 import ContactForm from '../ContactForm/ContactForm'
 
-Home.propTypes = {
+Home.propTypes = {}
 
-}
-
-function Home(props) {
+function Home() {
    return (
       <div>
          <HeroSlider />
