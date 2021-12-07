@@ -1,10 +1,11 @@
 import TextInputField from '@/components/form-controls/TextInputField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Backdrop, CircularProgress } from '@mui/material'
 import Button from '@mui/material/Button'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
@@ -14,22 +15,24 @@ import './Register.scss'
 
 Register.propTypes = {}
 
+const schema = yup.object().shape({
+   email: yup.string().email().max(256).required(),
+   username: yup.string().max(256).required(),
+   password: yup.string().max(256).min(4).required(),
+   confirm_password: yup
+      .string()
+      .max(256)
+      .min(4)
+      .required()
+      .oneOf([yup.ref('password'), null], 'Passwords must match')
+})
+
 function Register() {
    const { enqueueSnackbar } = useSnackbar()
    const history = useHistory()
    const dispatch = useDispatch()
+   const [loading, setLoading] = useState(false)
 
-   const schema = yup.object().shape({
-      email: yup.string().email().max(256).required(),
-      username: yup.string().max(256).required(),
-      password: yup.string().max(256).min(4).required(),
-      confirm_password: yup
-         .string()
-         .max(256)
-         .min(4)
-         .required()
-         .oneOf([yup.ref('password'), null], 'Passwords must match')
-   })
    const form = useForm({
       defaultValues: {
          email: '',
@@ -45,6 +48,7 @@ function Register() {
    } = form
 
    const handleSubmit = async data => {
+      setLoading(true)
       console.log(data, isSubmitting)
       try {
          const payload = {
@@ -54,24 +58,25 @@ function Register() {
          }
          await dispatch(register(payload)).then(unwrapResult)
          history.push({
-            pathname: path.home,
-            search: `?username=${data.username}`
+            pathname: path.login,
+            search: `?username=${data.username}&message_code=LOGIN_NOW`
          })
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error'
          })
       }
+      setLoading(false)
    }
 
    return (
       <div className="login">
+         <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={loading}>
+            <CircularProgress color="inherit" />
+         </Backdrop>
          <div className="hello">
             <h2>Bonjour!</h2>
-            <p>
-               To connect to your account, enter your email address and your
-               password{' '}
-            </p>
+            <p>To connect to your account, enter your email address and your password </p>
          </div>
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
@@ -121,12 +126,7 @@ function Register() {
                </a>
             </p>
 
-            <Button
-               fullWidth
-               variant="contained"
-               type="submit"
-               className="btn--submit"
-            >
+            <Button fullWidth variant="contained" type="submit" className="btn--submit">
                Sign Up
             </Button>
          </form>

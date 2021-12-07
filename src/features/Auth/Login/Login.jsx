@@ -19,6 +19,11 @@ import { Alert, Backdrop, CircularProgress } from '@mui/material'
 import StorageKeys from '@/constants/StorageKeys'
 Login.propTypes = {}
 
+const schema = yup.object().shape({
+   username: yup.string().max(32).required(),
+   password: yup.string().max(32).min(4).required()
+})
+
 function Login() {
    const { enqueueSnackbar } = useSnackbar()
    const history = useHistory()
@@ -26,10 +31,6 @@ function Login() {
    const params = useQuery()
    const [loading, setLoading] = useState(false)
 
-   const schema = yup.object().shape({
-      username: yup.string().max(32).required(),
-      password: yup.string().max(32).min(4).required()
-   })
    const form = useForm({
       defaultValues: {
          username: params.username || '',
@@ -56,9 +57,7 @@ function Login() {
          // get cart
          const { data: cart } = await dispatch(getCart()).then(unwrapResult)
 
-         const productsInLocalCart = JSON.parse(
-            localStorage.getItem(StorageKeys.cart)
-         )
+         const productsInLocalCart = JSON.parse(localStorage.getItem(StorageKeys.cart))
          if (productsInLocalCart.length > 0) {
             const updateCartPayload = {
                cartId: cart._id,
@@ -83,23 +82,19 @@ function Login() {
 
    return (
       <div className="login">
-         <Backdrop
-            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-            open={loading}
-         >
+         <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={loading}>
             <CircularProgress color="inherit" />
          </Backdrop>
 
          <div className="hello">
             <h2>Bonjour!</h2>
-            <p>
-               To connect to your account, enter your email address and
-               password.
-            </p>
+            <p>To connect to your account, enter your email address and password.</p>
          </div>
 
          {params.message_code && (
-            <Alert severity="warning">{messages[params.message_code]}</Alert>
+            <Alert severity={params.message_code === 'LOGIN_NOW' ? 'success' : 'warning'}>
+               {messages[params.message_code]}
+            </Alert>
          )}
 
          <form onSubmit={form.handleSubmit(handleSubmit)}>
