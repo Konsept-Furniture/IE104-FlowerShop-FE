@@ -10,10 +10,10 @@ ProductList.propTypes = {
 
 function ProductList({ data, onAddCart }) {
    return (
-      <Grid container>
+      <Grid container spacing={2}>
          {data.map(product => (
             <Grid item key={product._id} xs={12} sm={6} md={4} lg={4}>
-               <ProductItem product={product} onAddCart={onAddCart}/>
+               <ProductItem product={product} onAddCart={onAddCart} />
             </Grid>
          ))}
       </Grid>

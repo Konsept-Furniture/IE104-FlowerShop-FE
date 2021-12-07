@@ -49,7 +49,7 @@ function FilterByPrice({ filters }) {
 
    return (
       <div className="filter-by-price">
-         <h4>Filter by Price</h4>
+         <h4>Price</h4>
          <form onSubmit={handleSubmit(handleFilterPriceClick)}>
             <Controller
                name="priceRange"
@@ -73,7 +73,7 @@ function FilterByPrice({ filters }) {
                            <span className="to"> — ${value[1].toFixed(1)}</span>
                         </div>
                         <button type="submit" className="konsept-link price__filter">
-                           FILTER
+                           APPLY
                         </button>
                      </div>
                   </>

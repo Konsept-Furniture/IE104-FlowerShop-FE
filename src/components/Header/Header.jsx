@@ -1,12 +1,24 @@
 import IconBurger from '@/assets/icons/IconBurger'
 import IconCart from '@/assets/icons/IconCart'
-import IconHeart from '@/assets/icons/IconHeart'
 import IconUser from '@/assets/icons/IconUser'
 import { path } from '@/constants/path'
+import { IconButton } from '@mui/material'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import './Header.scss'
+import Badge from '@mui/material/Badge'
+import { styled } from '@mui/material/styles'
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+   '& .MuiBadge-badge': {
+      right: -3,
+      // top: 13,
+      border: `1px solid ${theme.palette.background.paper}`,
+      padding: '0 4px',
+      color: '#fff'
+   }
+}))
 
 function Header() {
    const history = useHistory()
@@ -54,9 +66,8 @@ function Header() {
             </nav>
 
             <div className="header__widgets-holder ml-3">
-               <p className="mr-2">{currentUser ? currentUser.username : ''}</p>
                <div
-                  className="header__widget h-full mr-2 lg:mr-4"
+                  className="header__widget h-full"
                   onClick={() => {
                      if (!currentUser) {
                         history.push(path.login)
@@ -65,27 +76,33 @@ function Header() {
                      }
                   }}
                >
+                  <p className="cursor-pointer mr-1">{currentUser ? currentUser.username : ''}</p>
                   <div className="header__widget-content">
-                     <span>
-                        <IconUser />
-                     </span>
-                     <span className="ml-1 hidden">Login/Register</span>
+                     <span></span>
+                     <IconButton aria-label="cart">
+                        <StyledBadge badgeContent={cart.current.length} color="black">
+                           <IconUser />
+                           {/* <IconCart /> */}
+                           <span className="ml-1 hidden">Login/Register</span>
+                        </StyledBadge>
+                     </IconButton>
                   </div>
                </div>
                <div
-                  className="header__widget h-full mr-2 lg:mr-4"
+                  className="header__widget h-full mr-2"
                   onClick={() => {
                      history.push(path.cart)
                   }}
                >
                   <div className="header__widget-content">
-                     <span>
-                        <IconCart />
-                     </span>
-                     <span className="ml-1">{cart.current.length}</span>
+                     <IconButton aria-label="cart">
+                        <StyledBadge badgeContent={cart.current.length} color="black">
+                           <IconCart />
+                        </StyledBadge>
+                     </IconButton>
                   </div>
                </div>
-               <div className="header__widget h-full mr-2 lg:mr-4">
+               <div className="header__widget h-full">
                   <div className="header__widget-content">
                      <span className="header__burger">
                         <IconBurger />

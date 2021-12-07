@@ -54,6 +54,7 @@ function ProductListPage() {
    }, [dispatch])
 
    const getProducts = async _pagination => {
+      executeScroll()
       setLoading(true)
       try {
          const payload = {
@@ -76,7 +77,7 @@ function ProductListPage() {
    }, [queryParams])
 
    const handleChangePagination = (_, value) => {
-      executeScroll()
+      // executeScroll()
       getProducts({ currentPage: value, pageSize: pagination.pageSize })
    }
    const executeScroll = () => productListRef.current.scrollIntoView()
