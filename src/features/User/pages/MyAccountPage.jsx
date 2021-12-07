@@ -59,10 +59,7 @@ function MyAccount(props) {
    const background = IMAGES.MyAccount
    return (
       <div className="my-account">
-         <Backdrop
-            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-            open={loading}
-         >
+         <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={loading}>
             <CircularProgress color="inherit" />
          </Backdrop>
 
@@ -78,6 +75,7 @@ function MyAccount(props) {
                </div>
             </div>
          </div>
+
          <div className="konsept-container">
             <Box
                sx={{
@@ -93,7 +91,6 @@ function MyAccount(props) {
                   variant="scrollable"
                   value={value}
                   onChange={handleChange}
-                  aria-label="Vertical tabs example"
                   sx={{ borderRight: 1, borderColor: 'divider' }}
                >
                   <Tab label="Account Detail" {...a11yProps(0)} />
