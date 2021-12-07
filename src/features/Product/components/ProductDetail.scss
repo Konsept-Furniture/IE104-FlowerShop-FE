@@ -19,13 +19,11 @@ a:hover {
 .product {
    &-detail {
       display: flex;
-      align-items: flex-start;
       width: 100%;
       min-height: 100px;
       margin-bottom: 100px;
       &__thumbnail {
          width: 100%;
-         // padding: 0 30px;
          overflow: hidden;
       }
       &__info {
@@ -103,7 +101,7 @@ a:hover {
       }
    }
 
-   @include laptop {
+   @include tablet {
       &-detail {
          flex-wrap: wrap;
       }

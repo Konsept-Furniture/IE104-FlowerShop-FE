@@ -2,6 +2,8 @@ import { OutlinedButton } from '@/components/button/Button'
 import QuantityField from '@/components/form-controls/QuantityField'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Typography } from '@mui/material'
+import { Box } from '@mui/system'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -53,14 +55,20 @@ function ProductDetail(props) {
                <p>{product.desc}</p>
             </div>
 
-            <form onSubmit={handleSubmit(handleAddToCart)}>
-               <div className="add-to-cart">
-                  <QuantityField name="quantity" control={control} max={product.quantity} />
-                  <OutlinedButton type="submit">
-                     <span>Add to cart</span>
-                  </OutlinedButton>
-               </div>
-            </form>
+            {product.quantity > 0 ? (
+               <form onSubmit={handleSubmit(handleAddToCart)}>
+                  <div className="add-to-cart">
+                     <QuantityField name="quantity" control={control} max={product.quantity} />
+                     <OutlinedButton type="submit">
+                        <span>Add to cart</span>
+                     </OutlinedButton>
+                  </div>
+               </form>
+            ) : (
+               <Box sx={{ mt: 2 }}>
+                  <Typography variant="h6">This product is out of stock.</Typography>
+               </Box>
+            )}
 
             <div className="product-detail__meta">
                <span className="product-detail__categories">
