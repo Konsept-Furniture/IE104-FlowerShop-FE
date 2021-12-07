@@ -56,7 +56,7 @@ function Header() {
             <div className="header__widgets-holder ml-3">
                <p className="mr-2">{currentUser ? currentUser.username : ''}</p>
                <div
-                  className="header__widget h-full mr-2 lg:mr-6"
+                  className="header__widget h-full mr-2 lg:mr-4"
                   onClick={() => {
                      if (!currentUser) {
                         history.push(path.login)
@@ -70,14 +70,6 @@ function Header() {
                         <IconUser />
                      </span>
                      <span className="ml-1 hidden">Login/Register</span>
-                  </div>
-               </div>
-               <div className="header__widget h-full mr-2 lg:mr-4">
-                  <div className="header__widget-content">
-                     <span>
-                        <IconHeart />
-                     </span>
-                     <span className="ml-1">0</span>
                   </div>
                </div>
                <div
