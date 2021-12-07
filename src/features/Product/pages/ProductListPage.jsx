@@ -31,14 +31,14 @@ function ProductListPage() {
       totalItems: 0,
       totalPages: 0,
       currentPage: 1,
-      pageSize: 10
+      pageSize: 9
    })
 
    const queryParams = useQuery()
    const filters = {
       ...queryParams,
       minPrice: Number.parseInt(queryParams.minPrice) || 0,
-      maxPrice: Number.parseInt(queryParams.maxPrice) || 100
+      maxPrice: Number.parseInt(queryParams.maxPrice) || 200
    }
 
    useEffect(() => {
@@ -73,7 +73,7 @@ function ProductListPage() {
    }
 
    useEffect(() => {
-      getProducts({ currentPage: 1, pageSize: 10 })
+      getProducts({ currentPage: 1, pageSize: 9 })
    }, [queryParams])
 
    const handleChangePagination = (_, value) => {
@@ -175,10 +175,14 @@ function ProductListPage() {
                   />
                </Stack>
             ) : (
-               <Box sx={{ mt: 5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <Typography variant="h5">
-                     No product found. Please try again with new filters.
-                  </Typography>
+               <Box
+                  sx={{ mt: 20, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+               >
+                  {!loading && (
+                     <Typography variant="h5">
+                        No product found. Please try again with new filters.
+                     </Typography>
+                  )}
                </Box>
             )}
          </div>

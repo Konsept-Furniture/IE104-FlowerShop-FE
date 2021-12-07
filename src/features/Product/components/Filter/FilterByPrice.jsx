@@ -22,7 +22,7 @@ function FilterByPrice({ filters }) {
       defaultValues: {
          priceRange: [
             Number.parseInt(filters.minPrice) || 0,
-            Number.parseInt(filters.maxPrice) || 100
+            Number.parseInt(filters.maxPrice) || 200
          ]
       },
       resolver: yupResolver(schema)
@@ -60,7 +60,7 @@ function FilterByPrice({ filters }) {
                         getAriaLabel={() => 'Price range'}
                         size="small"
                         min={0}
-                        max={100}
+                        max={200}
                         step={1}
                         value={value}
                         onChange={onChange}

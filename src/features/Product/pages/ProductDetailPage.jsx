@@ -90,7 +90,7 @@ function ProductDetailPage(props) {
    }
 
    return (
-      <main className="konsept-container">
+      <section className="konsept-container">
          <Backdrop
             sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
             open={addingToCart}
@@ -101,12 +101,9 @@ function ProductDetailPage(props) {
          {firstLoding ? (
             <ProductDetailSkeleton />
          ) : (
-            <ProductDetail
-               product={productData}
-               onAddToCart={handleAddToCart}
-            />
+            <ProductDetail product={productData} onAddToCart={handleAddToCart} />
          )}
-      </main>
+      </section>
    )
 }
 
