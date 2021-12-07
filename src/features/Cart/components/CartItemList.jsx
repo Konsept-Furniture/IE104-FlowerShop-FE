@@ -32,12 +32,7 @@ CartItemList.propTypes = {
    onCheckoutClick: PropTypes.func.isRequired
 }
 
-function CartItemList({
-   creatingOrder,
-   products,
-   onUpdateList,
-   onCheckoutClick
-}) {
+function CartItemList({ creatingOrder, products, onUpdateList, onCheckoutClick }) {
    const cart = useSelector(state => state.cart)
    const [currentCartProducts, setCurrentCartProducts] = useState([])
 
@@ -89,17 +84,13 @@ function CartItemList({
    }
 
    const handleSelectOne = item => {
-      const idx = selectedProducts.findIndex(
-         product => product._id === item._id
-      )
+      const idx = selectedProducts.findIndex(product => product._id === item._id)
       let newSelectedProducts = [...selectedProducts]
 
       if (idx === -1) {
          newSelectedProducts.push(item)
       } else {
-         newSelectedProducts = [...selectedProducts].filter(
-            product => product._id !== item._id
-         )
+         newSelectedProducts = [...selectedProducts].filter(product => product._id !== item._id)
       }
       setSelectedProducts(newSelectedProducts)
    }
@@ -108,15 +99,11 @@ function CartItemList({
       setIsUpdated(true)
 
       // set current products after remove
-      const newCartProducts = [...currentCartProducts].filter(
-         item => item._id !== product._id
-      )
+      const newCartProducts = [...currentCartProducts].filter(item => item._id !== product._id)
       setCurrentCartProducts(newCartProducts)
 
       // set selected products after remove
-      const newSelectedProducts = [...selectedProducts].filter(
-         item => item._id !== product._id
-      )
+      const newSelectedProducts = [...selectedProducts].filter(item => item._id !== product._id)
       setSelectedProducts(newSelectedProducts)
    }
 
@@ -157,10 +144,7 @@ function CartItemList({
 
    return (
       <div className="cart__product-list">
-         <Backdrop
-            sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
-            open={updating}
-         >
+         <Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={updating}>
             <CircularProgress color="inherit" />
          </Backdrop>
 
@@ -171,24 +155,50 @@ function CartItemList({
                      <TableRow>
                         <TableCell padding="checkbox">
                            <Checkbox
-                              checked={
-                                 selectedProducts.length ===
-                                 currentCartProducts.length
-                              }
+                              checked={selectedProducts.length === currentCartProducts.length}
                               color="black"
                               indeterminate={
                                  selectedProducts.length > 0 &&
-                                 selectedProducts.length <
-                                    currentCartProducts.length
+                                 selectedProducts.length < currentCartProducts.length
                               }
                               onChange={handleSelectAll}
                            />
                         </TableCell>
-                        <TableCell align="right" width="200px"></TableCell>
+                        <TableCell
+                           align="right"
+                           width="150px"
+                           sx={{
+                              display: {
+                                 xs: 'none',
+                                 sm: 'none',
+                                 md: 'table-cell'
+                              }
+                           }}
+                        ></TableCell>
                         <TableCell align="left">Product Detail</TableCell>
-                        <TableCell align="right">Price</TableCell>
+                        <TableCell
+                           align="right"
+                           sx={{
+                              display: {
+                                 xs: 'none',
+                                 sm: 'table-cell'
+                              }
+                           }}
+                        >
+                           Price
+                        </TableCell>
                         <TableCell align="right">Quantity</TableCell>
-                        <TableCell align="right">Subtotal</TableCell>
+                        <TableCell
+                           align="right"
+                           sx={{
+                              display: {
+                                 xs: 'none',
+                                 sm: 'table-cell'
+                              }
+                           }}
+                        >
+                           Subtotal
+                        </TableCell>
                      </TableRow>
                   </TableHead>
                   <TableBody>
@@ -199,9 +209,8 @@ function CartItemList({
                            form={{ form, name: `quantity.${idx}` }}
                            selected={
                               selectedProducts.length > 0 &&
-                              selectedProducts.findIndex(
-                                 product => product?._id === item._id
-                              ) !== -1
+                              selectedProducts.findIndex(product => product?._id === item._id) !==
+                                 -1
                            }
                            onSelect={handleSelectOne}
                            onRemove={handleRemoveOne}
@@ -242,15 +251,10 @@ function CartItemList({
                         </Typography>
                      )}
                      {isUpdated && (
-                        <OutlinedButton onClick={handleUpdateCart}>
-                           Update Cart
-                        </OutlinedButton>
+                        <OutlinedButton onClick={handleUpdateCart}>Update Cart</OutlinedButton>
                      )}
                      {!isUpdated && selectedProducts.length > 0 && (
-                        <PrimaryButton
-                           loading={creatingOrder}
-                           onClick={handleCheckoutClick}
-                        >
+                        <PrimaryButton loading={creatingOrder} onClick={handleCheckoutClick}>
                            Checkout
                         </PrimaryButton>
                      )}
@@ -276,10 +280,7 @@ function CartItemList({
                   component="div"
                >
                   Your cart is empty. {"\nLet's "}
-                  <Link
-                     to={path.products}
-                     style={{ textDecoration: 'underline' }}
-                  >
+                  <Link to={path.products} style={{ textDecoration: 'underline' }}>
                      shopping
                   </Link>
                   !

@@ -67,7 +67,7 @@ function CartPage() {
       return (
          <Box
             sx={{
-               pt: 20,
+               py: 15,
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center'
@@ -99,7 +99,7 @@ function CartPage() {
 
    return (
       <Grid container className="konsept-container cart-page" sx={{ height: '100%' }}>
-         <Grid item lg={12}>
+         <Grid item xs={12} sm={12} md={12} lg={12}>
             {/* <OrderStep step={0} /> */}
 
             <CartItemList

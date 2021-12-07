@@ -14,8 +14,8 @@ FilterByCategory.propTypes = {
 function FilterByCategory({ categories, filters }) {
    const renderCategories = () => {
       if (categories.length === 0) {
-         return Array.from(new Array(5)).map((_, idx) => (
-            <Skeleton width={150} height={20} key={idx} />
+         return Array.from(new Array(10)).map((_, idx) => (
+            <Skeleton width={150} height={25} key={idx} />
          ))
       }
       return categories.map(category => (
