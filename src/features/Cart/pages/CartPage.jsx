@@ -54,6 +54,7 @@ function CartPage() {
             }, 0)
          }
          const res = await dispatch(createOrder(payload)).then(unwrapResult)
+         await dispatch(getCart()).then(unwrapResult)
          const order = res.data
          history.push(`order/${order._id}`)
       } catch (error) {
@@ -97,11 +98,7 @@ function CartPage() {
    }
 
    return (
-      <Grid
-         container
-         className="konsept-container cart-page"
-         sx={{ height: '100%' }}
-      >
+      <Grid container className="konsept-container cart-page" sx={{ height: '100%' }}>
          <Grid item lg={12}>
             {/* <OrderStep step={0} /> */}
 
