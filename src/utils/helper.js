@@ -20,8 +20,7 @@ export const getIdFromNameId = url => {
    return arr[arr.length - 1]
 }
 
-export const rateSale = (original, sale) =>
-   Math.round(((original - sale) / original) * 100) + '%'
+export const rateSale = (original, sale) => Math.round(((original - sale) / original) * 100) + '%'
 
 export const formatMoney = (value, character = '.') =>
    String(value).replace(/\B(?=(\d{3})+(?!\d))/g, character)
@@ -38,9 +37,9 @@ export const formatK = value => {
 
 export const renderPaginationText = pagination => {
    const isLastIndex = pagination.currentPage === pagination.totalPages
-   return `Showing ${(pagination.currentPage - 1) * pagination.pageSize + 1}–${
-      !isLastIndex
-         ? pagination.currentPage * pagination.pageSize
-         : pagination.totalItems
-   } of ${pagination.totalItems} results`
+   return `Showing ${
+      pagination.totalItems > 0 ? (pagination.currentPage - 1) * pagination.pageSize + 1 : 0
+   }–${!isLastIndex ? pagination.currentPage * pagination.pageSize : pagination.totalItems} of ${
+      pagination.totalItems
+   } results`
 }
