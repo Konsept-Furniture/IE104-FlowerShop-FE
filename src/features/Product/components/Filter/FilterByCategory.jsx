@@ -14,15 +14,23 @@ FilterByCategory.propTypes = {
 function FilterByCategory({ categories, filters }) {
    const renderCategories = () => {
       if (categories.length === 0) {
-         return (new Array(5)).map((_, idx) => (
-            <Skeleton key={idx}/>
-         ))
+         return new Array(5).map((_, idx) => <Skeleton key={idx} />)
       }
-      return categories.map((category) => (
+      return categories.map(category => (
          <li className="category" key={category.name}>
             <NavLink
-               to={() => {
-                  const _filters = { ...filters, category: category._id }
+               style={{ fontFamily: 'Poppins' }}
+               to={location => {
+                  let _filters
+                  const params = queryString.parse(location.search)
+                  if (params.category === category.name) {
+                     _filters = { ...filters }
+                     delete _filters.category
+                  } else {
+                     _filters = { ...filters, category: category.name }
+                  }
+
+                  // const _filters = { ...filters, category: category.name }
                   return path.products + `?${queryString.stringify(_filters)}`
                }}
                isActive={(match, location) => {
@@ -30,7 +38,7 @@ function FilterByCategory({ categories, filters }) {
                      return false
                   }
                   const query = queryString.parse(location.search)
-                  return query.category === category._id
+                  return query.category === category.name
                }}
             >{`${category.name} ${category.number ? `(${category.number})` : ''}`}</NavLink>
          </li>
@@ -40,9 +48,7 @@ function FilterByCategory({ categories, filters }) {
    return (
       <div className="filter-by-category">
          <h4>Categories</h4>
-         <ul className="categories">
-            {renderCategories()}
-         </ul>
+         <ul className="categories">{renderCategories()}</ul>
       </div>
    )
 }

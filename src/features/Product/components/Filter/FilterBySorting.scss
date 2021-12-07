@@ -1,8 +1,9 @@
-@use '@/scss' as *;
+@use '@/scss/variables' as *;
+@use '@/scss/mixin' as *;
 
-.filter-by-category {
+.filter-by-sorting {
    margin-top: 30px;
-
+   margin-right: 40px;
    h4 {
       font-family: 'josefin sans', sans-serif;
       font-weight: 600;
@@ -12,16 +13,5 @@
       letter-spacing: 0.12em;
       -ms-word-wrap: break-word;
       word-wrap: break-word;
-   }
-
-   .categories {
-      .category {
-         padding: 5px 0;
-         color: $color--gray;
-
-         &:hover {
-            color: $color--gray-hover;
-         }
-      }
    }
 }

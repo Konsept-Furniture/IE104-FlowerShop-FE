@@ -36,6 +36,7 @@ function ProductListPage() {
 
    const queryParams = useQuery()
    const filters = {
+      ...queryParams,
       minPrice: Number.parseInt(queryParams.minPrice) || 0,
       maxPrice: Number.parseInt(queryParams.maxPrice) || 100
    }
@@ -162,10 +163,7 @@ function ProductListPage() {
             {loading ? (
                <ProductSkeletonList />
             ) : (
-               <ProductList
-                  data={products}
-                  onAddCart={handleAddProductToCart}
-               />
+               <ProductList data={products} onAddCart={handleAddProductToCart} />
             )}
 
             <Stack direction="row" justifyContent="center">

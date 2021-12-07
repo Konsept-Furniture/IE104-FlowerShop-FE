@@ -1,7 +1,7 @@
 @use '@/scss' as *;
 
 .filter-by-price {
-   margin-top: 50px;
+   margin-top: 30px;
    margin-right: 40px;
    h4 {
       font-family: 'josefin sans', sans-serif;
@@ -10,7 +10,6 @@
       font-size: 16px;
       line-height: 1.5em;
       letter-spacing: 0.12em;
-      margin-bottom: 10px;
       -ms-word-wrap: break-word;
       word-wrap: break-word;
    }
@@ -37,7 +36,8 @@
          margin-top: 5px;
       }
       &__range {
-         font-size: 17px;
+         font-family: 'Poppins', sans-serif;
+         font-size: 16px;
          .from {
          }
          .to {

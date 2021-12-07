@@ -20,7 +20,10 @@ function FilterByPrice({ filters }) {
    })
    const { control, handleSubmit } = useForm({
       defaultValues: {
-         priceRange: [Number.parseInt(filters.minPrice) || 0, Number.parseInt(filters.maxPrice) || 100]
+         priceRange: [
+            Number.parseInt(filters.minPrice) || 0,
+            Number.parseInt(filters.maxPrice) || 100
+         ]
       },
       resolver: yupResolver(schema)
    })
@@ -64,17 +67,18 @@ function FilterByPrice({ filters }) {
                         className="price__slider"
                      />
                      <div className="price__viewer">
-                        <div className="price__range text--italic">
+                        <div className="price__range">
                            Price:
-                           <span className="from"> ${value[0]}</span>
-                           <span className="to"> — ${value[1]}</span>
+                           <span className="from"> ${value[0].toFixed(1)}</span>
+                           <span className="to"> — ${value[1].toFixed(1)}</span>
                         </div>
-                        <button type="submit" className="konsept-link price__filter">FILTER</button>
+                        <button type="submit" className="konsept-link price__filter">
+                           FILTER
+                        </button>
                      </div>
                   </>
                )}
             />
-
          </form>
       </div>
    )
