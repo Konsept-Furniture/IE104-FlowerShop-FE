@@ -1,195 +1,213 @@
-@import url('https://fonts.googleapis.com/css?family=EB+Garamond');
-
-#contact-form{
-  margin-top: 50px;
+#contact-form {
+   //  padding: 50px 0;
+   padding-top: 50px;
+   padding-bottom: 50px;
+   display: flex;
+   justify-content: center;
+   // align-items: flex-start;
+   flex-direction: column;
+}
+.submit-button {
+   float: right;
 }
 
-.submit-button{
-    float: right;
-}
-
-.contact-title{
-    text-align: left;
-    font-weight: 500;
-    color: #1d1d1d;
-    font-size: 26px;
-    letter-spacing: .2em;
-    font-family: 'josefin sans', sans-serif;
+.contact-title {
+   text-align: left;
+   font-weight: 500;
+   color: #1d1d1d;
+   font-size: 26px;
+   letter-spacing: 0.2em;
+   font-family: 'josefin sans', sans-serif;
 }
 
 .main-form {
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-left: 50px;
-    font-family: 'josefin sans', sans-serif;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 10px;
-  }
-
-  input, textarea {
-    width: 100%;
-    padding: 0.5em;
-    margin-left: 10px;
-    border-color: #8b8b8b;
-    font-family: 'EB Garamond', serif;
-    font-style: italic;
-    font-size: larger;
-  }
-
-  input:focus, textarea:focus{
-    outline: none;
-    border-color: #1d1d1d;
-  }
-
-
-  input[type="text"], input[type="email"], textarea {
-    margin: 0 0 1em;
-    border: 1px solid #ccc;
-    outline: none;
-  }
-
-  input.invalid, textarea.invalid {
-    border-color: #d5144d;
-  }
-
-  textarea {
-    height: 6em;
-  }
-
-  .aside-description{
-    width: fit-content;
-  }
-
-  .contact-us-title{
-    font-style: italic;
-    font-family: 'EB Garamond', serif;
-    font-size: large;
-    color: #8b8b8b;
-  }
-
-.contact-description{
-      font-family: open sans,sans-serif;
-      font-size: 16px;
-      line-height: 1.8em;
-      font-weight: 400;
-      color: #8b8b8b;
-      background-color: #fff;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+   max-width: 1200px;
+   //  margin: 0 auto;
+   margin-top: 30px;
+   font-family: 'josefin sans', sans-serif;
+   order: 1;
 }
 
-.store-address-container{
-  float: left;
-  width: 40%;
-  margin-right: 20px;
-  font-family: open sans,sans-serif;
+label {
+   display: block;
+   margin-bottom: 10px;
 }
 
-.description-address{
-  display: table;
-  clear: both;
+input,
+textarea {
+   width: 100%;
+   padding: 0.5em;
+   margin-left: 10px;
+   border-color: #8b8b8b;
+   font-family: 'EB Garamond', serif;
+   font-style: italic;
+   font-size: larger;
 }
 
-  .title-store{
-      font-family: josefin sans,sans-serif;
-      font-weight: 600;
-      text-transform: uppercase;
-      color: #1d1d1d;
-      font-size: 16px;
-      line-height: 1.5em;
-      letter-spacing: .12em;
-      margin-top: 20px;
-      margin-bottom: 5px;
-      -ms-word-wrap: break-word;
-      word-wrap: break-word;
-  }
-  @media screen and (min-width: 480px) {
-    .aside-description{
-      display: none;
-    }
+input:focus,
+textarea:focus {
+   outline: none;
+   border-color: #1d1d1d;
+}
 
-    .main-form{
-      width: 80%;
+input[type='text'],
+input[type='email'],
+textarea {
+   margin: 0 0 1em;
+   border: 1px solid #ccc;
+   outline: none;
+}
+
+input.invalid,
+textarea.invalid {
+   border-color: #d5144d;
+}
+
+textarea {
+   height: 6em;
+}
+
+.aside-description {
+   width: fit-content;
+   order: 2;
+}
+
+.contact-us-title {
+   font-style: italic;
+   font-family: 'EB Garamond', serif;
+   font-size: large;
+   color: #8b8b8b;
+}
+
+.contact-description {
+   font-family: open sans, sans-serif;
+   font-size: 16px;
+   line-height: 1.8em;
+   font-weight: 400;
+   color: #8b8b8b;
+   background-color: #fff;
+   overflow-x: hidden;
+   -webkit-font-smoothing: antialiased;
+}
+
+.store-address-container {
+   float: left;
+   width: 40%;
+   margin-right: 20px;
+   font-family: open sans, sans-serif;
+}
+
+.description-address {
+   display: table;
+   clear: both;
+}
+
+.title-store {
+   font-family: 'josefin sans', sans-serif;
+   font-weight: 600;
+   text-transform: uppercase;
+   color: #1d1d1d;
+   font-size: 16px;
+   line-height: 1.5em;
+   letter-spacing: 0.12em;
+   margin-top: 20px;
+   margin-bottom: 5px;
+   -ms-word-wrap: break-word;
+   word-wrap: break-word;
+}
+@media screen and (min-width: 480px) {
+   #contact-form {
+      flex-wrap: wrap;
+      align-items: flex-start;
+      flex-direction: row;
+   }
+   .aside-description {
+      // display: none;
+      width: 100%;
+      order: 1;
+
+      .contact-us-title {
+         display: none;
+      }
+   }
+
+   .main-form {
+      width: 100%;
       margin-bottom: 50px;
-    }
+      margin-top: 30px;
+      order: 2;
+   }
 
-    .submit-button{
-      float:left
-    }
+   .submit-button {
+      float: left;
+   }
 
-    .contact-form{
+   .contact-form {
       margin-bottom: 30px;
-    }
+   }
 
-    #contact-form h2 {
+   #contact-form h2 {
       margin-left: 26%;
       font-size: 2em;
       line-height: 1.5;
-    }
-    label > span {
+   }
+   label > span {
       vertical-align: top;
       display: inline-block;
       width: 26%;
       padding: 0.5em;
       border: 1px solid transparent;
       text-align: right;
-    }
-    input, textarea {
+   }
+   input,
+   textarea {
       width: 100%;
       line-height: 1.5;
-    }
-    textarea {
+   }
+   textarea {
       height: 10em;
-    }
-  }
-  @media screen and (min-width: 640px) {
-    #contact-form {
+   }
+}
+@media screen and (min-width: 640px) {
+   #contact-form {
       text-align: justify;
       line-height: 0;
-    }
+      justify-content: space-between;
+   }
 
-    #contact-form:after {
-      content: '';
-      display: inline-block;
-      width: 100%;
-    }
-
-    #contact-form h2 {
+   #contact-form h2 {
       margin-left: 0;
-    }
+   }
 
-    .main-form {
+   .main-form {
       vertical-align: top;
       display: inline-block;
       width: 45%;
       text-align: left;
-      margin-right:20px;
+      margin-right: 20px;
       line-height: 1.5;
-    }
+      margin-top: 0px;
+   }
 
-    .aside-description{
-      margin-left: 40px;
+   .aside-description {
+      // margin-left: 40px;
       width: 45%;
       vertical-align: top;
       display: inline-block;
       text-align: left;
       line-height: 1.5;
-    }
+   }
 
-    @media screen and (min-width:640px) and (max-width: 916px) {
+   @media screen and (min-width: 640px) and (max-width: 916px) {
       .main-form {
-        width: 80%;
-        align-items: center;
+         width: 100%;
+         align-items: center;
       }
 
-      .aside-description{
-        margin-top: 20px;
-        margin-bottom: 20px;
-        width: 80%;
+      .aside-description {
+         //  margin-top: 20px;
+         margin-bottom: 20px;
+         width: 100%;
       }
-    }
-
-  }
+   }
+}

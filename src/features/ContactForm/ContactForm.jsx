@@ -3,9 +3,9 @@ import './ContactForm.scss'
 import { OutlinedButton } from '@/components/button/Button'
 ContactForm.propTypes = {}
 
-function ContactForm(props) {
+function ContactForm() {
    return (
-      <section id="contact-form" className="konsept-container">
+      <section id="contact-form" className="konsept-container mb-8">
          <form
             className="main-form"
             id="contact"
@@ -25,12 +25,7 @@ function ContactForm(props) {
             <label className="label-message">
                <textarea name="message" placeholder="Message"></textarea>
             </label>
-            <OutlinedButton
-               className="submit-button"
-               name="submit"
-               type="submit"
-               value="Send"
-            >
+            <OutlinedButton className="submit-button" name="submit" type="submit" value="Send">
                Send
             </OutlinedButton>
          </form>
@@ -38,16 +33,13 @@ function ContactForm(props) {
             <span className="contact-us-title">Contact Us</span>
             <h2 className="contact-title">GOT ANY QUESTIONS?</h2>
             <p className="contact-description">
-               Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non
-               mauris vitae erat consequat auctor eu in elit.
+               Nam nec tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae erat
+               consequat auctor eu in elit.
             </p>
             <div className="description-address">
                <div className="store-address-container">
                   <h4 className="title-store">STORE</h4>
-                  <a
-                     className="space-y-2 text-base text-konsept-gray"
-                     href="tel:+1123456789"
-                  >
+                  <a className="space-y-2 text-base text-konsept-gray" href="tel:+1123456789">
                      +112 345 6789
                   </a>
                   <br />
@@ -71,10 +63,7 @@ function ContactForm(props) {
                </div>
                <div className="store-address-container">
                   <h4 className="title-store">OFFICE</h4>
-                  <a
-                     className="space-y-2 text-base text-konsept-gray"
-                     href="tel:+1123456789"
-                  >
+                  <a className="space-y-2 text-base text-konsept-gray" href="tel:+1123456789">
                      +112 345 6789
                   </a>
                   <br />

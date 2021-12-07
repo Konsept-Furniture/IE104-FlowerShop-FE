@@ -1,0 +1,16 @@
+.social-icon {
+   border: 1px solid rgb(139, 139, 139);
+   padding: 8px;
+   border-radius: 8px;
+   transition: all 0.3s ease;
+
+   svg {
+      transition: all 0.3s ease;
+   }
+   &:hover {
+      color: rgb(139, 139, 139);
+   }
+   &:hover svg {
+      color: rgb(0, 0, 0, 0.87);
+   }
+}
