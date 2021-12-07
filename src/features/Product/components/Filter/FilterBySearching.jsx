@@ -29,15 +29,13 @@ function FilterBySearching({ filters }) {
    return (
       <div className="filter-by-sorting">
          {/* <h4>Searching</h4> */}
-         <FormControl fullWidth variant="standard" sx={{ minWidth: 120, height: 50 }}>
+         <FormControl
+            fullWidth
+            variant="standard"
+            sx={{ minWidth: 120, width: '100%', height: 50 }}
+         >
             <TextField
-               // InputProps={{
-               //    startAdornment: (
-               //       <InputAdornment position="start">
-               //          <SearchIcon />
-               //       </InputAdornment>
-               //    )
-               // }}
+               sx={{ width: '100%' }}
                id="standard-basic"
                label="Search"
                variant="standard"
