@@ -1,22 +1,22 @@
 import TextInputField from '@/components/form-controls/TextInputField'
+import messages from '@/constants/messages'
 import { path } from '@/constants/path'
+import StorageKeys from '@/constants/StorageKeys'
 import { getCart, updateCart } from '@/features/Cart/cartSlice'
+import useQuery from '@/hooks/useQuery'
 import { yupResolver } from '@hookform/resolvers/yup'
 import LoadingButton from '@mui/lab/LoadingButton'
+import { Alert, Backdrop, CircularProgress } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import * as yup from 'yup'
 import { login } from '../authSlice'
-import useQuery from '@/hooks/useQuery'
-
 import './Login.scss'
-import messages from '@/constants/messages'
-import { Alert, Backdrop, CircularProgress } from '@mui/material'
-import StorageKeys from '@/constants/StorageKeys'
+
 Login.propTypes = {}
 
 const schema = yup.object().shape({
@@ -39,7 +39,7 @@ function Login() {
       resolver: yupResolver(schema)
    })
    const {
-      formState: { isSubmitting, isSubmitSuccessful },
+      formState: { isSubmitting },
       control
    } = form
 
@@ -67,6 +67,8 @@ function Login() {
             }
             await dispatch(updateCart(updateCartPayload)).then(unwrapResult)
          }
+
+         history.push(path.home)
       } catch (error) {
          enqueueSnackbar(error.message, {
             variant: 'error',
@@ -75,10 +77,6 @@ function Login() {
       }
       setLoading(false)
    }
-
-   useEffect(() => {
-      if (isSubmitSuccessful) history.push(path.home)
-   }, [isSubmitSuccessful])
 
    return (
       <div className="login">
