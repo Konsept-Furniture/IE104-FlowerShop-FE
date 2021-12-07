@@ -7,9 +7,12 @@
       padding: 40px 40px 20px 0;
       .product-card {
          display: flex;
-
+         &__image {
+            margin-right: 20px;
+         }
          img {
-            height: 100px;
+            height: 130px;
+            width: auto;
             object-fit: cover;
          }
 

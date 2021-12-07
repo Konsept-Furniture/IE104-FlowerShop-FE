@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 /* eslint-disable indent */
 import { Divider, Stack, Typography } from '@mui/material'
 import { Box } from '@mui/system'
@@ -52,9 +53,7 @@ function OrderSummary({ products }) {
          <Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                <Typography variant="subtitle1">Subtotal</Typography>
-               <Typography variant="subtitle1">
-                  ${subtotal?.toFixed(2)}
-               </Typography>
+               <Typography variant="subtitle1">${subtotal?.toFixed(2)}</Typography>
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                <Typography variant="subtitle1">Tax</Typography>
@@ -66,9 +65,7 @@ function OrderSummary({ products }) {
             </Box>
             <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                <Typography variant="h6">Total</Typography>
-               <Typography variant="h6">
-                  ${renderTotal(products).toFixed(2)}
-               </Typography>
+               <Typography variant="h6">${renderTotal(products).toFixed(2)}</Typography>
             </Box>
          </Box>
       </Stack>

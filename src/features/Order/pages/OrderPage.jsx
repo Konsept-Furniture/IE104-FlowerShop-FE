@@ -98,7 +98,7 @@ function OrderPage() {
       return (
          <Box
             sx={{
-               pt: 20,
+               py: 20,
                display: 'flex',
                alignItems: 'center',
                justifyContent: 'center'
@@ -118,11 +118,25 @@ function OrderPage() {
             >
                <CircularProgress color="inherit" />
             </Backdrop>
-            <Grid container spacing={5} sx={{ mt: 1, mb: 5 }}>
-               <Grid item lg={8}>
+            <Grid
+               container
+               spacing={5}
+               sx={{
+                  mt: 1,
+                  mb: 5,
+                  flexDirection: {
+                     xs: 'column-reverse',
+                     sm: 'column-reverse',
+                     md: 'row',
+                     lg: 'row',
+                     xl: 'row'
+                  }
+               }}
+            >
+               <Grid item sm={12} md={8} lg={8}>
                   <ShippingAddressForm onSubmit={handleSubmitShippingInfo} />
                </Grid>
-               <Grid item lg={4}>
+               <Grid item sm={12} md={4} lg={4}>
                   <Box>
                      <Typography variant="h5">Order Summary</Typography>
 
@@ -144,12 +158,8 @@ function OrderPage() {
          }}
       >
          <Typography variant="h5">
-            Your order is updated shipping information. If you want to track
-            your order, go{' '}
-            <Link
-               to={`${path.user}?tab=1`}
-               style={{ textDecoration: 'underline' }}
-            >
+            Your order is updated shipping information. If you want to track your order, go{' '}
+            <Link to={`${path.user}?tab=1`} style={{ textDecoration: 'underline' }}>
                HERE
             </Link>
          </Typography>
