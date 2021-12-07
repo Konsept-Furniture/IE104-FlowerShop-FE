@@ -9,23 +9,26 @@ const axiosClient = axios.create({
    headers: {
       'Content-Type': 'application/json'
    },
-   paramsSerializer: (params) => queryString.stringify(params)
+   paramsSerializer: params => queryString.stringify(params)
 })
 
-axiosClient.interceptors.request.use(async(config) => {
-   // add authorization
-   const token = tokenUtil.getAccessToken()
-   if (token) {
-      config.headers.Authorization = `Bearer ${token}`
+axiosClient.interceptors.request.use(
+   async config => {
+      // add authorization
+      const token = tokenUtil.getAccessToken()
+      if (token) {
+         config.headers.Authorization = `Bearer ${token}`
+      }
+
+      return config
+   },
+   function (error) {
+      // Do something with request error
+      return Promise.reject(error)
    }
+)
 
-   return config
-}, function(error) {
-   // Do something with request error
-   return Promise.reject(error)
-})
-
-axiosClient.interceptors.response.use((response) => {
+axiosClient.interceptors.response.use(response => {
    tokenUtil.checkExpiredToken(response.data)
 
    if (response && response.data.errorCode === 0) {
