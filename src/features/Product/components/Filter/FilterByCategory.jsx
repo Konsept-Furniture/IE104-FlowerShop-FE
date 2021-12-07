@@ -21,7 +21,7 @@ function FilterByCategory({ categories, filters }) {
       return categories.map(category => (
          <li className="category" key={category.name}>
             <NavLink
-               style={{ fontFamily: 'Poppins' }}
+               style={{ fontFamily: 'Poppins', textTransform: 'capitalize' }}
                to={location => {
                   let _filters
                   const params = queryString.parse(location.search)
