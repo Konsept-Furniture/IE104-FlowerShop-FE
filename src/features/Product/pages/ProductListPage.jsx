@@ -5,7 +5,7 @@ import { addToCart, getCategories } from '@/features/Product/productSlice'
 import useQuery from '@/hooks/useQuery'
 import { common } from '@/utils/common'
 import { renderPaginationText } from '@/utils/helper'
-import { Box, Pagination, Skeleton, Stack, Button } from '@mui/material'
+import { Box, Pagination, Skeleton, Stack, Button, Typography } from '@mui/material'
 import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useEffect, useRef, useState } from 'react'
@@ -165,14 +165,21 @@ function ProductListPage() {
             ) : (
                <ProductList data={products} onAddCart={handleAddProductToCart} />
             )}
-
-            <Stack direction="row" justifyContent="center">
-               <Pagination
-                  count={pagination.totalPages}
-                  page={pagination.currentPage}
-                  onChange={handleChangePagination}
-               />
-            </Stack>
+            {products.length > 0 ? (
+               <Stack direction="row" justifyContent="center">
+                  <Pagination
+                     count={pagination.totalPages}
+                     page={pagination.currentPage}
+                     onChange={handleChangePagination}
+                  />
+               </Stack>
+            ) : (
+               <Box sx={{ mt: 5, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <Typography variant="h5">
+                     No product found. Please try with new filters.
+                  </Typography>
+               </Box>
+            )}
          </div>
       </main>
    )
