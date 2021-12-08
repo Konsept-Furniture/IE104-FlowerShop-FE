@@ -36,7 +36,6 @@ function FilterBySorting({ filters }) {
                <MenuItem value="createdAt-desc">Sort by lastest</MenuItem>
                <MenuItem value="price-asc">Sort by price: low to high</MenuItem>
                <MenuItem value="price-desc">Sort by price: high to low</MenuItem>
-               <MenuItem value="rating-desc">Sort by average rating</MenuItem>
             </Select>
          </FormControl>
       </div>
