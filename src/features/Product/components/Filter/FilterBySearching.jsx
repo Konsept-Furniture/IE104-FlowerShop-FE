@@ -21,7 +21,7 @@ function FilterBySearching({ filters }) {
       ref.current = setTimeout(() => {
          history.push({
             pathname: path.products,
-            search: queryString.stringify({ ...filters, search: e.target.value.replace(/^\s+/g, '') })
+            search: queryString.stringify({ ...filters, search: e.target.value.trim() })
          })
       }, 1000)
    }
