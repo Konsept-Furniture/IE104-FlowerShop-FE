@@ -31,7 +31,6 @@ function LastestItems() {
                orderBy: 'createdAt-desc'
             }
             const res = await productApi.getProducts(payload)
-            console.log(res)
             setProducts(res.data)
          } catch (error) {
             console.log(error)

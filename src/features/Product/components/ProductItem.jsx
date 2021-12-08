@@ -68,24 +68,22 @@ function ProductItem({ product, onAddCart }) {
             <div className="product__info">
                <h5 className="product__info-title">{product.title}</h5>
                <div className="product__info-category">
-                  <a>
-                     {product.categories.map((cate, idx) => (
-                        <span key={cate}>
-                           {idx !== 0 ? ', ' : ''}
-                           <a
-                              onClick={() => {
-                                 history.push({
-                                    pathname: path.products,
-                                    search: `?category=${cate}`
-                                 })
-                              }}
-                              style={{ textTransform: 'capitalize' }}
-                           >
-                              {cate}
-                           </a>
-                        </span>
-                     ))}
-                  </a>
+                  {product.categories.map((cate, idx) => (
+                     <span key={cate}>
+                        {idx !== 0 ? ', ' : ''}
+                        <a
+                           onClick={() => {
+                              history.push({
+                                 pathname: path.products,
+                                 search: `?category=${cate}`
+                              })
+                           }}
+                           style={{ textTransform: 'capitalize' }}
+                        >
+                           {cate}
+                        </a>
+                     </span>
+                  ))}
                </div>
             </div>
             <div className="product__info-price">${product.price.toFixed(2)}</div>

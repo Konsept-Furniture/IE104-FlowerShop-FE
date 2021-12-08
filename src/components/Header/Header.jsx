@@ -45,11 +45,18 @@ function Header() {
    const cart = useSelector(state => state.cart)
 
    useEffect(() => {
+      let isMounted = true
+
       if (typeof window !== 'undefined') {
          window.addEventListener('scroll', () => {
-            setHeaderSticky(window.pageYOffset > 0)
-            setHeaderShrink(window.pageYOffset > 400)
+            if (isMounted) {
+               setHeaderSticky(window.pageYOffset > 0)
+               setHeaderShrink(window.pageYOffset > 400)
+            }
          })
+      }
+      return () => {
+         isMounted = false
       }
    }, [])
 
