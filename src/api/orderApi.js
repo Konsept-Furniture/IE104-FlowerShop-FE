@@ -10,7 +10,7 @@ const orderApi = {
       return axiosClient.get(url)
    },
    getAll: () => {
-      const url = 'orders'
+      const url = 'orders/user-orders'
       return axiosClient.get(url)
    },
    update: ({ id, payload }) => {
