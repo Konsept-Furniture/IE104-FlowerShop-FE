@@ -1,9 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import PrimaryButton, { OutlinedButton } from '@/components/button/Button'
+import PrimaryButton from '@/components/button/Button'
 import { Link } from 'react-router-dom'
 import { path } from '@/constants/path'
-import Header from '@/components/Header/Header'
 import ShoppingIcon from '@/assets/icons/ShoppingIcon'
 
 NotFound.propTypes = {
