@@ -13,7 +13,7 @@ const orderApi = {
       const url = 'orders'
       return axiosClient.get(url)
    },
-   update: (id, payload) => {
+   update: ({ id, payload }) => {
       const url = `orders/${id}`
       return axiosClient.put(url, JSON.stringify(payload))
    }

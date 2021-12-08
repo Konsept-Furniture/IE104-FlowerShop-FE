@@ -39,21 +39,9 @@ const schema = yup.object().shape({
       ),
    email: yup.string().email().max(255).required().label('Email address'),
    shippingAddress: yup.object().shape({
-      province: yup
-         .number()
-         .required()
-         .label('Province')
-         .typeError('Province is a required field'),
-      district: yup
-         .number()
-         .required()
-         .label('District')
-         .typeError('District is a required field'),
-      ward: yup
-         .number()
-         .required()
-         .label('Ward')
-         .typeError('Ward is a required field'),
+      province: yup.number().required().label('Province').typeError('Province is a required field'),
+      district: yup.number().required().label('District').typeError('District is a required field'),
+      ward: yup.number().required().label('Ward').typeError('Ward is a required field'),
       street: yup.string().required().label('Street')
    }),
    save: yup.boolean(),
@@ -63,7 +51,7 @@ const schema = yup.object().shape({
 
 function ShippingAddressForm({ defaultValues, onSubmit }) {
    const { deliveryInfo } = useSelector(state => state.auth.profile)
-   const { isPaid } = useSelector(state => state.order)
+   const { isPaid } = useSelector(state => state.order.current)
    const { enqueueSnackbar } = useSnackbar()
    const [provinceList, setProvinceList] = useState([])
    const [districtList, setDistrictList] = useState([])
@@ -188,12 +176,10 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
          })
       } else if (onSubmit) {
          const province = provinceList.find(
-            item =>
-               item.value === Number.parseInt(values.shippingAddress.province)
+            item => item.value === Number.parseInt(values.shippingAddress.province)
          )
          const district = districtList.find(
-            item =>
-               item.value === Number.parseInt(values.shippingAddress.district)
+            item => item.value === Number.parseInt(values.shippingAddress.district)
          )
          const ward = wardList.find(
             item => item.value === Number.parseInt(values.shippingAddress.ward)
@@ -219,11 +205,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
    }
    return (
       <form onSubmit={handleSubmit(handleSubmitOrder)}>
-         <Stack
-            direction="row"
-            justifyContent="space-between"
-            alignItems="flex-end"
-         >
+         <Stack direction="row" justifyContent="space-between" alignItems="flex-end">
             <Typography variant="h4">Delivery Information</Typography>
 
             {deliveryInfo.address.street && (
@@ -237,17 +219,9 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
             )}
          </Stack>
 
-         <TextInputField
-            label="Recipient's name"
-            name="name"
-            control={control}
-         />
+         <TextInputField label="Recipient's name" name="name" control={control} />
          <Stack direction="row" spacing={2} alignItems="baseline">
-            <TextInputField
-               label="Phone number"
-               name="phone"
-               control={control}
-            />
+            <TextInputField label="Phone number" name="phone" control={control} />
             <TextInputField label="Email" name="email" control={control} />
          </Stack>
          <AddressField
@@ -260,7 +234,7 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
             onChangeProvince={handleChangeProvince}
             onChangeDistrict={handleChangeDistrict}
          />
-         <TextInputField label="Notes" name="note" control={control} />
+         <TextInputField label="Notes" name="notes" control={control} />
 
          <CheckboxField
             label="Save delivery information for the next time"
@@ -272,10 +246,8 @@ function ShippingAddressForm({ defaultValues, onSubmit }) {
 
          <SelectPaymentMethod name="payment" control={control} />
 
-         {watchPayment === 'PayPal' && (
-            <div
-               style={{ maxWidth: '750px', minHeight: '200px', marginTop: 20 }}
-            >
+         {!isPaid && watchPayment === 'PayPal' && (
+            <div style={{ maxWidth: '750px', minHeight: '200px', marginTop: 20 }}>
                <Divider sx={{ mb: 3 }} />
                {isPending ? (
                   <Box

@@ -6,9 +6,7 @@ import IconShoppingBag from '@/assets/icons/IconShoppingBag'
 import IconWallet from '@/assets/icons/IconWallet'
 import { OrderStatus } from '@/constants/enum'
 import { Step, StepLabel, Stepper } from '@mui/material'
-import StepConnector, {
-   stepConnectorClasses
-} from '@mui/material/StepConnector'
+import StepConnector, { stepConnectorClasses } from '@mui/material/StepConnector'
 import { styled } from '@mui/material/styles'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -19,8 +17,7 @@ OrderTrackingStepper.propTypes = {
 }
 
 const ColorlibStepIconRoot = styled('div')(({ theme, ownerState }) => ({
-   backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
+   backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[700] : '#ccc',
    zIndex: 1,
    color: '#fff',
    width: 50,
@@ -68,10 +65,7 @@ function ColorlibStepIcon(props) {
    }
 
    return (
-      <ColorlibStepIconRoot
-         ownerState={{ completed, active }}
-         className={className}
-      >
+      <ColorlibStepIconRoot ownerState={{ completed, active }} className={className}>
          {icons[String(icon)]}
       </ColorlibStepIconRoot>
    )
@@ -95,8 +89,7 @@ const ColorlibConnector = styled(StepConnector)(({ theme }) => ({
    [`& .${stepConnectorClasses.line}`]: {
       height: 3,
       border: 0,
-      backgroundColor:
-         theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
+      backgroundColor: theme.palette.mode === 'dark' ? theme.palette.grey[800] : '#eaeaf0',
       borderRadius: 1
    }
 }))
@@ -118,18 +111,13 @@ function OrderTrackingStepper({ order }) {
    }
 
    return (
-      <Stepper
-         alternativeLabel
-         activeStep={activeStep}
-         connector={<ColorlibConnector />}
-      >
+      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
          {Object.entries(currentSteps).map(([key, value]) => (
             <Step key={key}>
                <StepLabel
                   StepIconComponent={ColorlibStepIcon}
                   StepIconProps={{
                      icon: (() => {
-                        console.log(value)
                         if (value === 'Refunded') {
                            return Number.parseInt(key) + 2
                         }
@@ -141,10 +129,7 @@ function OrderTrackingStepper({ order }) {
                >
                   {value}
                   {Number.parseInt(key) === 1 && activeStep === 1 && (
-                     <Link
-                        to={`order/${order._id}`}
-                        style={{ textDecoration: 'underline' }}
-                     >
+                     <Link to={`order/${order._id}`} style={{ textDecoration: 'underline' }}>
                         {' '}
                         HERE
                      </Link>

@@ -1,5 +1,4 @@
 /* eslint-disable multiline-ternary */
-import orderApi from '@/api/orderApi'
 import { path } from '@/constants/path'
 import { updateMe } from '@/features/Auth/authSlice'
 import { addPurchaseProducts } from '@/features/Cart/cartSlice'
@@ -13,7 +12,7 @@ import { useHistory, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import OrderSummary from '../components/OrderSummary'
 import ShippingAddressForm from '../components/ShippingAddressForm'
-import { getOrder } from '../orderSlice'
+import { getOrder, updateOrder } from '../orderSlice'
 
 function OrderPage() {
    const history = useHistory()
@@ -38,9 +37,12 @@ function OrderPage() {
                email: values.email,
                phone: values.phone
             },
+            notes: values.notes,
+            payment: values.payment,
             status: 'PROCESSING'
          }
-         const res = await orderApi.update(orderId, payload)
+         console.log(payload)
+         const res = await dispatch(updateOrder({ id: orderId, payload })).then(unwrapResult)
          console.log(res)
 
          // save deliveryInfo

@@ -1,8 +1,9 @@
-import React, { useEffect } from 'react'
+import { updateOrder } from '@/features/Order/orderSlice'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
+import { unwrapResult } from '@reduxjs/toolkit'
 import PropTypes from 'prop-types'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { payOrder } from '@/features/Order/orderSlice'
 
 // This values are the props in the UI
 const style = { layout: 'vertical' }
@@ -57,10 +58,12 @@ function ReactPayPal({ currency, showSpinner }) {
                   })
             }}
             onApprove={function (data, actions) {
-               return actions.order.capture().then(function () {
+               return actions.order.capture().then(async function () {
                   // Your code here after capture the order
-                  console.log('paid')
-                  reactDispatch(payOrder())
+                  console.log('paid', order._id, { isPaid: true })
+                  await reactDispatch(
+                     updateOrder({ id: order._id, payload: { isPaid: true, payment: 'PayPal' } })
+                  ).then(unwrapResult)
                })
             }}
          />
