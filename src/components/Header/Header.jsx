@@ -3,12 +3,12 @@ import IconCart from '@/assets/icons/IconCart'
 import IconUser from '@/assets/icons/IconUser'
 import { path } from '@/constants/path'
 import { IconButton, Tooltip } from '@mui/material'
-import React from 'react'
+import Badge from '@mui/material/Badge'
+import { styled } from '@mui/material/styles'
+import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import './Header.scss'
-import Badge from '@mui/material/Badge'
-import { styled } from '@mui/material/styles'
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
    '& .MuiBadge-badge': {
@@ -21,6 +21,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }))
 
 function Header() {
+   const [headerSticky, setHeaderSticky] = useState(false)
+   const [headerShrink, setHeaderShrink] = useState(false)
+
    const history = useHistory()
    const currentUser = useSelector(state => state.auth.profile)
    const cart = useSelector(state => state.cart)
@@ -38,8 +41,22 @@ function Header() {
          route: path.about
       }
    ]
+
+   useEffect(() => {
+      if (typeof window !== 'undefined') {
+         window.addEventListener('scroll', () => {
+            setHeaderSticky(window.pageYOffset > 0)
+            setHeaderShrink(window.pageYOffset > 400)
+         })
+      }
+   }, [])
+
    return (
-      <header className="header py-4 font-poppins">
+      <header
+         className={`header font-poppins ${headerSticky ? 'header--sticky' : ''} ${
+            headerShrink ? 'header--shrink' : ''
+         }`}
+      >
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-14">
                <Link to={path.home}>

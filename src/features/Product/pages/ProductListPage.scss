@@ -1,8 +1,9 @@
 @use '@/scss' as *;
 
 .products {
+   scroll-behavior: smooth;
    font-family: 'Open Sans', sans-serif;
-   padding-top: 50px;
+   // padding-top: 50px;
    padding-bottom: 50px;
    display: grid;
    grid-template-columns: 1fr 3fr;
@@ -10,10 +11,11 @@
 
    &__filters {
       grid-area: filter;
-      padding: 0 20px 20px 0;
+      padding: 80px 20px 20px 0;
    }
    &__list {
       grid-area: products;
+      padding-top: 100px;
    }
 }
 @include laptop {

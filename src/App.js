@@ -38,11 +38,7 @@ function App() {
          maxSnack={1}
          preventDuplicate
          action={key => (
-            <Button
-               varient="text"
-               onClick={onClickDismiss(key)}
-               color="inherit"
-            >
+            <Button varient="text" onClick={onClickDismiss(key)} color="inherit">
                Dismiss
             </Button>
          )}

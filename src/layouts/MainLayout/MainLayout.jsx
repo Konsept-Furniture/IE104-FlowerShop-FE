@@ -1,13 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import Header from '@/components/Header/Header'
+import PropTypes from 'prop-types'
+import React from 'react'
 import './MainLayout.scss'
 MainLayout.propTypes = {
-   children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element)
-   ])
+   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
 }
 
 function MainLayout({ children }) {
