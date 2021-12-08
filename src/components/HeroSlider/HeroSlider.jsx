@@ -20,7 +20,7 @@ function HeroSlider() {
          type: 'Authentic',
          title: 'Made with love',
          description:
-            'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+            'Imagine the feeling of a home designed to fit your lifestyle and reflect your personality. The benefits are clear. When you combine a pleasing colour scheme; free-flowing and functional space; perfect mood lighting and clever storage, you get pleasurable home-experiences and a happier life.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-orange'
@@ -28,7 +28,7 @@ function HeroSlider() {
       {
          type: 'Timeless',
          title: 'Interior designs',
-         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         description: 'Konsept was born in Vietnam in 2021, and is today a premium retail lifestyle brand. We design, produce and sell a range of contemporary Danish design furniture , accessories and lighting for the living room, dining room, bedroom, home-office and outdoor spaces.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-blue'
@@ -36,7 +36,7 @@ function HeroSlider() {
       {
          type: 'Tailored',
          title: 'Classic interiors',
-         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         description: 'Today, the company continues to address new lifestyles with the creation of complete, harmonious interior decor solutions that embody the best contemporary design for all areas of the home.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-yellow'
@@ -44,7 +44,7 @@ function HeroSlider() {
       {
          type: 'Authentic',
          title: 'Made with love',
-         description: 'Nulla quis lorem ut libero malesuada feugiat. Nulla quis lorem ut libero malesuada feugiat. Curabitur aliquet quam id dui posuere blandit. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.',
+         description: 'Imagine the feeling of a home designed to fit your lifestyle and reflect your personality. The benefits are clear. When you combine a pleasing colour scheme; free-flowing and functional space; perfect mood lighting and clever storage, you get pleasurable home-experiences and a happier life.',
          imageUrl: 'https://konsept.qodeinteractive.com/wp-content/uploads/2020/03/Home1_rev1.jpg',
          path: '/',
          backgroundColor: 'bg-slider_bg-blue'
