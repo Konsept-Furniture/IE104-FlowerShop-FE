@@ -101,15 +101,21 @@ function CartPage() {
    return (
       <div>
          <div className="flex">
-            <div className="w-full bg-cover bg-center h-96 mb-4" style ={{ backgroundImage: 'url(' + background + ')' } }>
+            <div
+               className="w-full bg-cover bg-center h-96 mb-4"
+               style={{ backgroundImage: 'url(' + background + ')' }}
+            >
                <div className="flex items-center justify-center h-full w-full bg-opacity-50">
                   <div className="text-center">
-                     <h1 className="text-black text-2xl font-josefins font-bold tracking-widest uppercase md:text-4xl">YOUR CART</h1>
+                     <h1 className="text-black text-2xl font-josefins font-bold tracking-widest uppercase md:text-4xl">
+                        YOUR CART
+                     </h1>
                   </div>
                </div>
             </div>
          </div>
-         <Grid container className="konsept-container cart-page" sx={{ height: '100%' }}>
+
+         <Grid container className="konsept-container cart-page" sx={{ height: '100%', mt: 3 }}>
             <Grid item xs={12} sm={12} md={12} lg={12}>
                {/* <OrderStep step={0} /> */}
                <CartItemList

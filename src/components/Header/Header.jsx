@@ -175,6 +175,7 @@ const getDrawerChoices = () => {
                to={route}
                color="inherit"
                style={{ textDecoration: 'none' }}
+               exact
             >
                <MenuItem>{label}</MenuItem>
             </NavLink>

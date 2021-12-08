@@ -37,11 +37,12 @@ function ProductItem({ product, onAddCart }) {
                alt=""
             />
             <div className="product__thumbnail-overlay">
-               <div className="overlay__icons">
-                  <a className="wishlist">
+               {/* TODO: no-time to develop */}
+               <div className="overlay__icons ">
+                  <a className="wishlist hidden">
                      <IconHeart />
                   </a>
-                  <a className="quickview">
+                  <a className="quickview hidden">
                      <IconEye width={25} height={25} />
                   </a>
                </div>
