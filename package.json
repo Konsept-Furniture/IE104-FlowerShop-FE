@@ -66,9 +66,11 @@
     "@babel/core": "^7.15.5",
     "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.6",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "autoprefixer": "^9.8.7",
     "babel-loader": "^8.1.0",
     "css-loader": "^6.3.0",
+    "enzyme": "^3.11.0",
     "eslint": "^7.32.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.25.2",
@@ -79,6 +81,7 @@
     "html-webpack-plugin": "^5.3.2",
     "lint-staged": "^11.2.6",
     "postcss": "^7.0.38",
+    "redux-mock-store": "^1.5.4",
     "resolve-url-loader": "^4.0.0",
     "sass": "^1.42.1",
     "sass-loader": "^12.1.0",
@@ -103,5 +106,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    }
   }
 }
