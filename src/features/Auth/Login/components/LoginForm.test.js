@@ -139,7 +139,7 @@ describe('Login Form', () => {
       expect(handleSubmit).toBeCalled()
    })
 
-   it('UTC8 should call submit function', async () => {
+   it('UTC8 should not call submit function', async () => {
       const defaultValues = {
          username:
             'vohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduck',
