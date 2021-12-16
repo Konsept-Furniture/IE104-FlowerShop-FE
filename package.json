@@ -37,7 +37,7 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "react-scripts test",
+    "test": "react-scripts test --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx, src/",
     "lint:fix": "eslint --fix --ext js,jsx src/",
