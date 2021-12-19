@@ -2,8 +2,9 @@
 
 Final Project of IE104.M11 - Internet and Web Technologies
 <div align="center" >
-<img src="https://i.imgur.com/fOl7fWv.jpg" width="780" height="540" />
+ <img src="konsept.jpg" />
 </div>
+
 ## Authors
 
 - [Nhien Nguyen](https://github.com/annhienktuit)
