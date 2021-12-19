@@ -18,7 +18,7 @@ describe('Login Form', () => {
       const defaultValues = {
          username:
             'vohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduck',
-         password: '123456'
+         password: '1234567'
       }
       const handleSubmit = jest.fn()
       const wrapper = shallow(<LoginForm defaultValues={defaultValues} onSubmit={handleSubmit} />)
@@ -69,7 +69,7 @@ describe('Login Form', () => {
    it('UTC4 should not call submit function', async () => {
       const defaultValues = {
          username:
-            'vohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduck',
+            ' vohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduckhoavohoangduck',
          password: ''
       }
       const handleSubmit = jest.fn()

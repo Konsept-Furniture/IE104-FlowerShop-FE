@@ -57,7 +57,7 @@ function ProductItem({ product, onAddCart }) {
                      )
                   ) : (
                      <a className="konsept-link text--italic" onClick={handleReadMore}>
-                        Read more
+                        Read  more
                      </a>
                   )}
                </div>
