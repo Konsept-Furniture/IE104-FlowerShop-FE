@@ -3,6 +3,7 @@
 Final Project of IE104.M11 - Internet and Web Technologies
 <div align="center" >
  <img src="konsept.jpg" />
+ <img src="product-mockup/tablet.jpg" />
 </div>
 
 ## Authors
