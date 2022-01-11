@@ -76,7 +76,6 @@ function Login() {
                {messages[params.message_code]}
             </Alert>
          )}
-
          <LoginForm defaultValues={defaultValues} onSubmit={handleSubmit} />
       </div>
    )
