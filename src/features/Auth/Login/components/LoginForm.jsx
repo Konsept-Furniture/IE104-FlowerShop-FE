@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { path } from '@/constants/path'
+import { useHistory } from 'react-router'
 
 LoginForm.propTypes = {
    defaultValues: PropTypes.object.isRequired,
@@ -17,6 +18,7 @@ const schema = yup.object().shape({
    password: yup.string().max(32).min(4).required()
 })
 function LoginForm({ defaultValues, onSubmit }) {
+   const history = useHistory()
    const form = useForm({
       defaultValues,
       resolver: yupResolver(schema)
