@@ -57,7 +57,7 @@ function ProductItem({ product, onAddCart }) {
                      )
                   ) : (
                      <a className="konsept-link text--italic" onClick={handleReadMore}>
-                        Read more
+                        Read  more
                      </a>
                   )}
                </div>
@@ -66,7 +66,7 @@ function ProductItem({ product, onAddCart }) {
 
          <div className="product__content">
             <div className="product__info">
-               <h5 className="product__info-title">{product.title}</h5>
+               <h5 className="product__info-title cursor-pointer" onClick={handleReadMore}>{product.title}</h5>
                <div className="product__info-category">
                   {product.categories.map((cate, idx) => (
                      <span key={cate}>

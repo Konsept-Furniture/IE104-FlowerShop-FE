@@ -1,28 +1,19 @@
-import TextInputField from '@/components/form-controls/TextInputField'
-import messages from '@/constants/messages'
 import { path } from '@/constants/path'
 import StorageKeys from '@/constants/StorageKeys'
 import { getCart, updateCart } from '@/features/Cart/cartSlice'
 import useQuery from '@/hooks/useQuery'
-import { yupResolver } from '@hookform/resolvers/yup'
-import LoadingButton from '@mui/lab/LoadingButton'
 import { Alert, Backdrop, CircularProgress } from '@mui/material'
-import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import * as yup from 'yup'
 import { login } from '../authSlice'
 import './Login.scss'
+import messages from '@/constants/messages'
+import { unwrapResult } from '@reduxjs/toolkit'
+import LoginForm from './components/LoginForm'
 
 Login.propTypes = {}
-
-const schema = yup.object().shape({
-   username: yup.string().max(32).required(),
-   password: yup.string().max(32).min(4).required()
-})
 
 function Login() {
    const { enqueueSnackbar } = useSnackbar()
@@ -30,19 +21,10 @@ function Login() {
    const dispatch = useDispatch()
    const params = useQuery()
    const [loading, setLoading] = useState(false)
-
-   const form = useForm({
-      defaultValues: {
-         username: params.username || '',
-         password: ''
-      },
-      resolver: yupResolver(schema)
-   })
-   const {
-      formState: { isSubmitting },
-      control
-   } = form
-
+   const defaultValues = {
+      username: params.username || '',
+      password: ''
+   }
    const handleSubmit = async data => {
       setLoading(true)
       try {
@@ -95,48 +77,7 @@ function Login() {
             </Alert>
          )}
 
-         <form onSubmit={form.handleSubmit(handleSubmit)}>
-            <TextInputField
-               control={control}
-               name="username"
-               label="Username"
-               disable={isSubmitting}
-               color="black"
-            />
-            <TextInputField
-               control={control}
-               name="password"
-               label="Password"
-               disable={isSubmitting}
-               color="black"
-               type="password"
-               sx={{ mt: 1 }}
-            />
-
-            <p className="sign-up">
-               Don&lsquo;t have an account?
-               <a
-                  className="text--success"
-                  onClick={() => {
-                     history.push(path.register)
-                  }}
-               >
-                  {' '}
-                  Sign up
-               </a>
-            </p>
-
-            <LoadingButton
-               fullWidth
-               variant="contained"
-               type="submit"
-               className="btn--submit"
-               loading={isSubmitting}
-               color="black"
-            >
-               Log In
-            </LoadingButton>
-         </form>
+         <LoginForm defaultValues={defaultValues} onSubmit={handleSubmit} />
       </div>
    )
 }
