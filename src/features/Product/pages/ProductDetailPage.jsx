@@ -10,9 +10,10 @@ import { unwrapResult } from '@reduxjs/toolkit'
 import { useSnackbar } from 'notistack'
 import { getCart } from '@/features/Cart/cartSlice'
 import { common } from '@/utils/common'
-import { Backdrop, CircularProgress, Button } from '@mui/material'
+import { Backdrop, CircularProgress, Button, Box, Typography } from '@mui/material'
 import { useHistory } from 'react-router-dom'
 import { path } from '@/constants/path'
+import RelatedProducts from '../components/RelatedProducts'
 
 function ProductDetailPage(props) {
    const cartId = useSelector(state => state.cart._id)
@@ -24,12 +25,21 @@ function ProductDetailPage(props) {
    const [firstLoding, setFirstLoading] = useState(true)
    const [addingToCart, setAddingToCart] = useState(false)
    const [productData, setProductData] = useState({})
+   const [recommendProducts, setRecommendProducts] = useState([])
 
    useEffect(() => {
       ;(async () => {
          try {
             const res = await productApi.getProduct(productId)
             setProductData(res.data)
+
+            const payload = {
+               page: 1,
+               pageSize: 3,
+               category: res.data.categories ? res.data.categories[0] : null
+            }
+            const products = (await productApi.getProducts(payload)).data
+            setRecommendProducts(products)
          } catch (error) {
             console.log(error)
          }
@@ -103,6 +113,23 @@ function ProductDetailPage(props) {
          ) : (
             <ProductDetail product={productData} onAddToCart={handleAddToCart} />
          )}
+
+         <Box
+            sx={{
+               marginTop: 5,
+               marginBottom: 2,
+               width: '100%',
+               display: 'flex',
+               alignItems: 'center',
+               justifyContent: 'center'
+            }}
+         >
+            <Typography variant="h5">RELATED PRODUCTS</Typography>
+         </Box>
+
+         <Box sx={{ marginBottom: 25 }}>
+            <RelatedProducts products={recommendProducts} onAddCart={handleAddToCart} />
+         </Box>
       </section>
    )
 }

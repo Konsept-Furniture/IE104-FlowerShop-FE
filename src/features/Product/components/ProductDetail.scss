@@ -1,4 +1,4 @@
-@use '@/scss' as *;
+@use "@/scss" as *;
 
 a:hover {
    color: #1d1d1d;
@@ -21,7 +21,7 @@ a:hover {
       display: flex;
       width: 100%;
       min-height: 100px;
-      margin-bottom: 100px;
+      // margin-bottom: 100px;
       &__thumbnail {
          width: 100%;
          overflow: hidden;
@@ -40,7 +40,7 @@ a:hover {
          }
       }
       &__title {
-         font-family: 'josefin sans', sans-serif;
+         font-family: "josefin sans", sans-serif;
          font-weight: 600;
          text-transform: uppercase;
          color: #1d1d1d;
@@ -52,7 +52,7 @@ a:hover {
          word-wrap: break-word;
       }
       &__price {
-         font-family: 'eb garamond', serif;
+         font-family: "eb garamond", serif;
          font-size: 18px;
          font-style: italic;
          -webkit-box-orient: horizontal;
@@ -67,7 +67,7 @@ a:hover {
       }
       &__description {
          margin-top: 28px;
-         font-family: 'open sans', sans-serif;
+         font-family: "open sans", sans-serif;
          line-height: 1.8em;
          color: #8b8b8b;
       }
@@ -78,7 +78,7 @@ a:hover {
          &-label {
             flex-shrink: 0;
             margin-right: 8px;
-            font-family: 'josefin sans', sans-serif;
+            font-family: "josefin sans", sans-serif;
             font-weight: 600;
             text-transform: uppercase;
             color: #1d1d1d;
@@ -88,7 +88,7 @@ a:hover {
             line-height: 2.7em;
          }
          &-value {
-            font-family: 'eb garamond', serif;
+            font-family: "eb garamond", serif;
             font-size: 17px;
             font-weight: 400;
             font-style: italic;
