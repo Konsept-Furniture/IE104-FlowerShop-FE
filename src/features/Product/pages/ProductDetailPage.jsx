@@ -35,7 +35,7 @@ function ProductDetailPage(props) {
 
             const payload = {
                page: 1,
-               pageSize: 3,
+               pageSize: 5,
                category: res.data.categories ? res.data.categories[0] : null
             }
             const products = (await productApi.getProducts(payload)).data
