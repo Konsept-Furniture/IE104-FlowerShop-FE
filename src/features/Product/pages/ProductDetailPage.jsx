@@ -14,6 +14,7 @@ import { Backdrop, CircularProgress, Button, Box, Typography } from '@mui/materi
 import { useHistory } from 'react-router-dom'
 import { path } from '@/constants/path'
 import RelatedProducts from '../components/RelatedProducts'
+import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 
 function ProductDetailPage(props) {
    const cartId = useSelector(state => state.cart._id)
@@ -45,7 +46,7 @@ function ProductDetailPage(props) {
          }
          setFirstLoading(false)
       })()
-   }, [])
+   }, [productId])
 
    const snackbarAction = key => (
       <>
@@ -101,6 +102,8 @@ function ProductDetailPage(props) {
 
    return (
       <section className="konsept-container">
+         <ScrollToTop />
+
          <Backdrop
             sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }}
             open={addingToCart}

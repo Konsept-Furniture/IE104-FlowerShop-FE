@@ -38,6 +38,8 @@ const RelatedProducts = ({ products, onAddCart }) => {
          navigation={true}
          modules={[Navigation]}
          className="related-products"
+         noSwiping={true}
+         noSwipingClass={'related-products'}
       >
          {products.map(product => (
             <SwiperSlide key={product._id}>
