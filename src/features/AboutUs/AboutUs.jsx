@@ -12,7 +12,7 @@ function AboutUs() {
 
          <AboutUsHeader />
          <AboutUsComment />
-         <AboutUsTeam />
+         {/* <AboutUsTeam /> */}
          <ContactForm />
       </div>
    )

@@ -7,10 +7,7 @@ import { Link } from 'react-router-dom'
 import './AuthLayout.scss'
 
 AuthLayout.propTypes = {
-   children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.arrayOf(PropTypes.element)
-   ])
+   children: PropTypes.oneOfType([PropTypes.element, PropTypes.arrayOf(PropTypes.element)])
 }
 
 function AuthLayout(props) {
@@ -36,7 +33,7 @@ function AuthLayout(props) {
                   <p>Please do not hesitate to contact us</p>
                   <a>contact@konsept.com</a>
                </div>
-               <p className="footer__copyright">
+               {/* <p className="footer__copyright">
                   Developed by NhienBinhKhoa with
                   <IconHeartFull
                      className="color--danger"
@@ -44,7 +41,7 @@ function AuthLayout(props) {
                      height={18}
                   />{' '}
                   <br/> © 2021
-               </p>
+               </p> */}
             </div>
          </div>
 
