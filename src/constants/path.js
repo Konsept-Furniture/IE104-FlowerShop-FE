@@ -8,6 +8,7 @@ class Path {
       this.products = '/products'
       this.productDetail = '/products/:productId'
       this.cart = '/cart'
+      this.wishlist = '/wishlist'
       this.order = '/order/:orderId'
       this.user = '/user'
       // this.profile = this.user + '/profile'

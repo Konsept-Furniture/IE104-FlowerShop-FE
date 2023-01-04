@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 import React, { useEffect, useState } from 'react'
 import './ProductDetailPage.scss'
 import ProductDetailSkeleton from '../components/ProductDetailSkeleton'
@@ -14,6 +15,10 @@ import { Backdrop, CircularProgress, Button, Box, Typography } from '@mui/materi
 import { useHistory } from 'react-router-dom'
 import { path } from '@/constants/path'
 import RelatedProducts from '../components/RelatedProducts'
+import { ReviewForm } from '@/components/Review'
+import reviewApi from '@/api/reviewApi'
+import ReviewList from '@/components/Review/ReviewList'
+import { useHashFragment } from '@/hooks/useHashFragment'
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 
 function ProductDetailPage(props) {
@@ -23,13 +28,15 @@ function ProductDetailPage(props) {
    const dispatch = useDispatch()
    const history = useHistory()
 
-   const [firstLoding, setFirstLoading] = useState(true)
+   const [firstLoading, setFirstLoading] = useState(true)
    const [addingToCart, setAddingToCart] = useState(false)
    const [productData, setProductData] = useState({})
    const [recommendProducts, setRecommendProducts] = useState([])
 
+   useHashFragment(0, !!productData._id)
+
    useEffect(() => {
-      ;(async () => {
+      ; (async () => {
          try {
             const res = await productApi.getProduct(productId)
             setProductData(res.data)
@@ -100,6 +107,23 @@ function ProductDetailPage(props) {
       }
    }
 
+   const handleAddReview = async data => {
+      try {
+         const payload = {
+            productId,
+            rating: data.rating,
+            message: data.message
+         }
+         await reviewApi.create(payload)
+         enqueueSnackbar('Add review successfully', {
+            variant: 'success'
+         })
+         history.go(0)
+      } catch (error) {
+         console.log(error)
+      }
+   }
+
    return (
       <section className="konsept-container">
          <ScrollToTop />
@@ -111,28 +135,50 @@ function ProductDetailPage(props) {
             <CircularProgress color="inherit" />
          </Backdrop>
 
-         {firstLoding ? (
+         {firstLoading ? (
             <ProductDetailSkeleton />
          ) : (
-            <ProductDetail product={productData} onAddToCart={handleAddToCart} />
+            <>
+               <ProductDetail product={productData} onAddToCart={handleAddToCart} />
+               <Box
+                  sx={{
+                     marginTop: 5,
+                     marginBottom: 2,
+                     width: '100%',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center'
+                  }}
+               >
+                  <Typography variant="h5">REVIEWS</Typography>
+               </Box>
+               <Typography fontSize={16} fontWeight={500} sx={{ letterSpacing: 0.9 }}>
+                  {productData.reviews.length > 1
+                     ? productData.reviews.length + ' REVIEWS '
+                     : productData.reviews.length + ' REVIEW '}
+                  FOR {productData.title.toUpperCase()}
+               </Typography>
+               <ReviewList reviews={productData.reviews} />
+
+               {productData.hasBought && <ReviewForm onSubmit={handleAddReview} />}
+
+               <Box
+                  sx={{
+                     marginTop: 5,
+                     marginBottom: 2,
+                     width: '100%',
+                     display: 'flex',
+                     alignItems: 'center',
+                     justifyContent: 'center'
+                  }}
+               >
+                  <Typography variant="h5">RELATED PRODUCTS</Typography>
+               </Box>
+               <Box sx={{ marginBottom: 25 }}>
+                  <RelatedProducts products={recommendProducts} onAddCart={handleAddToCart} />
+               </Box>
+            </>
          )}
-
-         <Box
-            sx={{
-               marginTop: 5,
-               marginBottom: 2,
-               width: '100%',
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center'
-            }}
-         >
-            <Typography variant="h5">RELATED PRODUCTS</Typography>
-         </Box>
-
-         <Box sx={{ marginBottom: 25 }}>
-            <RelatedProducts products={recommendProducts} onAddCart={handleAddToCart} />
-         </Box>
       </section>
    )
 }

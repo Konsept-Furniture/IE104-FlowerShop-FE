@@ -1,5 +1,6 @@
 import { OutlinedButton } from '@/components/button/Button'
 import QuantityField from '@/components/form-controls/QuantityField'
+import AddToWishlistButton from '@/components/Wishlist/WishlistButton'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Typography } from '@mui/material'
@@ -69,6 +70,10 @@ function ProductDetail(props) {
                   <Typography variant="h6">This product is out of stock.</Typography>
                </Box>
             )}
+
+            <Box sx={{ mt: 2 }}>
+               <AddToWishlistButton productId={product._id} />
+            </Box>
 
             <div className="product-detail__meta">
                <span className="product-detail__categories">

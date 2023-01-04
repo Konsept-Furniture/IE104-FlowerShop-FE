@@ -100,10 +100,6 @@ const steps = {
    3: 'Deliveried'
 }
 function OrderTrackingStepper({ order }) {
-   console.log(
-      '🚀 ~ file: OrderTrackingStepper.jsx ~ line 111 ~ OrderTrackingStepper ~ order',
-      order
-   )
    const activeStep = OrderStatus[order.status]
    const currentSteps = {
       ...steps,

@@ -7,30 +7,15 @@ import authApi from './authApi'
 import { common } from '@/utils/common'
 import userApi from '@/api/userApi'
 
-export const register = createAsyncThunk(
-   'auth/register',
-   payloadCreator(authApi.register)
-)
-export const login = createAsyncThunk(
-   'auth/login',
-   payloadCreator(authApi.login)
-)
-export const logout = createAsyncThunk(
-   'auth/logout',
-   payloadCreator(authApi.logout)
-)
-export const getMe = createAsyncThunk(
-   'auth/getMe',
-   payloadCreator(userApi.getMe)
-)
+export const register = createAsyncThunk('auth/register', payloadCreator(authApi.register))
+export const login = createAsyncThunk('auth/login', payloadCreator(authApi.login))
+export const logout = createAsyncThunk('auth/logout', payloadCreator(authApi.logout))
+export const getMe = createAsyncThunk('auth/getMe', payloadCreator(userApi.getMe))
 export const changePassword = createAsyncThunk(
    'auth/changePassword',
    payloadCreator(authApi.changePassword)
 )
-export const updateMe = createAsyncThunk(
-   'auth/updateMe',
-   payloadCreator(userApi.updateMe)
-)
+export const updateMe = createAsyncThunk('auth/updateMe', payloadCreator(userApi.updateMe))
 
 const handleAuthFulfilled = (state, action) => {
    const { user, accessToken } = action.payload.data

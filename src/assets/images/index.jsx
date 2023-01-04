@@ -10,5 +10,6 @@ export const IMAGES = {
    Hien: require('./hien.jpg').default,
    Tuyen: require('./tuyen.jpg').default,
    EmptySvg: require('./empty.svg').default,
-   CartCover: require('./cart-cover.jpg').default
+   CartCover: require('./cart-cover.jpg').default,
+   WishlistCover: require('./wishlist_cover.jpeg').default
 }

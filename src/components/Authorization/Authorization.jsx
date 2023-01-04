@@ -12,14 +12,14 @@ export default function Authorization() {
    const { hasLoggedIn } = useAuth()
 
    useEffect(() => {
-      console.log('status', status)
+      // console.log('status', status)
       if (status === 401) {
          dispatch(unauthorize())
       }
    }, [dispatch, status, history])
 
    useEffect(() => {
-      console.log('hasLoggedIn', hasLoggedIn)
+      // console.log('hasLoggedIn', hasLoggedIn)
       if (hasLoggedIn) {
          dispatch(getCart())
          dispatch(getMe())

@@ -1,3 +1,4 @@
+import HeartIcon from '@/assets/icons/HeartIcon'
 import IconBurger from '@/assets/icons/IconBurger'
 import IconCart from '@/assets/icons/IconCart'
 import IconUser from '@/assets/icons/IconUser'
@@ -6,7 +7,7 @@ import { Drawer, IconButton, List, ListItem, MenuItem, Tooltip } from '@mui/mate
 import Badge from '@mui/material/Badge'
 import { styled } from '@mui/material/styles'
 import { Box } from '@mui/system'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link, NavLink, useHistory } from 'react-router-dom'
 import './Header.scss'
@@ -43,6 +44,7 @@ function Header() {
    const history = useHistory()
    const currentUser = useSelector(state => state.auth.profile)
    const cart = useSelector(state => state.cart)
+   const wishlist = useMemo(() => currentUser.wishlist ? currentUser.wishlist : [], [currentUser])
 
    useEffect(() => {
       let isMounted = true
@@ -62,9 +64,8 @@ function Header() {
 
    return (
       <header
-         className={`header font-poppins ${headerSticky ? 'header--sticky' : ''} ${
-            headerShrink ? 'header--shrink' : ''
-         }`}
+         className={`header font-poppins ${headerSticky ? 'header--sticky' : ''} ${headerShrink ? 'header--shrink' : ''
+            }`}
       >
          <div className="header--innner konsept-container flex justify-between items-center">
             <div className="mr-4 lg:mr-16 h-10 md:h-14">
@@ -110,6 +111,22 @@ function Header() {
                         <IconButton aria-label="user">
                            <IconUser />
                            <span className="ml-1 hidden">Login/Register</span>
+                        </IconButton>
+                     </Tooltip>
+                  </div>
+               </div>
+               <div
+                  className="header__widget h-full"
+                  onClick={() => {
+                     history.push(path.wishlist)
+                  }}
+               >
+                  <div className="header__widget-content">
+                     <Tooltip title="Wishlist">
+                        <IconButton aria-label="wishlist">
+                           <StyledBadge badgeContent={wishlist.length} color="black">
+                              <HeartIcon width={20} height={20} />
+                           </StyledBadge>
                         </IconButton>
                      </Tooltip>
                   </div>
