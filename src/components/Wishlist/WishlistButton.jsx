@@ -59,7 +59,7 @@ const AddToWishlistButton = ({ productId }) => {
             </>
          ) : (
             <>
-               <HeartIcon width={24} height={24} />
+               <HeartIcon width={20} height={20} />
                <Typography sx={{ ml: 1 }}>Add to wishlist</Typography>
             </>
          )}
