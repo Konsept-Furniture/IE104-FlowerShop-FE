@@ -13,11 +13,7 @@ function WishlistProductItem({ product, onRemove }) {
    return (
       <TableRow hover>
          <TableCell padding="checkbox">
-            <IconButton
-               aria-label="delete"
-               color="error"
-               onClick={handleRemove}
-            >
+            <IconButton aria-label="delete" color="error" onClick={handleRemove}>
                <IconDelete width={30} height={30} />
             </IconButton>
          </TableCell>
@@ -32,7 +28,7 @@ function WishlistProductItem({ product, onRemove }) {
                }
             }}
          >
-            <img className="product-image" src={product.img} />
+            <img className="product-image" src={product.photo?.url ?? product.img} />
          </TableCell>
          <TableCell align="left">
             <div>
@@ -67,8 +63,7 @@ function WishlistProductItem({ product, onRemove }) {
                   sm: 'table-cell'
                }
             }}
-         >
-         </TableCell>
+         ></TableCell>
       </TableRow>
    )
 }

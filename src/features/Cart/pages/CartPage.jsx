@@ -48,6 +48,7 @@ function CartPage() {
             products: selectedProducts.map(item => ({
                productId: item._id,
                quantity: item.quantity,
+               size: item.size,
                amount: item.quantity * item.price
             })),
             amount: selectedProducts.reduce((prev, cur) => {

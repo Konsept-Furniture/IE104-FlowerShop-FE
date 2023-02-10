@@ -1,10 +1,10 @@
 import HeroSlider from '@/components/HeroSlider/HeroSlider'
+import HeroSlider2 from '@/components/HeroSlider/HeroSlider2'
 import OurAdvantages from '@/components/OurAdvantages'
 import ScrollToTop from '@/components/ScrollToTop/ScrollToTop'
 import React from 'react'
 import CoverImageList from './components/CoverImageList'
 import LastestItems from './components/LastestItems'
-import MaybeYouLike from './components/MaybeYouLike'
 
 Home.propTypes = {}
 
@@ -13,8 +13,9 @@ function Home() {
       <div>
          <ScrollToTop />
 
-         <HeroSlider />
-         <MaybeYouLike />
+         {/* <HeroSlider /> */}
+         <HeroSlider2 />
+         {/* <MaybeYouLike /> */}
          <LastestItems />
          <OurAdvantages />
          <CoverImageList />

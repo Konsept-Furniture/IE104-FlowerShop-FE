@@ -36,7 +36,7 @@ function ProductDetailPage(props) {
    useHashFragment(0, !!productData._id)
 
    useEffect(() => {
-      ; (async () => {
+      ;(async () => {
          try {
             const res = await productApi.getProduct(productId)
             setProductData(res.data)
@@ -78,10 +78,10 @@ function ProductDetailPage(props) {
                cartId,
                payload: {
                   productId,
-                  quantity: _data.quantity
+                  quantity: _data.quantity,
+                  size: _data.size
                }
             }
-            console.log(data)
             const res = await dispatch(addToCart(data)).then(unwrapResult)
             enqueueSnackbar(res.message, {
                variant: 'success',

@@ -1,12 +1,13 @@
 import { OutlinedButton } from '@/components/button/Button'
 import QuantityField from '@/components/form-controls/QuantityField'
+import SizeField from '@/components/form-controls/SizeField'
 import AddToWishlistButton from '@/components/Wishlist/WishlistButton'
 import { path } from '@/constants/path'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import * as yup from 'yup'
@@ -20,13 +21,19 @@ ProductDetail.propTypes = {
 function ProductDetail(props) {
    const { product, onAddToCart } = props
    const history = useHistory()
+   const totalQuantity = useMemo(
+      () => product.variants.reduce((prev, acc) => prev + acc.qty, 0),
+      [product]
+   )
 
    const schema = yup.object().shape({
-      quantity: yup.number().min(1).nullable()
+      quantity: yup.number().min(1).nullable(),
+      size: yup.number().min(1).nullable().required('Size is required.')
    })
    const form = useForm({
       defaultValues: {
-         quantity: 1
+         quantity: 1,
+         size: undefined
       },
       resolver: yupResolver(schema)
    })
@@ -38,32 +45,48 @@ function ProductDetail(props) {
    } = form
 
    const handleAddToCart = async values => {
+      console.log('🚀 ~ file: ProductDetail.jsx:48 ~ handleAddToCart ~ values', values)
       if (onAddToCart) {
          await onAddToCart(values)
-         if (isSubmitSuccessful) reset({ quantity: 1 })
+         if (isSubmitSuccessful) reset({ quantity: 1, size: undefined })
       }
    }
 
    return (
       <div className="product-detail">
          <div className="product-detail__thumbnail">
-            <img className="product-detail__image" src={product.img}></img>
+            <img className="product-detail__image" src={product.photo?.url ?? product.img}></img>
          </div>
          <div className="product-detail__info">
             <h1 className="product-detail__title">{product.title}</h1>
             <p className="product-detail__price">${product.price.toFixed(2)}</p>
             <div className="product-detail__description">
-               <p>{product.desc}</p>
+               <dix
+                  dangerouslySetInnerHTML={{ __html: product.desc.replaceAll(/\n/g, '<br />') }}
+               ></dix>
             </div>
 
-            {product.quantity > 0 ? (
+            {totalQuantity > 0 ? (
                <form onSubmit={handleSubmit(handleAddToCart)}>
-                  <div className="add-to-cart">
+                  <SizeField
+                     label=""
+                     control={control}
+                     name={'size'}
+                     options={product.variants.map(variant => ({
+                        label: variant.size,
+                        value: variant.size,
+                        qty: variant.qty
+                     }))}
+                  />
+                  <Typography variant="body1" sx={{ mt: 2 }}>
+                     Quantity
+                  </Typography>
+                  <Box className="add-to-cart">
                      <QuantityField name="quantity" control={control} max={product.quantity} />
                      <OutlinedButton type="submit">
                         <span>Add to cart</span>
                      </OutlinedButton>
-                  </div>
+                  </Box>
                </form>
             ) : (
                <Box sx={{ mt: 2 }}>

@@ -107,8 +107,8 @@ function LastestItems() {
    return (
       <div className="lastest-items konsept-container">
          <div className="lastest-items__header">
-            <p>Lastest Collection</p>
-            <h2>ESSENTIAL ITEMS</h2>
+            {/* <p>Lastest Collection</p> */}
+            <h2>LATEST ITEMS</h2>
          </div>
          <div className="lastest-items__products">
             {loading ? (

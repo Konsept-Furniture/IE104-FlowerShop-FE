@@ -37,7 +37,7 @@ function CartItem({ data, form: { form, name }, onSelect, onRemove, selected }) 
                }
             }}
          >
-            <img className="product-image" src={data.img} />
+            <img className="product-image" src={data.photo?.url ?? data.img} />
          </TableCell>
          <TableCell align="left">
             <div>
@@ -46,6 +46,9 @@ function CartItem({ data, form: { form, name }, onSelect, onRemove, selected }) 
                      {data.title}
                   </Typography>
                </Link>
+               <Typography variant="caption" component="div">
+                  Size {data.size}
+               </Typography>
                <Typography
                   variant="p"
                   sx={{ cursor: 'pointer' }}

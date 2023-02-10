@@ -116,7 +116,8 @@ function CartItemList({ creatingOrder, products, onUpdateList, onCheckoutClick }
             payload: {
                products: currentCartProducts.map((product, idx) => ({
                   productId: product._id,
-                  quantity: getValues(`quantity.${idx}`)
+                  quantity: getValues(`quantity.${idx}`),
+                  size: product.size
                }))
             }
          }

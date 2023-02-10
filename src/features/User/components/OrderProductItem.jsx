@@ -23,7 +23,7 @@ const OrderProductItem = ({ product }) => {
                }
             }}
          >
-            <img className="product-image" src={product.img} />
+            <img className="product-image" src={product.img ?? product.photo?.url} />
          </TableCell>
          <TableCell align="left">
             <Box>
@@ -32,6 +32,9 @@ const OrderProductItem = ({ product }) => {
                      {product.title}
                   </Typography>
                </Link>
+               <Typography variant="body2" component="div">
+                  Size {product.size}
+               </Typography>
             </Box>
          </TableCell>
          <TableCell

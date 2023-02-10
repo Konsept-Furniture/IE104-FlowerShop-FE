@@ -77,7 +77,8 @@ function ProductItem({ product, onAddCart }) {
             <img
                className="product__thumbnail-image"
                src={
-                  product.img ||
+                  product.photo?.url ??
+                  product.img ??
                   'https://konsept.qodeinteractive.com/wp-content/uploads/2020/04/shoplist6.jpg'
                }
                alt=""
@@ -85,10 +86,13 @@ function ProductItem({ product, onAddCart }) {
             <div className="product__thumbnail-overlay">
                {/* TODO: no-time to develop */}
                <div className="overlay__icons">
-                  <a className="wishlist" onClick={(e) => {
-                     e.stopPropagation()
-                     handleAddToWishlist()
-                  }}>
+                  <a
+                     className="wishlist"
+                     onClick={e => {
+                        e.stopPropagation()
+                        handleAddToWishlist()
+                     }}
+                  >
                      {storedInWishlist ? (
                         <IconHeartFull width={20} height={20} />
                      ) : (
@@ -100,7 +104,7 @@ function ProductItem({ product, onAddCart }) {
                   </a>
                </div>
                <div className="overlay__add-cart">
-                  {product.quantity > 0 ? (
+                  {/* {product.quantity > 0 ? (
                      !loading ? (
                         <a className="konsept-link text--italic" onClick={handleAddToCart}>
                            Add To Cart
@@ -110,16 +114,22 @@ function ProductItem({ product, onAddCart }) {
                      )
                   ) : (
                      <a className="konsept-link text--italic" onClick={handleReadMore}>
-                        Read  more
+                        Read more
                      </a>
-                  )}
+                  )} */}
+
+                  <a className="konsept-link text--italic" onClick={handleReadMore}>
+                     Read more
+                  </a>
                </div>
             </div>
          </div>
 
          <div className="product__content">
             <div className="product__info">
-               <h5 className="product__info-title cursor-pointer" onClick={handleReadMore}>{product.title}</h5>
+               <h5 className="product__info-title cursor-pointer" onClick={handleReadMore}>
+                  {product.title}
+               </h5>
                <div className="product__info-category">
                   {product.categories.map((cate, idx) => (
                      <span key={cate}>
